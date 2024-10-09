@@ -90,7 +90,6 @@ namespace Escola_Virtual
         }
         private void Admin_Panel_Load(object sender, EventArgs e)
         {
-            //Meter os anos existentes na combo box
 
             School_Year Years = new School_Year();
             Years = Generic._list_Of_School_Years.Where(m => m.Get_Year == Years.Get_Year).FirstOrDefault();
@@ -107,7 +106,7 @@ namespace Escola_Virtual
                 foreach (var it in i.Get_List_Of_Classes)
                 {
                     TreeNode Turma = new TreeNode();
-                    Turma.Text = it;
+                    Turma.Text = it.Get_class_name;
                     Ano.Nodes.Add(Turma);
                 }
             }
