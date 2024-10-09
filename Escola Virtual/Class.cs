@@ -19,8 +19,6 @@ namespace Escola_Virtual
         private string _class_name;
         private string _class_acronym;
 
-        //testee
-
 
         #region Propriedades de Get
         public List<Student> Get_List_Of_Student
