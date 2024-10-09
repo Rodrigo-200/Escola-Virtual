@@ -114,5 +114,33 @@ namespace Escola_Virtual
 
 
         }
+
+        private void btn_TeacherConfirm_Click(object sender, EventArgs e)
+        {
+            foreach (TreeNode i in tvw_TeacherYearsAndSubjects.Nodes)
+            {
+                if (i.Parent == null && i.Checked == true)
+                {
+
+                }
+            }
+
+            Teachers teacher = new Teachers()
+            {
+                Set_Name = txt_TeacherName.Text,
+                Set_Address = txt_TeacherAddress.Text,
+                Set_Contact = txt_TeacherContact.Text,
+
+                //Set_List_Of_School_Years_Teaching;
+            };
+
+            foreach (TreeNode i in tvw_TeacherYearsAndSubjects.Nodes)
+            {
+                if (i.Parent == null && i.Checked == true)
+                {
+                    teacher.Set_List_Of_School_Years_Teaching.Add(i.Text);
+                }
+            }
+        }
     }
 }
