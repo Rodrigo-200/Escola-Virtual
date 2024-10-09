@@ -17,6 +17,7 @@ namespace Escola_Virtual
         private string _password;
         private string _teacherID;
         //chat igual ao aluno
+        //Teste
 
 
         #region Propriedades de Set
