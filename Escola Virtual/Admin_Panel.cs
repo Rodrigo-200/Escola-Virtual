@@ -138,7 +138,7 @@ namespace Escola_Virtual
             {
                 if (i.Parent == null && i.Checked == true)
                 {
-                    teacher.Set_List_Of_School_Years_Teaching.Add(i.Text);
+                    teacher.Get_List_Of_School_Years_Teaching.Add(Convert.ToInt32(i.Text.Split('º')[0]));
                 }
             }
         }

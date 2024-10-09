@@ -9,7 +9,7 @@ namespace Escola_Virtual
     public class Teachers
     {
         private List<Subject> _list_Of_Subjects_Teaching = new List<Subject>();
-        private List<School_Year> _list_Of_School_Years_Teaching = new List<School_Year>();
+        private List<int> _list_Of_School_Years_Teaching = new List<int>();
         private string _name;
         private string _address;
         private string _contact;
@@ -18,7 +18,6 @@ namespace Escola_Virtual
         private string _teacherID;
         //chat igual ao aluno
 
-        //apaguei
 
 
         #region Propriedades de Set
@@ -30,7 +29,7 @@ namespace Escola_Virtual
             }
         }
         
-        public List<School_Year> Get_List_Of_School_Years_Teaching
+        public List<int> Get_List_Of_School_Years_Teaching
         {
             get
             {
@@ -92,7 +91,7 @@ namespace Escola_Virtual
             }
         }
         
-        public List<School_Year> Set_List_Of_School_Years_Teaching
+        public List<int> Set_List_Of_School_Years_Teaching
         {
             set
             {
