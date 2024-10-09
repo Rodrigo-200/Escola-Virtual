@@ -70,11 +70,12 @@ namespace Escola_Virtual
             this.tc_Choices.Location = new System.Drawing.Point(1, 0);
             this.tc_Choices.Name = "tc_Choices";
             this.tc_Choices.SelectedIndex = 0;
-            this.tc_Choices.Size = new System.Drawing.Size(799, 449);
+            this.tc_Choices.Size = new System.Drawing.Size(811, 449);
             this.tc_Choices.TabIndex = 0;
             // 
             // tp_TeachersPage
             // 
+            this.tp_TeachersPage.BackColor = System.Drawing.Color.White;
             this.tp_TeachersPage.Controls.Add(this.button1);
             this.tp_TeachersPage.Controls.Add(this.txt_TeacherNumber);
             this.tp_TeachersPage.Controls.Add(this.lbl_TeacherNumber);
@@ -91,19 +92,19 @@ namespace Escola_Virtual
             this.tp_TeachersPage.Location = new System.Drawing.Point(4, 25);
             this.tp_TeachersPage.Name = "tp_TeachersPage";
             this.tp_TeachersPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tp_TeachersPage.Size = new System.Drawing.Size(791, 420);
+            this.tp_TeachersPage.Size = new System.Drawing.Size(803, 420);
             this.tp_TeachersPage.TabIndex = 0;
             this.tp_TeachersPage.Text = "Professores";
-            this.tp_TeachersPage.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(667, 366);
+            this.button1.Location = new System.Drawing.Point(692, 391);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(105, 23);
             this.button1.TabIndex = 26;
             this.button1.Text = "Confirmar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txt_TeacherNumber
             // 
@@ -125,16 +126,18 @@ namespace Escola_Virtual
             // 
             // tvw_TeacherYearsAndSubjects
             // 
+            this.tvw_TeacherYearsAndSubjects.BackColor = System.Drawing.Color.White;
+            this.tvw_TeacherYearsAndSubjects.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tvw_TeacherYearsAndSubjects.CheckBoxes = true;
-            this.tvw_TeacherYearsAndSubjects.Location = new System.Drawing.Point(347, 27);
+            this.tvw_TeacherYearsAndSubjects.Location = new System.Drawing.Point(331, 27);
             this.tvw_TeacherYearsAndSubjects.Name = "tvw_TeacherYearsAndSubjects";
-            this.tvw_TeacherYearsAndSubjects.Size = new System.Drawing.Size(282, 362);
+            this.tvw_TeacherYearsAndSubjects.Size = new System.Drawing.Size(466, 362);
             this.tvw_TeacherYearsAndSubjects.TabIndex = 12;
             // 
             // lbl_TeacherYearsAndSubjects
             // 
             this.lbl_TeacherYearsAndSubjects.AutoSize = true;
-            this.lbl_TeacherYearsAndSubjects.Location = new System.Drawing.Point(344, 7);
+            this.lbl_TeacherYearsAndSubjects.Location = new System.Drawing.Point(328, 7);
             this.lbl_TeacherYearsAndSubjects.Name = "lbl_TeacherYearsAndSubjects";
             this.lbl_TeacherYearsAndSubjects.Size = new System.Drawing.Size(211, 17);
             this.lbl_TeacherYearsAndSubjects.TabIndex = 8;
@@ -325,7 +328,7 @@ namespace Escola_Virtual
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(815, 450);
             this.Controls.Add(this.tc_Choices);
             this.Name = "Admin_Panel";
             this.Text = "Admin_Panel";

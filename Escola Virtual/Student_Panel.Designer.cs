@@ -55,6 +55,8 @@ namespace Escola_Virtual
             // 
             // tvw_Grades
             // 
+            this.tvw_Grades.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.tvw_Grades.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tvw_Grades.Location = new System.Drawing.Point(13, 35);
             this.tvw_Grades.Name = "tvw_Grades";
             this.tvw_Grades.Size = new System.Drawing.Size(216, 404);
