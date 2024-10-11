@@ -9,7 +9,6 @@ namespace Escola_Virtual
     public class Teachers
     {
         private List<Subject> _list_Of_Subjects_Teaching = new List<Subject>();
-        private List<int> _list_Of_School_Years_Teaching = new List<int>();
         private string _name;
         private string _address;
         private string _contact;
@@ -26,14 +25,6 @@ namespace Escola_Virtual
             get
             {
                 return _list_Of_Subjects_Teaching;
-            }
-        }
-        
-        public List<int> Get_List_Of_School_Years_Teaching
-        {
-            get
-            {
-                return _list_Of_School_Years_Teaching;
             }
         }
 
@@ -88,14 +79,6 @@ namespace Escola_Virtual
             set
             {
                 _list_Of_Subjects_Teaching = value;
-            }
-        }
-        
-        public List<int> Set_List_Of_School_Years_Teaching
-        {
-            set
-            {
-                _list_Of_School_Years_Teaching = value;
             }
         }
         public string Set_Name

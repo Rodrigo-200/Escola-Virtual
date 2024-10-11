@@ -36,6 +36,16 @@ namespace Escola_Virtual
 
         private void btn_login_Click(object sender, EventArgs e)
         {
+            if(txt_accnumber.Text.Contains('S'))
+            {
+                School_Year Year = new School_Year();
+                foreach(var i in Year.Get_List_Of_Classes)
+                {
+                    Generic.CurrentStudent = i.Get_List_Of_Student.Where(m => m.Get_studentID == txt_accnumber.Text).FirstOrDefault();
+                                    
+                }
+            }
+
             this.Visible = false;
             adminpanel = new Admin_Panel();
             adminpanel.FormClosed += onForm2Close;
@@ -45,6 +55,11 @@ namespace Escola_Virtual
         private void onForm2Close(object sender, FormClosedEventArgs e)
         {
             this.Visible = true;
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

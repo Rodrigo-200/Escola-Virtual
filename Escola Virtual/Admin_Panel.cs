@@ -17,6 +17,55 @@ namespace Escola_Virtual
             InitializeComponent();
         }
 
+        private void Admin_Panel_Load(object sender, EventArgs e)
+        {
+            if (Generic.StudentID < 1)
+            {
+                Generic.StudentID = 1;
+                txt_StudentNumber.Text = "S" + Generic.StudentID.ToString().PadLeft(4, '0');
+            }
+
+            if (Generic.TeacherID < 1)
+            {
+                Generic.TeacherID = 1;
+                txt_TeacherNumber.Text = "T" + Generic.TeacherID.ToString().PadLeft(4, '0');
+            }
+
+
+
+            School_Year Years = new School_Year();
+            Years = Generic._list_Of_School_Years.Where(m => m.Get_Year == Years.Get_Year).FirstOrDefault();
+
+
+            foreach (var i in Generic._list_Of_School_Years)
+            {
+                TreeNode Ano = new TreeNode();
+                Ano.Text = i.Get_Year.ToString() + "º ano";
+                tvw_TeacherYearsAndSubjects.Nodes.Add(Ano);
+
+
+
+                foreach (var it in i.Get_List_Of_Classes)
+                {
+                    TreeNode Class = new TreeNode();
+                    Class.Text = it.Get_class_name;
+                    Ano.Nodes.Add(Class);
+
+                    foreach (var ite in it.Get_List_Of_Subject)
+                    {
+                        TreeNode Subject = new TreeNode();
+                        Subject.Text = ite.Get_name;
+                        Class.Nodes.Add(Subject);
+                    }
+
+
+                }
+            }
+
+
+
+        }
+
         private void txt_TeacherName_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
@@ -88,32 +137,6 @@ namespace Escola_Virtual
                 e.Handled = true;
             }
         }
-        private void Admin_Panel_Load(object sender, EventArgs e)
-        {
-
-            School_Year Years = new School_Year();
-            Years = Generic._list_Of_School_Years.Where(m => m.Get_Year == Years.Get_Year).FirstOrDefault();
-
-
-            foreach (var i in Generic._list_Of_School_Years)
-            {
-                TreeNode Ano = new TreeNode();
-                Ano.Text = i.Get_Year.ToString() + "º ano";
-                tvw_TeacherYearsAndSubjects.Nodes.Add(Ano);
-
-
-
-                foreach (var it in i.Get_List_Of_Classes)
-                {
-                    TreeNode Turma = new TreeNode();
-                    Turma.Text = it.Get_class_name;
-                    Ano.Nodes.Add(Turma);
-                }
-            }
-
-
-
-        }
 
         private void btn_TeacherConfirm_Click(object sender, EventArgs e)
         {
@@ -130,17 +153,64 @@ namespace Escola_Virtual
                 Set_Name = txt_TeacherName.Text,
                 Set_Address = txt_TeacherAddress.Text,
                 Set_Contact = txt_TeacherContact.Text,
-
-                //Set_List_Of_School_Years_Teaching;
+                Set_TeacherID = txt_TeacherNumber.Text
             };
 
-            foreach (TreeNode i in tvw_TeacherYearsAndSubjects.Nodes)
+            Generic.TeacherID++;
+
+            clearTeahcerControls();
+        }
+
+        private void btn_StudentConfirm_Click(object sender, EventArgs e)
+        {
+            Student student = new Student()
             {
-                if (i.Parent == null && i.Checked == true)
-                {
-                    teacher.Get_List_Of_School_Years_Teaching.Add(Convert.ToInt32(i.Text.Split('º')[0]));
-                }
+                Set_Name = txt_StudentName.Text,
+                Set_Address = txt_StudentAddress.Text,
+                Set_Contact = txt_StudentContact.Text,
+                Set_NIF = txt_StudentNIF.Text,
+                Set_Password = txt_StudentPassword.Text,
+                Set_StudentID = txt_StudentNumber.Text
+            };
+
+
+            Generic.StudentID++;
+
+            clearStudentControls();
+        }
+
+        private void chb_show_Password_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chb_show_Password.Checked)
+            {
+                chb_show_Password.ImageIndex = 0;
+                txt_StudentPassword.PasswordChar = '\0';
             }
+            else
+            {
+                chb_show_Password.ImageIndex = 1;
+                txt_StudentPassword.PasswordChar = '*';
+            }
+        }
+
+        private void clearStudentControls()
+        {
+            txt_StudentNIF.Clear();
+            txt_StudentName.Clear();
+            txt_StudentAddress.Clear();
+            txt_StudentContact.Clear();
+            txt_StudentPassword.Clear();
+            txt_StudentNumber.Text = "S" + Generic.StudentID.ToString().PadLeft(4, '0');
+        }
+
+        private void clearTeahcerControls()
+        {
+            txt_TeacherNIF.Clear();
+            txt_TeacherName.Clear();
+            txt_TeacherAddress.Clear();
+            txt_TeacherContact.Clear();
+
+            txt_TeacherNumber.Text = "T" + Generic.TeacherID.ToString().PadLeft(4, '0');
         }
     }
 }

@@ -34,12 +34,12 @@ namespace Escola_Virtual
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.chb_show_Password = new System.Windows.Forms.CheckBox();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.lbl_login = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_login = new System.Windows.Forms.Button();
             this.txt_password = new System.Windows.Forms.TextBox();
             this.txt_accnumber = new System.Windows.Forms.TextBox();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // label3
@@ -79,6 +79,13 @@ namespace Escola_Virtual
             this.chb_show_Password.Text = "        ";
             this.chb_show_Password.UseVisualStyleBackColor = true;
             this.chb_show_Password.CheckedChanged += new System.EventHandler(this.chb_show_Password_CheckedChanged);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "eye-password-see-view.png");
+            this.imageList1.Images.SetKeyName(1, "777494-200.png");
             // 
             // lbl_login
             // 
@@ -128,13 +135,6 @@ namespace Escola_Virtual
             this.txt_accnumber.Size = new System.Drawing.Size(172, 22);
             this.txt_accnumber.TabIndex = 16;
             // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "eye-password-see-view.png");
-            this.imageList1.Images.SetKeyName(1, "777494-200.png");
-            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -150,6 +150,7 @@ namespace Escola_Virtual
             this.Controls.Add(this.txt_accnumber);
             this.Name = "Login";
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
