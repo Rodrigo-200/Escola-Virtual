@@ -80,6 +80,7 @@ namespace Escola_Virtual
                     teacherpanel = new Teacher_Panel();
                     teacherpanel.FormClosed += onForm2Close;
                     teacherpanel.ShowDialog();
+
                 }
 
             }

@@ -24,10 +24,18 @@ namespace Escola_Virtual
                 Generic.StudentID = 1;
                 txt_StudentNumber.Text = "S" + Generic.StudentID.ToString().PadLeft(4, '0');
             }
+            else
+            {
+                txt_StudentNumber.Text = "S" + Generic.StudentID.ToString().PadLeft(4, '0');
+            }
 
             if (Generic.TeacherID < 1)
             {
                 Generic.TeacherID = 1;
+                txt_TeacherNumber.Text = "T" + Generic.TeacherID.ToString().PadLeft(4, '0');
+            }
+            else
+            {
                 txt_TeacherNumber.Text = "T" + Generic.TeacherID.ToString().PadLeft(4, '0');
             }
 
@@ -216,9 +224,15 @@ namespace Escola_Virtual
 
             students.Add(student);
 
+
+
             foreach(var year in Generic._list_Of_School_Years)
             {
-                year.Get_List_Of_Classes.Where(m => m.Get_class_name == tvw_Year_Class_Student.SelectedNode.Text).ToList().FirstOrDefault().Set_List_Of_Student = students;
+                if (year.Get_Year== Convert.ToInt32(tvw_Year_Class_Student.SelectedNode.Parent.Text.Split('º')[0]))
+                {
+                    year.Get_List_Of_Classes.Where(m => m.Get_class_name == tvw_Year_Class_Student.SelectedNode.Text).ToList().FirstOrDefault().Set_List_Of_Student = students;
+                    break;
+                }
             }
 
 
@@ -274,6 +288,7 @@ namespace Escola_Virtual
             txt_TeacherName.Clear();
             txt_TeacherAddress.Clear();
             txt_TeacherContact.Clear();
+            txt_TeacherPassword.Clear();
             tvw_TeacherYearsAndSubjects.CheckBoxes=false;
             tvw_TeacherYearsAndSubjects.CheckBoxes = true;
             txt_TeacherNumber.Text = "T" + Generic.TeacherID.ToString().PadLeft(4, '0');
@@ -298,5 +313,7 @@ namespace Escola_Virtual
                 node.Checked = isChecked;
             }
         }
+
+
     }
 }

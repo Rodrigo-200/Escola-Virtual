@@ -21,5 +21,10 @@ namespace Escola_Virtual
         {
             
         }
+
+        private void tvw_Grades_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
     }
 }

@@ -38,18 +38,19 @@ namespace Escola_Virtual
             // lb_History
             // 
             this.lb_History.FormattingEnabled = true;
-            this.lb_History.ItemHeight = 16;
-            this.lb_History.Location = new System.Drawing.Point(235, 35);
+            this.lb_History.Location = new System.Drawing.Point(176, 28);
+            this.lb_History.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lb_History.Name = "lb_History";
-            this.lb_History.Size = new System.Drawing.Size(371, 404);
+            this.lb_History.Size = new System.Drawing.Size(279, 329);
             this.lb_History.TabIndex = 0;
             // 
             // lbl_History
             // 
             this.lbl_History.AutoSize = true;
-            this.lbl_History.Location = new System.Drawing.Point(232, 15);
+            this.lbl_History.Location = new System.Drawing.Point(174, 12);
+            this.lbl_History.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_History.Name = "lbl_History";
-            this.lbl_History.Size = new System.Drawing.Size(83, 17);
+            this.lbl_History.Size = new System.Drawing.Size(64, 13);
             this.lbl_History.TabIndex = 1;
             this.lbl_History.Text = "Movimentos";
             // 
@@ -57,29 +58,33 @@ namespace Escola_Virtual
             // 
             this.tvw_Grades.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.tvw_Grades.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tvw_Grades.Location = new System.Drawing.Point(13, 35);
+            this.tvw_Grades.Location = new System.Drawing.Point(10, 28);
+            this.tvw_Grades.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tvw_Grades.Name = "tvw_Grades";
-            this.tvw_Grades.Size = new System.Drawing.Size(216, 404);
+            this.tvw_Grades.Size = new System.Drawing.Size(162, 328);
             this.tvw_Grades.TabIndex = 2;
+            this.tvw_Grades.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvw_Grades_AfterSelect);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 14);
+            this.label1.Location = new System.Drawing.Point(10, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 17);
+            this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Notas";
             // 
             // Student_Panel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tvw_Grades);
             this.Controls.Add(this.lbl_History);
             this.Controls.Add(this.lb_History);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Student_Panel";
             this.Text = "Painel de Aluno";
             this.Load += new System.EventHandler(this.Student_Panel_Load);

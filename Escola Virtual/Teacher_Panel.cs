@@ -44,8 +44,15 @@ namespace Escola_Virtual
                             if (Generic.CurrentTeacher.Get_List_Of_Subjects_Teaching.Contains(s))
                             {
                                 Class.Nodes.Add(subject);
+
+                                foreach(var st in c.Get_List_Of_Student)
+                                {
+                                    TreeNode student = new TreeNode();
+                                    student.Text = st.Get_Name;
+                                    subject.Nodes.Add(student);
+                                }
                             }
-                            
+
                         }
                         
                     }
