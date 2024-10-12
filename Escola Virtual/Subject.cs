@@ -11,6 +11,7 @@ namespace Escola_Virtual
         private string _name;
         private int _subject_number;
         private string _subject_acronym;
+        private Int64 _classID;
 
         #region Propriedades de Get
 
@@ -35,6 +36,14 @@ namespace Escola_Virtual
             get
             {
                 return _subject_acronym;
+            }
+        }
+
+        public Int64 Get_ClassID
+        {
+            get
+            {
+                return _classID;
             }
         }
 
@@ -63,6 +72,14 @@ namespace Escola_Virtual
             set
             {
                 _subject_acronym = value;
+            }
+        }
+
+        public Int64 Set_ClassID
+        {
+            set
+            {
+                _classID = value;
             }
         }
 

@@ -60,6 +60,23 @@ namespace Escola_Virtual
 
 
                 }
+
+                foreach (var i in Generic._list_Of_School_Years)
+                {
+                    TreeNode Year = new TreeNode();
+                    Year.Text = i.Get_Year.ToString() + "º ano";
+                    tvw_Year_Class_Student.Nodes.Add(Year);
+
+
+
+                    foreach (var it in i.Get_List_Of_Classes)
+                    {
+                        TreeNode Class = new TreeNode();
+                        Class.Text = it.Get_class_name;
+                        Year.Nodes.Add(Class);
+                    }
+                }
+
             }
 
 
@@ -140,21 +157,29 @@ namespace Escola_Virtual
 
         private void btn_TeacherConfirm_Click(object sender, EventArgs e)
         {
-            foreach (TreeNode i in tvw_TeacherYearsAndSubjects.Nodes)
-            {
-                if (i.Parent == null && i.Checked == true)
-                {
-
-                }
-            }
-
             Teachers teacher = new Teachers()
             {
                 Set_Name = txt_TeacherName.Text,
                 Set_Address = txt_TeacherAddress.Text,
                 Set_Contact = txt_TeacherContact.Text,
-                Set_TeacherID = txt_TeacherNumber.Text
+                Set_TeacherID = txt_TeacherNumber.Text,
+                Set_Password = txt_TeacherPassword.Text,
             };
+
+            foreach (TreeNode g in tvw_TeacherYearsAndSubjects.Nodes)
+            {
+                foreach (TreeNode u in g.Nodes)
+                {
+                    foreach (TreeNode i in u.Nodes)
+                    {
+                        if (i.Checked == true)
+                        {
+                            teacher.Get_List_Of_Subjects_Teaching.Add(i.Text);
+                        }
+
+                    }
+                }
+            }
 
             Generic.TeacherID++;
 
@@ -170,7 +195,7 @@ namespace Escola_Virtual
                 Set_Contact = txt_StudentContact.Text,
                 Set_NIF = txt_StudentNIF.Text,
                 Set_Password = txt_StudentPassword.Text,
-                Set_StudentID = txt_StudentNumber.Text
+                Set_StudentID = txt_StudentNumber.Text,
             };
 
 
@@ -190,6 +215,20 @@ namespace Escola_Virtual
             {
                 chb_show_Password.ImageIndex = 1;
                 txt_StudentPassword.PasswordChar = '*';
+            }
+        }
+
+        private void chb_TeacherShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chb_TeacherShowPassword.Checked)
+            {
+                chb_TeacherShowPassword.ImageIndex = 0;
+                txt_TeacherPassword.PasswordChar = '\0';
+            }
+            else
+            {
+                chb_TeacherShowPassword.ImageIndex = 1;
+                txt_TeacherPassword.PasswordChar = '*';
             }
         }
 
