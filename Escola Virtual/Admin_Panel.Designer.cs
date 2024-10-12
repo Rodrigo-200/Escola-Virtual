@@ -360,8 +360,8 @@ namespace Escola_Virtual
             // 
             // btn_StudentConfirm
             // 
-            this.btn_StudentConfirm.Location = new System.Drawing.Point(16, 288);
-            this.btn_StudentConfirm.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_StudentConfirm.Location = new System.Drawing.Point(519, 318);
+            this.btn_StudentConfirm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_StudentConfirm.Name = "btn_StudentConfirm";
             this.btn_StudentConfirm.Size = new System.Drawing.Size(79, 19);
             this.btn_StudentConfirm.TabIndex = 25;
@@ -461,6 +461,62 @@ namespace Escola_Virtual
             this.lbl_StudentName.Size = new System.Drawing.Size(35, 13);
             this.lbl_StudentName.TabIndex = 15;
             this.lbl_StudentName.Text = "Nome";
+            // 
+            // chb_TeacherShowPassword
+            // 
+            this.chb_TeacherShowPassword.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chb_TeacherShowPassword.AutoSize = true;
+            this.chb_TeacherShowPassword.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("chb_TeacherShowPassword.BackgroundImage")));
+            this.chb_TeacherShowPassword.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.chb_TeacherShowPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chb_TeacherShowPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chb_TeacherShowPassword.Location = new System.Drawing.Point(140, 203);
+            this.chb_TeacherShowPassword.Name = "chb_TeacherShowPassword";
+            this.chb_TeacherShowPassword.Size = new System.Drawing.Size(31, 19);
+            this.chb_TeacherShowPassword.TabIndex = 31;
+            this.chb_TeacherShowPassword.Text = "        ";
+            this.chb_TeacherShowPassword.UseVisualStyleBackColor = true;
+            this.chb_TeacherShowPassword.CheckedChanged += new System.EventHandler(this.chb_TeacherShowPassword_CheckedChanged);
+            // 
+            // txt_TeacherPassword
+            // 
+            this.txt_TeacherPassword.Location = new System.Drawing.Point(9, 203);
+            this.txt_TeacherPassword.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_TeacherPassword.MaxLength = 9;
+            this.txt_TeacherPassword.Name = "txt_TeacherPassword";
+            this.txt_TeacherPassword.PasswordChar = '*';
+            this.txt_TeacherPassword.Size = new System.Drawing.Size(127, 20);
+            this.txt_TeacherPassword.TabIndex = 30;
+            // 
+            // lbl_TeacherPassword
+            // 
+            this.lbl_TeacherPassword.AutoSize = true;
+            this.lbl_TeacherPassword.Location = new System.Drawing.Point(6, 184);
+            this.lbl_TeacherPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_TeacherPassword.Name = "lbl_TeacherPassword";
+            this.lbl_TeacherPassword.Size = new System.Drawing.Size(53, 13);
+            this.lbl_TeacherPassword.TabIndex = 29;
+            this.lbl_TeacherPassword.Text = "Password";
+            // 
+            // tvw_Year_Class_Student
+            // 
+            this.tvw_Year_Class_Student.BackColor = System.Drawing.Color.White;
+            this.tvw_Year_Class_Student.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tvw_Year_Class_Student.Location = new System.Drawing.Point(246, 15);
+            this.tvw_Year_Class_Student.Margin = new System.Windows.Forms.Padding(2);
+            this.tvw_Year_Class_Student.Name = "tvw_Year_Class_Student";
+            this.tvw_Year_Class_Student.Size = new System.Drawing.Size(350, 299);
+            this.tvw_Year_Class_Student.TabIndex = 29;
+            // 
+            // lbl_StudentChooseClass
+            // 
+            this.lbl_StudentChooseClass.AutoSize = true;
+            this.lbl_StudentChooseClass.Location = new System.Drawing.Point(243, 2);
+            this.lbl_StudentChooseClass.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_StudentChooseClass.Name = "lbl_StudentChooseClass";
+            this.lbl_StudentChooseClass.Size = new System.Drawing.Size(82, 13);
+            this.lbl_StudentChooseClass.TabIndex = 30;
+            this.lbl_StudentChooseClass.Text = "Turma do Aluno";
             // 
             // Admin_Panel
             // 
