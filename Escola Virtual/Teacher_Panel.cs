@@ -26,16 +26,28 @@ namespace Escola_Virtual
                 Ano.Text = i.Get_Year.ToString() + "º ano";
                 tvw_GradeLaunch.Nodes.Add(Ano);
 
+                
+
+                foreach(var s in Generic.CurrentTeacher.Get_List_Of_Subjects_Teaching)
+                {
+                    Subject subject = new Subject();
+                    Class turma = new Class();
+
+                    turma = Generic._list_Of_School_Years.Get_List_Of_Classes.Where(m => m.Get_class_name == Class).FirstOrDefault();
+                    subject = turma.Get_List_Of_Subject.Where(m => m.Get_name == i.Text).FirstOrDefault();
+                }
+
+                
 
 
-                foreach (var it in Generic.CurrentTeacher.Get_List_Of_Subjects_Teaching)
+                foreach (var it in Generic._list_Of_School_Years.Where(y => y.Get_List_Of_Classes.Where(c => )))
                 {
                     TreeNode Class = new TreeNode();
-                    Class.Text = it.;
+                    Class.Text = it.Get_name;
                     Ano.Nodes.Add(Class);
 
 
-                    foreach (var ite in it.Get_List_Of_Subject)
+                    foreach (var ite in it.)
                     {
                         TreeNode Subject = new TreeNode();
                         Subject.Text = ite.Get_name;
