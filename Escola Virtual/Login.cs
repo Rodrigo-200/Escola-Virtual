@@ -84,7 +84,7 @@ namespace Escola_Virtual
 
             }
 
-
+            clearControls();
         }
 
         private void onForm2Close(object sender, FormClosedEventArgs e)
@@ -92,9 +92,16 @@ namespace Escola_Virtual
             this.Visible = true;
         }
 
+        private void clearControls()
+        {
+            txt_accnumber.Clear();
+            txt_password.Clear();
+        }
+
         private void Login_Load(object sender, EventArgs e)
         {
 
         }
+
     }
 }
