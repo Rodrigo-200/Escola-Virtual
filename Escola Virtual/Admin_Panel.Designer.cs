@@ -66,7 +66,7 @@ namespace Escola_Virtual
             this.txt_TeacherPassword = new System.Windows.Forms.TextBox();
             this.lbl_TeacherPassword = new System.Windows.Forms.Label();
             this.tvw_Year_Class_Student = new System.Windows.Forms.TreeView();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbl_StudentChooseClass = new System.Windows.Forms.Label();
             this.tc_Choices.SuspendLayout();
             this.tp_TeachersPage.SuspendLayout();
             this.tp_StudentsPage.SuspendLayout();
@@ -241,7 +241,7 @@ namespace Escola_Virtual
             // tp_StudentsPage
             // 
             this.tp_StudentsPage.BackColor = System.Drawing.Color.White;
-            this.tp_StudentsPage.Controls.Add(this.label1);
+            this.tp_StudentsPage.Controls.Add(this.lbl_StudentChooseClass);
             this.tp_StudentsPage.Controls.Add(this.tvw_Year_Class_Student);
             this.tp_StudentsPage.Controls.Add(this.chb_show_Password);
             this.tp_StudentsPage.Controls.Add(this.txt_StudentPassword);
@@ -452,15 +452,15 @@ namespace Escola_Virtual
             this.tvw_Year_Class_Student.Size = new System.Drawing.Size(350, 318);
             this.tvw_Year_Class_Student.TabIndex = 29;
             // 
-            // label1
+            // lbl_StudentChooseClass
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(243, 2);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 13);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "Ano(s) e disciplina(s) a lecionar ";
+            this.lbl_StudentChooseClass.AutoSize = true;
+            this.lbl_StudentChooseClass.Location = new System.Drawing.Point(243, 2);
+            this.lbl_StudentChooseClass.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_StudentChooseClass.Name = "lbl_StudentChooseClass";
+            this.lbl_StudentChooseClass.Size = new System.Drawing.Size(82, 13);
+            this.lbl_StudentChooseClass.TabIndex = 30;
+            this.lbl_StudentChooseClass.Text = "Turma do Aluno";
             // 
             // Admin_Panel
             // 
@@ -517,7 +517,7 @@ namespace Escola_Virtual
         private System.Windows.Forms.CheckBox chb_TeacherShowPassword;
         private System.Windows.Forms.TextBox txt_TeacherPassword;
         private System.Windows.Forms.Label lbl_TeacherPassword;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbl_StudentChooseClass;
         private System.Windows.Forms.TreeView tvw_Year_Class_Student;
     }
 }

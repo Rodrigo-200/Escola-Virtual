@@ -61,18 +61,18 @@ namespace Escola_Virtual
 
                 }
 
-                foreach (var i in Generic._list_Of_School_Years)
+                foreach (var it in Generic._list_Of_School_Years)
                 {
                     TreeNode Year = new TreeNode();
-                    Year.Text = i.Get_Year.ToString() + "º ano";
+                    Year.Text = it.Get_Year.ToString() + "º ano";
                     tvw_Year_Class_Student.Nodes.Add(Year);
 
 
 
-                    foreach (var it in i.Get_List_Of_Classes)
+                    foreach (var ite in it.Get_List_Of_Classes)
                     {
                         TreeNode Class = new TreeNode();
-                        Class.Text = it.Get_class_name;
+                        Class.Text = ite.Get_class_name;
                         Year.Nodes.Add(Class);
                     }
                 }
@@ -198,6 +198,7 @@ namespace Escola_Virtual
                 Set_StudentID = txt_StudentNumber.Text,
             };
 
+            
 
             Generic.StudentID++;
 
