@@ -198,7 +198,19 @@ namespace Escola_Virtual
                 Set_StudentID = txt_StudentNumber.Text,
             };
 
-            
+
+            List<Student> students = new List<Student>();  
+
+            students.Add(student);
+
+            foreach(var year in Generic._list_Of_School_Years)
+            {
+                year.Get_List_Of_Classes.Where(m => m.Get_class_name == tvw_Year_Class_Student.SelectedNode.Text).ToList().FirstOrDefault().Set_List_Of_Student = students;
+            }
+
+
+
+
 
             Generic.StudentID++;
 

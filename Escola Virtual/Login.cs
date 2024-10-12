@@ -14,6 +14,7 @@ namespace Escola_Virtual
     {
 
         Admin_Panel adminpanel = new Admin_Panel();
+        Student_Panel studentpanel = new Student_Panel();
         public Login()
         {
             InitializeComponent();
@@ -36,20 +37,40 @@ namespace Escola_Virtual
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            if(txt_accnumber.Text.Contains('S'))
+
+            if(txt_accnumber.Text == "0000" && txt_password.Text == "0000")
             {
-                School_Year Year = new School_Year();
-                foreach(var i in Year.Get_List_Of_Classes)
+                    this.Visible = false;
+                    adminpanel = new Admin_Panel();
+                    adminpanel.FormClosed += onForm2Close;
+                    adminpanel.ShowDialog();
+            }
+
+            if (txt_accnumber.Text.Contains('S'))
+            {
+
+                foreach (var i in Generic._list_Of_School_Years)
                 {
-                    Generic.CurrentStudent = i.Get_List_Of_Student.Where(m => m.Get_studentID == txt_accnumber.Text).FirstOrDefault();
-                                    
+                    foreach (var ite in i.Get_List_Of_Classes)
+                    {
+                        if (ite.Get_List_Of_Student.Where(m => m.Get_studentID == txt_accnumber.Text).FirstOrDefault() != null)
+                        {
+
+                            Generic.CurrentStudent = ite.Get_List_Of_Student.Where(m => m.Get_studentID == txt_accnumber.Text).FirstOrDefault();
+                        }
+                    }
+
                 }
             }
 
-            this.Visible = false;
-            adminpanel = new Admin_Panel();
-            adminpanel.FormClosed += onForm2Close;
-            adminpanel.ShowDialog();
+            if (Generic.CurrentStudent.Get_studentID.Where())
+            {
+                this.Visible = false;
+                studentpanel = new Student_Panel();
+                studentpanel.FormClosed += onForm2Close;
+                studentpanel.ShowDialog();
+            }
+
         }
 
         private void onForm2Close(object sender, FormClosedEventArgs e)

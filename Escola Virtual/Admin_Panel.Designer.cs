@@ -303,7 +303,7 @@ namespace Escola_Virtual
             // 
             // btn_StudentConfirm
             // 
-            this.btn_StudentConfirm.Location = new System.Drawing.Point(16, 288);
+            this.btn_StudentConfirm.Location = new System.Drawing.Point(519, 318);
             this.btn_StudentConfirm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_StudentConfirm.Name = "btn_StudentConfirm";
             this.btn_StudentConfirm.Size = new System.Drawing.Size(79, 19);
@@ -448,7 +448,7 @@ namespace Escola_Virtual
             this.tvw_Year_Class_Student.Location = new System.Drawing.Point(246, 15);
             this.tvw_Year_Class_Student.Margin = new System.Windows.Forms.Padding(2);
             this.tvw_Year_Class_Student.Name = "tvw_Year_Class_Student";
-            this.tvw_Year_Class_Student.Size = new System.Drawing.Size(350, 318);
+            this.tvw_Year_Class_Student.Size = new System.Drawing.Size(350, 299);
             this.tvw_Year_Class_Student.TabIndex = 29;
             // 
             // lbl_StudentChooseClass
