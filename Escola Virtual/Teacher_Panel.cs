@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Escola_Virtual
 {
@@ -26,18 +27,14 @@ namespace Escola_Virtual
                 Ano.Text = i.Get_Year.ToString() + "º ano";
                 tvw_GradeLaunch.Nodes.Add(Ano);
 
-                
 
-                foreach(var s in Generic.CurrentTeacher.Get_List_Of_Subjects_Teaching)
+                i.Get_List_Of_Classes.Where(c => c.Get_ClassID == s.Get_ClassID).FirstOrDefault();
+
+                foreach (var s in Generic.CurrentTeacher.Get_List_Of_Subjects_Teaching)
                 {
-                    Subject subject = new Subject();
-                    Class turma = new Class();
-
-                    turma = Generic._list_Of_School_Years.Get_List_Of_Classes.Where(m => m.Get_class_name == Class).FirstOrDefault();
-                    subject = turma.Get_List_Of_Subject.Where(m => m.Get_name == i.Text).FirstOrDefault();
+                    Ano.Nodes.Add();
                 }
-
-                
+              
 
 
                 foreach (var it in Generic._list_Of_School_Years.Where(y => y.Get_List_Of_Classes.Where(c => )))
