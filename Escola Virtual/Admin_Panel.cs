@@ -173,13 +173,18 @@ namespace Escola_Virtual
 
                     foreach (TreeNode i in u.Nodes)
                     {
+                        School_Year school_Year = new School_Year();
                         Subject subject = new Subject();
+                        Class turma = new Class();
 
-                        subject = Generic._list_Of_School_Years.Where(y => y.Get_List_Of_Classes.Where(c => c.Get_List_Of_Subject.Where(s => s.Get_name == i.Text).FirstOrDefault()));
+                        school_Year =  Generic._list_Of_School_Years.Where(m => m.Get_Year == Convert.ToInt32(Year)).FirstOrDefault();
+                        turma = school_Year.Get_List_Of_Classes.Where(m => m.Get_class_name == Class).FirstOrDefault();
+                        subject = turma.Get_List_Of_Subject.Where(m => m.Get_name == i.Text).FirstOrDefault();
+
 
                         if (i.Checked == true)
                         {
-                            teacher.Get_List_Of_Subjects_Teaching.Add(i.Text);
+                            teacher.Get_List_Of_Subjects_Teaching.Add(subject);
                         }
 
                     }
