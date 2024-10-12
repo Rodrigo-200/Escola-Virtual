@@ -63,7 +63,7 @@ namespace Escola_Virtual
                 }
             }
 
-            if (Generic.CurrentStudent.Get_studentID.Where())
+            if ()
             {
                 this.Visible = false;
                 studentpanel = new Student_Panel();
