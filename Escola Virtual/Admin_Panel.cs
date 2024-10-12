@@ -183,6 +183,8 @@ namespace Escola_Virtual
 
             Generic.TeacherID++;
 
+            Generic._listOf_Teachers.Add(teacher);
+
             clearTeahcerControls();
         }
 

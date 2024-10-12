@@ -16,7 +16,6 @@ namespace Escola_Virtual
             new Subject() { Set_name = "Português", Set_subject_acronym = "PT", Set_subject_number = 600},
             new Subject() { Set_name = "Inglês", Set_subject_acronym = "ING", Set_subject_number = 600}
         };
-
         private string _class_name;
         private string _class_acronym;
 

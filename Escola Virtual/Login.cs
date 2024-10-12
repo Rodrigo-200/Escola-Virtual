@@ -15,6 +15,7 @@ namespace Escola_Virtual
 
         Admin_Panel adminpanel = new Admin_Panel();
         Student_Panel studentpanel = new Student_Panel();
+        Teacher_Panel teacherpanel = new Teacher_Panel();
         public Login()
         {
             InitializeComponent();
@@ -57,19 +58,32 @@ namespace Escola_Virtual
                         {
 
                             Generic.CurrentStudent = ite.Get_List_Of_Student.Where(m => m.Get_studentID == txt_accnumber.Text).FirstOrDefault();
+                            this.Visible = false;
+                            studentpanel = new Student_Panel();
+                            studentpanel.FormClosed += onForm2Close;
+                            studentpanel.ShowDialog();
                         }
                     }
 
                 }
             }
 
-            if ()
+            if (txt_accnumber.Text.Contains('T'))
             {
-                this.Visible = false;
-                studentpanel = new Student_Panel();
-                studentpanel.FormClosed += onForm2Close;
-                studentpanel.ShowDialog();
+
+
+                if (Generic._listOf_Teachers.Where(m => m.Get_TeacherID == txt_accnumber.Text).FirstOrDefault() != null)
+                {
+
+                    Generic.CurrentTeacher = Generic._listOf_Teachers.Where(m => m.Get_TeacherID == txt_accnumber.Text).FirstOrDefault();
+                    this.Visible = false;
+                    teacherpanel = new Teacher_Panel();
+                    teacherpanel.FormClosed += onForm2Close;
+                    teacherpanel.ShowDialog();
+                }
+
             }
+
 
         }
 

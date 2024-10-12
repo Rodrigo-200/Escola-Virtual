@@ -14,13 +14,14 @@ namespace Escola_Virtual
             new School_Year { Set_Year = 6}
         };
 
+        public static List<Teachers> _listOf_Teachers = new List<Teachers>();
 
 
-        public static List<Int64> _list_Of_Ids = new List<Int64>();
+
+        //public static List<Int64> _list_Of_Ids = new List<Int64>();
 
         public static Student CurrentStudent = new Student();
         public static Teachers CurrentTeacher = new Teachers();
-
 
         public static Int64 StudentID;
         public static Int64 TeacherID;

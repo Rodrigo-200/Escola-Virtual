@@ -75,6 +75,12 @@
     </Compile>
     <Compile Include="Subject.cs" />
     <Compile Include="Teachers.cs" />
+    <Compile Include="Teacher_Panel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Teacher_Panel.Designer.cs">
+      <DependentUpon>Teacher_Panel.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Admin_Panel.resx">
       <DependentUpon>Admin_Panel.cs</DependentUpon>
     </EmbeddedResource>
