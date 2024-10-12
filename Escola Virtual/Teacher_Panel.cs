@@ -23,36 +23,36 @@ namespace Escola_Virtual
 
             foreach (var i in Generic._list_Of_School_Years)
             {
-                TreeNode Ano = new TreeNode();
-                Ano.Text = i.Get_Year.ToString() + "º ano";
-                tvw_GradeLaunch.Nodes.Add(Ano);
+                TreeNode year = new TreeNode();
+                year.Text = i.Get_Year.ToString() + "º ano";
+                tvw_GradeLaunch.Nodes.Add(year);
 
 
-                i.Get_List_Of_Classes.Where(c => c.Get_ClassID == s.Get_ClassID).FirstOrDefault();
-
-                foreach (var s in Generic.CurrentTeacher.Get_List_Of_Subjects_Teaching)
+                foreach(var c in i.Get_List_Of_Classes)
                 {
-                    Ano.Nodes.Add();
-                }
-              
-
-
-                foreach (var it in Generic._list_Of_School_Years.Where(y => y.Get_List_Of_Classes.Where(c => )))
-                {
-                    TreeNode Class = new TreeNode();
-                    Class.Text = it.Get_name;
-                    Ano.Nodes.Add(Class);
-
-
-                    foreach (var ite in it.)
+                    if(Generic.CurrentTeacher.Get_List_Of_Subjects_Teaching.Any(c.Get_List_Of_Subject.Contains))
                     {
-                        TreeNode Subject = new TreeNode();
-                        Subject.Text = ite.Get_name;
-                        Class.Nodes.Add(Subject);
+                        TreeNode Class = new TreeNode();
+                        Class.Text = c.Get_class_name;
+                        year.Nodes.Add(Class);
+
+                        foreach (var s in c.Get_List_Of_Subject)
+                        {
+                            TreeNode subject = new TreeNode();
+                            subject.Text = s.Get_name;
+
+                            if (Generic.CurrentTeacher.Get_List_Of_Subjects_Teaching.Contains(s))
+                            {
+                                Class.Nodes.Add(subject);
+                            }
+                            
+                        }
+                        
                     }
-
-
                 }
+
+
+             
 
             }
         }

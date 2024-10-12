@@ -18,7 +18,8 @@ namespace Escola_Virtual
         };
         private string _class_name;
         private string _class_acronym;
-        private Int64 _classID;
+        private int _classID;
+        private int _school_year;
 
         #region Propriedades de Get
         public List<Student> Get_List_Of_Student
@@ -53,13 +54,23 @@ namespace Escola_Virtual
             }
         }
 
-        public Int64 Get_ClassID
+        public int Get_ClassID
         {
             get
             {
                 return _classID;
             }
         }
+
+        public int Get_school_year
+        {
+            get
+            {
+                return _school_year;
+            }
+        }
+
+
 
         #endregion
 
@@ -96,11 +107,19 @@ namespace Escola_Virtual
             }
         }
 
-        public Int64 Set_ClassID
+        public int Set_ClassID
         {
             set
             {
                 _classID = value;
+            }
+        }
+
+        public int Set_school_year
+        {
+            set
+            {
+                 _school_year=value;
             }
         }
 
