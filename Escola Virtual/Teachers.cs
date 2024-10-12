@@ -8,20 +8,20 @@ namespace Escola_Virtual
 {
     public class Teachers
     {
-        private List<string> _list_Of_Subjects_Teaching = new List<string>();
+        private List<Subject> _list_Of_Subjects_Teaching = new List<Subject>();
         private string _name;
         private string _address;
         private string _contact;
         private string _NIF;
         private string _password;
         private string _teacherID;
-        private Int64 _classID;
+        
         //chat igual ao aluno
 
 
 
         #region Propriedades de Get
-        public List<string> Get_List_Of_Subjects_Teaching
+        public List<Subject> Get_List_Of_Subjects_Teaching
         {
             get
             {
@@ -72,18 +72,12 @@ namespace Escola_Virtual
             }
         }
 
-        public Int64 Get_ClassID
-        {
-            get
-            {
-                return _classID;
-            }
-        }
+
 
         #endregion
 
         #region Propriedades de Set
-        public List<string> Set_List_Of_Subjects_Teaching
+        public List<Subject> Set_List_Of_Subjects_Teaching
         {
             set
             {
@@ -133,13 +127,7 @@ namespace Escola_Virtual
             }
         }
 
-        public Int64 Set_ClassID
-        {
-            set
-            {
-                _classID = value;
-            }
-        }
+
 
         #endregion
 

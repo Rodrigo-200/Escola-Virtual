@@ -182,11 +182,12 @@ namespace Escola_Virtual
             this.tvw_TeacherYearsAndSubjects.BackColor = System.Drawing.Color.White;
             this.tvw_TeacherYearsAndSubjects.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tvw_TeacherYearsAndSubjects.CheckBoxes = true;
-            this.tvw_TeacherYearsAndSubjects.Location = new System.Drawing.Point(248, 22);
+            this.tvw_TeacherYearsAndSubjects.Location = new System.Drawing.Point(248, 23);
             this.tvw_TeacherYearsAndSubjects.Margin = new System.Windows.Forms.Padding(2);
             this.tvw_TeacherYearsAndSubjects.Name = "tvw_TeacherYearsAndSubjects";
             this.tvw_TeacherYearsAndSubjects.Size = new System.Drawing.Size(350, 294);
             this.tvw_TeacherYearsAndSubjects.TabIndex = 12;
+            this.tvw_TeacherYearsAndSubjects.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvw_TeacherYearsAndSubjects_AfterCheck);
             // 
             // lbl_TeacherYearsAndSubjects
             // 

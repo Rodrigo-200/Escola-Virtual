@@ -33,9 +33,6 @@ namespace Escola_Virtual
 
 
 
-            School_Year Years = new School_Year();
-            Years = Generic._list_Of_School_Years.Where(m => m.Get_Year == Years.Get_Year).FirstOrDefault();
-
 
             foreach (var i in Generic._list_Of_School_Years)
             {
@@ -168,10 +165,18 @@ namespace Escola_Virtual
 
             foreach (TreeNode g in tvw_TeacherYearsAndSubjects.Nodes)
             {
+                string Year = g.Text.Split('º')[0];
+
                 foreach (TreeNode u in g.Nodes)
                 {
+                    string Class = u.Text;
+
                     foreach (TreeNode i in u.Nodes)
                     {
+                        Subject subject = new Subject();
+
+                        subject = Generic._list_Of_School_Years.Where(y => y.Get_List_Of_Classes.Where(c => c.Get_List_Of_Subject.Where(s => s.Get_name == i.Text).FirstOrDefault()));
+
                         if (i.Checked == true)
                         {
                             teacher.Get_List_Of_Subjects_Teaching.Add(i.Text);
@@ -186,6 +191,7 @@ namespace Escola_Virtual
             Generic._listOf_Teachers.Add(teacher);
 
             clearTeahcerControls();
+
         }
 
         private void btn_StudentConfirm_Click(object sender, EventArgs e)
@@ -263,8 +269,29 @@ namespace Escola_Virtual
             txt_TeacherName.Clear();
             txt_TeacherAddress.Clear();
             txt_TeacherContact.Clear();
-
+            tvw_TeacherYearsAndSubjects.CheckBoxes=false;
+            tvw_TeacherYearsAndSubjects.CheckBoxes = true;
             txt_TeacherNumber.Text = "T" + Generic.TeacherID.ToString().PadLeft(4, '0');
+
+          
+        }
+
+
+
+        private void tvw_TeacherYearsAndSubjects_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+
+            CheckChildren(e.Node, e.Node.Checked);
+
+        }
+
+        private void CheckChildren(TreeNode rootNode, bool isChecked)
+        {
+            foreach (TreeNode node in rootNode.Nodes)
+            {
+                CheckChildren(node, isChecked);
+                node.Checked = isChecked;
+            }
         }
     }
 }

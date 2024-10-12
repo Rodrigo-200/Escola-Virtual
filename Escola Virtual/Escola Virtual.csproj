@@ -47,7 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
     <Compile Include="Admin_Panel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +97,9 @@
     </Compile>
     <EmbeddedResource Include="Student_Panel.resx">
       <DependentUpon>Student_Panel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Teacher_Panel.resx">
+      <DependentUpon>Teacher_Panel.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -18,6 +18,7 @@ namespace Escola_Virtual
         };
         private string _class_name;
         private string _class_acronym;
+        private Int64 _classID;
 
         #region Propriedades de Get
         public List<Student> Get_List_Of_Student
@@ -49,6 +50,14 @@ namespace Escola_Virtual
             get
             {
                 return _class_acronym;
+            }
+        }
+
+        public Int64 Get_ClassID
+        {
+            get
+            {
+                return _classID;
             }
         }
 
@@ -84,6 +93,14 @@ namespace Escola_Virtual
             set
             {
                 _class_acronym = value;
+            }
+        }
+
+        public Int64 Set_ClassID
+        {
+            set
+            {
+                _classID = value;
             }
         }
 
