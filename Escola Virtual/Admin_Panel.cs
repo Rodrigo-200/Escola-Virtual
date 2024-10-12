@@ -198,8 +198,8 @@ namespace Escola_Virtual
                 Set_StudentID = txt_StudentNumber.Text,
             };
 
-            
 
+            
             Generic.StudentID++;
 
             clearStudentControls();
