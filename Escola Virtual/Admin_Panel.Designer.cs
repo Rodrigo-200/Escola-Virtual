@@ -445,7 +445,6 @@ namespace Escola_Virtual
             // 
             this.tvw_Year_Class_Student.BackColor = System.Drawing.Color.White;
             this.tvw_Year_Class_Student.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tvw_Year_Class_Student.CheckBoxes = true;
             this.tvw_Year_Class_Student.Location = new System.Drawing.Point(246, 15);
             this.tvw_Year_Class_Student.Margin = new System.Windows.Forms.Padding(2);
             this.tvw_Year_Class_Student.Name = "tvw_Year_Class_Student";

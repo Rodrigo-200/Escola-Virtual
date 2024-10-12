@@ -121,10 +121,10 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="chb_TeacherShowPassword.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="chb_show_Password.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DwAACw8BkvkDpQAADt1JREFUeF7tnQesNFUZhn97V+yi2I2KBRXF2AuiIvbYsAJWrIANELBgV4gKirFH
+        EAAACxABrSO9dQAADt1JREFUeF7tnQesNFUZhn97V+yi2I2KBRXF2AuiIvbYsAJWrIANELBgV4gKirFH
         xd4VFRUVxd6w996oIioW7O9j7sabzTe7c6acc2b3fZIn+XP/vXvPzuzMnPJ939lijDHGGGOMMcYYY4wx
         xhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wx
         xhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjNji73EbuIO8sHy6fKg+Tr5ZHynfKo+QxG/Jv
@@ -190,10 +190,10 @@
         jDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGmOrZsuW/uR5MnGkGgVgAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="chb_show_Password.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="chb_TeacherShowPassword.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAADt1JREFUeF7tnQesNFUZhn97V+yi2I2KBRXF2AuiIvbYsAJWrIANELBgV4gKirFH
+        DwAACw8BkvkDpQAADt1JREFUeF7tnQesNFUZhn97V+yi2I2KBRXF2AuiIvbYsAJWrIANELBgV4gKirFH
         xd4VFRUVxd6w996oIioW7O9j7sabzTe7c6acc2b3fZIn+XP/vXvPzuzMnPJ939lijDHGGGOMMcYYY4wx
         xhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wx
         xhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjNji73EbuIO8sHy6fKg+Tr5ZHynfKo+QxG/Jv
