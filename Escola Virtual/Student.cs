@@ -16,6 +16,7 @@ namespace Escola_Virtual
         private string _password;
         private string _studentID;
         private int _saldo;
+        private string _className;
         
         //lista de chat (classe - chat (ainda necessario criar esta classe) ) - Para guardar mensagens
 
@@ -77,6 +78,15 @@ namespace Escola_Virtual
                 return _saldo;
             }
         }
+
+        public string Get_ClassName
+        {
+            get
+            {
+                return _className;
+            }
+        }
+
         #endregion
 
         #region Propriedades de Set
@@ -136,6 +146,16 @@ namespace Escola_Virtual
                _saldo = value;
             }
         }
+
+        public string Set_ClassName
+        {
+            set
+            {
+                _className = value;
+            }
+        }
+
+
         #endregion
 
 

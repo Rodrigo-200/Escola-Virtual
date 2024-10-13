@@ -69,6 +69,7 @@
             this.txt_GradeValue.Name = "txt_GradeValue";
             this.txt_GradeValue.Size = new System.Drawing.Size(75, 20);
             this.txt_GradeValue.TabIndex = 28;
+            this.txt_GradeValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_GradeValue_KeyPress);
             // 
             // Teacher_Panel
             // 

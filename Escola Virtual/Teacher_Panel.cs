@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,6 +26,7 @@ namespace Escola_Virtual
             {
                 TreeNode year = new TreeNode();
                 year.Text = i.Get_Year.ToString() + "º ano";
+                year.Tag = i.Get_Year;
                 tvw_GradeLaunch.Nodes.Add(year);
 
 
@@ -34,12 +36,14 @@ namespace Escola_Virtual
                     {
                         TreeNode Class = new TreeNode();
                         Class.Text = c.Get_class_name;
+                        Class.Tag = "Turma";
                         year.Nodes.Add(Class);
 
                         foreach (var s in c.Get_List_Of_Subject)
                         {
                             TreeNode subject = new TreeNode();
                             subject.Text = s.Get_name;
+                            subject.Tag = "Disciplina";
 
                             if (Generic.CurrentTeacher.Get_List_Of_Subjects_Teaching.Contains(s))
                             {
@@ -48,7 +52,7 @@ namespace Escola_Virtual
                                 foreach(var st in c.Get_List_Of_Student)
                                 {
                                     TreeNode student = new TreeNode();
-                                    student.Text = st.Get_Name;
+                                    student.Text = st.Get_Name+" - "+st.Get_studentID;
                                     subject.Nodes.Add(student);
                                 }
                             }
@@ -66,7 +70,44 @@ namespace Escola_Virtual
 
         private void btn_GradeLaunch_Click(object sender, EventArgs e)
         {
+            if(Convert.ToInt32(txt_GradeValue.Text)>20)
+            {
+                MessageBox.Show("Valor de nota inválido!", "Escola Virtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if(tvw_GradeLaunch.SelectedNode.Parent.Tag.ToString()!="Disciplina"||tvw_GradeLaunch.SelectedNode == null)
+                {
+                MessageBox.Show("Não selecionou um aluno!", "Escola Virtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                
+                //Procurar a turma a que o aluno pertence
+                School_Year year = new School_Year();
+                Class _class = new Class();
+               year = Generic._list_Of_School_Years.Where(y => y.Get_Year.ToString() == tvw_GradeLaunch.SelectedNode.Parent.Parent.Parent.Tag.ToString()).FirstOrDefault();
+                _class=year.Get_List_Of_Classes.Where(c => c.Get_class_name == tvw_GradeLaunch.SelectedNode.Parent.Parent.Text).FirstOrDefault();
 
+                //Criação da nota
+                Grade nota = new Grade();
+                nota.Set_Grade = Convert.ToInt32(txt_GradeValue.Text);
+                nota.Set_subject = _class.Get_List_Of_Subject.Where(s => s.Get_name == tvw_GradeLaunch.SelectedNode.Parent.Name).FirstOrDefault();
+
+
+                _class.Get_List_Of_Student.Where(st => st.Get_studentID == tvw_GradeLaunch.SelectedNode.Text.Trim().Split('-')[1]).FirstOrDefault().Get_List_Of_Grades.Add(nota);
+            }
+            
+        }
+
+        private void txt_GradeValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
     }
 }

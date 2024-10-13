@@ -162,54 +162,67 @@ namespace Escola_Virtual
 
         private void btn_TeacherConfirm_Click(object sender, EventArgs e)
         {
-            Teachers teacher = new Teachers()
-            {
-                Set_Name = txt_TeacherName.Text,
-                Set_Address = txt_TeacherAddress.Text,
-                Set_Contact = txt_TeacherContact.Text,
-                Set_TeacherID = txt_TeacherNumber.Text,
-                Set_Password = txt_TeacherPassword.Text,
-            };
 
-            foreach (TreeNode g in tvw_TeacherYearsAndSubjects.Nodes)
+            if (txt_TeacherAddress.Text != "" && txt_TeacherContact.Text != "" && txt_TeacherName.Text != "" && txt_TeacherNIF.Text != "" && Teacher_Chosen_Subjects())
             {
-                string Year = g.Text.Split('º')[0];
 
-                foreach (TreeNode u in g.Nodes)
+
+
+                Teachers teacher = new Teachers()
                 {
-                    string Class = u.Text;
+                    Set_Name = txt_TeacherName.Text,
+                    Set_Address = txt_TeacherAddress.Text,
+                    Set_Contact = txt_TeacherContact.Text,
+                    Set_TeacherID = txt_TeacherNumber.Text,
+                    Set_Password = txt_TeacherPassword.Text,
+                };
 
-                    foreach (TreeNode i in u.Nodes)
+                foreach (TreeNode g in tvw_TeacherYearsAndSubjects.Nodes)
+                {
+                    string Year = g.Text.Split('º')[0];
+
+                    foreach (TreeNode u in g.Nodes)
                     {
-                        School_Year school_Year = new School_Year();
-                        Subject subject = new Subject();
-                        Class turma = new Class();
+                        string Class = u.Text;
 
-                        school_Year =  Generic._list_Of_School_Years.Where(m => m.Get_Year == Convert.ToInt32(Year)).FirstOrDefault();
-                        turma = school_Year.Get_List_Of_Classes.Where(m => m.Get_class_name == Class).FirstOrDefault();
-                        subject = turma.Get_List_Of_Subject.Where(m => m.Get_name == i.Text).FirstOrDefault();
-
-
-                        if (i.Checked == true)
+                        foreach (TreeNode i in u.Nodes)
                         {
-                            teacher.Get_List_Of_Subjects_Teaching.Add(subject);
-                        }
+                            School_Year school_Year = new School_Year();
+                            Subject subject = new Subject();
+                            Class turma = new Class();
 
+                            school_Year = Generic._list_Of_School_Years.Where(m => m.Get_Year == Convert.ToInt32(Year)).FirstOrDefault();
+                            turma = school_Year.Get_List_Of_Classes.Where(m => m.Get_class_name == Class).FirstOrDefault();
+                            subject = turma.Get_List_Of_Subject.Where(m => m.Get_name == i.Text).FirstOrDefault();
+
+
+                            if (i.Checked == true)
+                            {
+                                teacher.Get_List_Of_Subjects_Teaching.Add(subject);
+                            }
+
+                        }
                     }
                 }
+
+                Generic.TeacherID++;
+
+                Generic._listOf_Teachers.Add(teacher);
+
+                clearTeahcerControls();
             }
-
-            Generic.TeacherID++;
-
-            Generic._listOf_Teachers.Add(teacher);
-
-            clearTeahcerControls();
+            else
+            {
+                MessageBox.Show("Tem de preencher todos os campos!", "Escola Virtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
         private void btn_StudentConfirm_Click(object sender, EventArgs e)
         {
-            Student student = new Student()
+            if (txt_StudentAddress.Text != "" && txt_StudentContact.Text != "" && txt_StudentName.Text != "" && txt_StudentNIF.Text != "" && tvw_Year_Class_Student.SelectedNode!=null)
+            {
+                Student student = new Student()
             {
                 Set_Name = txt_StudentName.Text,
                 Set_Address = txt_StudentAddress.Text,
@@ -217,12 +230,15 @@ namespace Escola_Virtual
                 Set_NIF = txt_StudentNIF.Text,
                 Set_Password = txt_StudentPassword.Text,
                 Set_StudentID = txt_StudentNumber.Text,
+                Set_ClassName = tvw_Year_Class_Student.SelectedNode.Name,
             };
 
 
-            List<Student> students = new List<Student>();  
+            /*List<Student> students = new List<Student>();  
 
-            students.Add(student);
+
+            
+            students.Add(student);*/
 
 
 
@@ -230,7 +246,7 @@ namespace Escola_Virtual
             {
                 if (year.Get_Year== Convert.ToInt32(tvw_Year_Class_Student.SelectedNode.Parent.Text.Split('º')[0]))
                 {
-                    year.Get_List_Of_Classes.Where(m => m.Get_class_name == tvw_Year_Class_Student.SelectedNode.Text).ToList().FirstOrDefault().Set_List_Of_Student = students;
+                    year.Get_List_Of_Classes.Where(m => m.Get_class_name == tvw_Year_Class_Student.SelectedNode.Text).ToList().FirstOrDefault().Get_List_Of_Student.Add(student);
                     break;
                 }
             }
@@ -242,6 +258,11 @@ namespace Escola_Virtual
             Generic.StudentID++;
 
             clearStudentControls();
+            }
+            else
+            {
+                MessageBox.Show("Tem de preencher todos os campos!", "Escola Virtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void chb_show_Password_CheckedChanged(object sender, EventArgs e)
@@ -314,6 +335,26 @@ namespace Escola_Virtual
             }
         }
 
+        private bool Teacher_Chosen_Subjects()
+        {
+
+                foreach (TreeNode y in tvw_TeacherYearsAndSubjects.Nodes)
+                {
+                    foreach(TreeNode c in y.Nodes)
+                    {
+                        foreach(TreeNode s in c.Nodes)
+                        {
+                            if (s.Checked)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            return false;
+        }
 
     }
+
+    
 }
