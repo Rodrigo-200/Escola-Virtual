@@ -230,7 +230,7 @@ namespace Escola_Virtual
                 Set_NIF = txt_StudentNIF.Text,
                 Set_Password = txt_StudentPassword.Text,
                 Set_StudentID = txt_StudentNumber.Text,
-                Set_ClassName = tvw_Year_Class_Student.SelectedNode.Name,
+                Set_ClassName = tvw_Year_Class_Student.SelectedNode.Text,
             };
 
 

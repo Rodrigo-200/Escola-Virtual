@@ -52,7 +52,7 @@ namespace Escola_Virtual
                                 foreach(var st in c.Get_List_Of_Student)
                                 {
                                     TreeNode student = new TreeNode();
-                                    student.Text = st.Get_Name+" - "+st.Get_studentID;
+                                    student.Text = st.Get_Name+"-"+st.Get_studentID;
                                     subject.Nodes.Add(student);
                                 }
                             }
@@ -90,10 +90,9 @@ namespace Escola_Virtual
                 //Criação da nota
                 Grade nota = new Grade();
                 nota.Set_Grade = Convert.ToInt32(txt_GradeValue.Text);
-                nota.Set_subject = _class.Get_List_Of_Subject.Where(s => s.Get_name == tvw_GradeLaunch.SelectedNode.Parent.Name).FirstOrDefault();
+                nota.Set_subject = _class.Get_List_Of_Subject.Where(s => s.Get_name == tvw_GradeLaunch.SelectedNode.Parent.Text).FirstOrDefault();
 
-
-                _class.Get_List_Of_Student.Where(st => st.Get_studentID == tvw_GradeLaunch.SelectedNode.Text.Trim().Split('-')[1]).FirstOrDefault().Get_List_Of_Grades.Add(nota);
+                _class.Get_List_Of_Student.Where(st => st.Get_studentID == tvw_GradeLaunch.SelectedNode.Text.Split('-')[1]).FirstOrDefault().Get_List_Of_Grades.Add(nota);
             }
             
         }
