@@ -1,4 +1,6 @@
 Objetivo
+
+
 Aplicação em Windows Forms que faça a gestão de uma escola (Design á 
 escolha) – a usabilidade da aplicação conta!
 Possibilidade de efetuar “login” como: Administrador, Professor, Aluno
