@@ -38,13 +38,13 @@ namespace Escola_Virtual
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            if (!txt_accnumber.Text.Contains('A') && !txt_accnumber.Text.Contains('S') && !txt_accnumber.Text.Contains('T'))
+            if (!txt_accnumber.Text.Contains('A') || !txt_accnumber.Text.Contains('a') && !txt_accnumber.Text.Contains('S') || !txt_accnumber.Text.Contains('s') && !txt_accnumber.Text.Contains('T') || !txt_accnumber.Text.Contains('t'))
             {
-                MessageBox.Show("Dados de acesso inválidos!", "Escola Virtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lbl_LoginErrors.Text = "Dados de acesso inválidos";
             }
             else
             {
-                if (txt_accnumber.Text.Contains('A'))
+                if (txt_accnumber.Text.Contains('A') || !txt_accnumber.Text.Contains('a'))
                 {
                     if (txt_accnumber.Text == "A0000" && txt_password.Text == "0000")
                     {
@@ -57,14 +57,14 @@ namespace Escola_Virtual
                     }
                     else
                     {
-                        MessageBox.Show("Dados de acesso inválidos!", "Escola Virtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        lbl_LoginErrors.Text = "Dados de acesso inválidos";
                     }
                 }
 
 
 
 
-                if (txt_accnumber.Text.Contains('S'))
+                if (txt_accnumber.Text.Contains('S') || !txt_accnumber.Text.Contains('s'))
                 {
                     bool exist = true;
 
@@ -94,12 +94,11 @@ namespace Escola_Virtual
 
                     if (exist == false)
                     {
-                        MessageBox.Show("Dados de acesso inválidos!", "Escola Virtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        exist = true;
+                        lbl_LoginErrors.Text = "Dados de acesso inválidos";
                     }
                 }
 
-                if (txt_accnumber.Text.Contains('T'))
+                if (txt_accnumber.Text.Contains('T') || !txt_accnumber.Text.Contains('t'))
                 {
 
 
@@ -117,7 +116,7 @@ namespace Escola_Virtual
                     }
                     else
                     {
-                        MessageBox.Show("Dados de acesso inválidos!", "Escola Virtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        lbl_LoginErrors.Text = "Dados de acesso inválidos";
                     }
 
                 }
@@ -135,6 +134,7 @@ namespace Escola_Virtual
         {
             txt_accnumber.Clear();
             txt_password.Clear();
+            lbl_LoginErrors.Text = "";
         }
 
         private void Login_Load(object sender, EventArgs e)

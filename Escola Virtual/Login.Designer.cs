@@ -35,7 +35,7 @@ namespace Escola_Virtual
             this.label2 = new System.Windows.Forms.Label();
             this.chb_show_Password = new System.Windows.Forms.CheckBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.lbl_login = new System.Windows.Forms.Label();
+            this.lbl_LoginErrors = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_login = new System.Windows.Forms.Button();
             this.txt_password = new System.Windows.Forms.TextBox();
@@ -87,15 +87,15 @@ namespace Escola_Virtual
             this.imageList1.Images.SetKeyName(0, "eye-password-see-view.png");
             this.imageList1.Images.SetKeyName(1, "777494-200.png");
             // 
-            // lbl_login
+            // lbl_LoginErrors
             // 
-            this.lbl_login.AutoSize = true;
-            this.lbl_login.ForeColor = System.Drawing.Color.Red;
-            this.lbl_login.Location = new System.Drawing.Point(325, 326);
-            this.lbl_login.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_login.Name = "lbl_login";
-            this.lbl_login.Size = new System.Drawing.Size(0, 17);
-            this.lbl_login.TabIndex = 20;
+            this.lbl_LoginErrors.AutoSize = true;
+            this.lbl_LoginErrors.ForeColor = System.Drawing.Color.Red;
+            this.lbl_LoginErrors.Location = new System.Drawing.Point(325, 326);
+            this.lbl_LoginErrors.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_LoginErrors.Name = "lbl_LoginErrors";
+            this.lbl_LoginErrors.Size = new System.Drawing.Size(0, 17);
+            this.lbl_LoginErrors.TabIndex = 20;
             // 
             // label1
             // 
@@ -143,7 +143,7 @@ namespace Escola_Virtual
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.chb_show_Password);
-            this.Controls.Add(this.lbl_login);
+            this.Controls.Add(this.lbl_LoginErrors);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_login);
             this.Controls.Add(this.txt_password);
@@ -161,7 +161,7 @@ namespace Escola_Virtual
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox chb_show_Password;
-        private System.Windows.Forms.Label lbl_login;
+        private System.Windows.Forms.Label lbl_LoginErrors;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_login;
         private System.Windows.Forms.TextBox txt_password;
