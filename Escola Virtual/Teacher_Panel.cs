@@ -22,6 +22,13 @@ namespace Escola_Virtual
         private void Teacher_Panel_Load(object sender, EventArgs e)
         {
 
+            txt_TeacherAddress.Text = Generic.CurrentTeacher.Get_Address;
+            txt_TeacherName.Text = Generic.CurrentTeacher.Get_Name;
+            txt_TeacherContact.Text = Generic.CurrentTeacher.Get_Contact;
+            txt_TeacherNIF.Text = Generic.CurrentTeacher.Get_NIF;
+            txt_TeacherNumber.Text = Generic.CurrentTeacher.Get_TeacherID;
+            txt_TeacherPassword.Text = Generic.CurrentTeacher.Get_password;
+
             foreach (var i in Generic._list_Of_School_Years)
             {
                 TreeNode year = new TreeNode();
@@ -106,6 +113,43 @@ namespace Escola_Virtual
             else
             {
                 e.Handled = true;
+            }
+        }
+
+        private void btn_TeacherEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_Teacher_Readonly()
+        {
+            if (btn_TeacherSubmit.Enabled == false)
+            {
+                txt_TeacherAddress.ReadOnly = false;
+                txt_TeacherContact.ReadOnly = false;
+                txt_TeacherName.ReadOnly = false;
+                txt_TeacherNIF.ReadOnly = false;
+                txt_TeacherPassword.ReadOnly = false;
+                btn_TeacherEdit.Enabled = false;
+                btn_TeacherSubmit.Enabled = true;
+            }
+            else
+            {
+                txt_TeacherAddress.ReadOnly = true;
+                txt_TeacherContact.ReadOnly = true;
+                txt_TeacherName.ReadOnly = true;
+                txt_TeacherNIF.ReadOnly = true;
+                txt_TeacherPassword.ReadOnly = true;
+                btn_TeacherEdit.Enabled = true;
+                btn_TeacherSubmit.Enabled = false;
+
+                //Só atribuir nas textboxes que tiveram texto alterado
+                txt_TeacherAddress.Text = Generic.CurrentTeacher.Get_Address;
+                txt_TeacherName.Text = Generic.CurrentTeacher.Get_Name;
+                txt_TeacherContact.Text = Generic.CurrentTeacher.Get_Contact;
+                txt_TeacherNIF.Text = Generic.CurrentTeacher.Get_NIF;
+                txt_TeacherNumber.Text = Generic.CurrentTeacher.Get_TeacherID;
+                txt_TeacherPassword.Text = Generic.CurrentTeacher.Get_password;
             }
         }
     }
