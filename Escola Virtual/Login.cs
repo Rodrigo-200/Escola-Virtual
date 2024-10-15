@@ -38,15 +38,15 @@ namespace Escola_Virtual
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            if (!txt_accnumber.Text.Contains('A') || !txt_accnumber.Text.Contains('a') && !txt_accnumber.Text.Contains('S') || !txt_accnumber.Text.Contains('s') && !txt_accnumber.Text.Contains('T') || !txt_accnumber.Text.Contains('t'))
+            if (!txt_accnumber.Text.ToLower().Contains('a') && !txt_accnumber.Text.ToLower().Contains('s') && !txt_accnumber.Text.ToLower().Contains('t'))
             {
                 lbl_LoginErrors.Text = "Dados de acesso inválidos";
             }
             else
             {
-                if (txt_accnumber.Text.Contains('A') || !txt_accnumber.Text.Contains('a'))
+                if (txt_accnumber.Text.ToLower().Contains('a'))
                 {
-                    if (txt_accnumber.Text == "A0000" && txt_password.Text == "0000")
+                    if (txt_accnumber.Text.ToLower() == "a0000" && txt_password.Text == "0000")
                     {
                         this.Visible = false;
                         adminpanel = new Admin_Panel();
@@ -64,7 +64,7 @@ namespace Escola_Virtual
 
 
 
-                if (txt_accnumber.Text.Contains('S') || !txt_accnumber.Text.Contains('s'))
+                if (txt_accnumber.Text.ToLower().Contains('s'))
                 {
                     bool exist = true;
 
@@ -72,10 +72,10 @@ namespace Escola_Virtual
                     {
                         foreach (var ite in i.Get_List_Of_Classes)
                         {
-                            if (ite.Get_List_Of_Student.Where(m => m.Get_studentID == txt_accnumber.Text && m.Get_password == txt_password.Text).FirstOrDefault() != null)
+                            if (ite.Get_List_Of_Student.Where(m => m.Get_studentID.ToLower() == txt_accnumber.Text.ToLower() && m.Get_password == txt_password.Text).FirstOrDefault() != null)
                             {
 
-                                Generic.CurrentStudent = ite.Get_List_Of_Student.Where(m => m.Get_studentID == txt_accnumber.Text).FirstOrDefault();
+                                Generic.CurrentStudent = ite.Get_List_Of_Student.Where(m => m.Get_studentID.ToLower() == txt_accnumber.Text.ToLower()).FirstOrDefault();
                                 this.Visible = false;
                                 studentpanel = new Student_Panel();
                                 studentpanel.FormClosed += onForm2Close;
@@ -98,14 +98,14 @@ namespace Escola_Virtual
                     }
                 }
 
-                if (txt_accnumber.Text.Contains('T') || !txt_accnumber.Text.Contains('t'))
+                if (txt_accnumber.Text.ToLower().Contains('t'))
                 {
 
 
-                    if (Generic._listOf_Teachers.Where(m => m.Get_TeacherID == txt_accnumber.Text && m.Get_password == txt_password.Text).FirstOrDefault() != null)
+                    if (Generic._listOf_Teachers.Where(m => m.Get_TeacherID.ToLower() == txt_accnumber.Text.ToLower() && m.Get_password == txt_password.Text).FirstOrDefault() != null)
                     {
 
-                        Generic.CurrentTeacher = Generic._listOf_Teachers.Where(m => m.Get_TeacherID == txt_accnumber.Text).FirstOrDefault();
+                        Generic.CurrentTeacher = Generic._listOf_Teachers.Where(m => m.Get_TeacherID.ToLower() == txt_accnumber.Text.ToLower()).FirstOrDefault();
                         this.Visible = false;
                         teacherpanel = new Teacher_Panel();
                         teacherpanel.FormClosed += onForm2Close;
@@ -122,7 +122,7 @@ namespace Escola_Virtual
                 }
             }
 
-            clearControls();
+
         }
 
         private void onForm2Close(object sender, FormClosedEventArgs e)
@@ -134,7 +134,6 @@ namespace Escola_Virtual
         {
             txt_accnumber.Clear();
             txt_password.Clear();
-            lbl_LoginErrors.Text = "";
         }
 
         private void Login_Load(object sender, EventArgs e)

@@ -67,17 +67,25 @@ namespace Escola_Virtual
             this.lbl_StudentAddress = new System.Windows.Forms.Label();
             this.txt_StudentName = new System.Windows.Forms.TextBox();
             this.lbl_StudentName = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tp_AdminCreateThings = new System.Windows.Forms.TabPage();
+            this.tc_AdminCreateThings = new System.Windows.Forms.TabControl();
+            this.tp_AdminCreateSubject = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.label1 = new System.Windows.Forms.Label();
             this.tc_Choices.SuspendLayout();
             this.tp_TeachersPage.SuspendLayout();
             this.tp_StudentsPage.SuspendLayout();
+            this.tp_AdminCreateThings.SuspendLayout();
+            this.tc_AdminCreateThings.SuspendLayout();
+            this.tp_AdminCreateSubject.SuspendLayout();
             this.SuspendLayout();
             // 
             // tc_Choices
             // 
             this.tc_Choices.Controls.Add(this.tp_TeachersPage);
             this.tc_Choices.Controls.Add(this.tp_StudentsPage);
-            this.tc_Choices.Controls.Add(this.tabPage1);
+            this.tc_Choices.Controls.Add(this.tp_AdminCreateThings);
             this.tc_Choices.Location = new System.Drawing.Point(1, 0);
             this.tc_Choices.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tc_Choices.Name = "tc_Choices";
@@ -452,14 +460,64 @@ namespace Escola_Virtual
             this.lbl_StudentName.TabIndex = 15;
             this.lbl_StudentName.Text = "Nome";
             // 
-            // tabPage1
+            // tp_AdminCreateThings
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(803, 420);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tp_AdminCreateThings.Controls.Add(this.tc_AdminCreateThings);
+            this.tp_AdminCreateThings.Location = new System.Drawing.Point(4, 25);
+            this.tp_AdminCreateThings.Name = "tp_AdminCreateThings";
+            this.tp_AdminCreateThings.Size = new System.Drawing.Size(803, 420);
+            this.tp_AdminCreateThings.TabIndex = 2;
+            this.tp_AdminCreateThings.Text = "tabPage1";
+            this.tp_AdminCreateThings.UseVisualStyleBackColor = true;
+            // 
+            // tc_AdminCreateThings
+            // 
+            this.tc_AdminCreateThings.Controls.Add(this.tp_AdminCreateSubject);
+            this.tc_AdminCreateThings.Controls.Add(this.tabPage2);
+            this.tc_AdminCreateThings.Location = new System.Drawing.Point(7, 3);
+            this.tc_AdminCreateThings.Name = "tc_AdminCreateThings";
+            this.tc_AdminCreateThings.SelectedIndex = 0;
+            this.tc_AdminCreateThings.Size = new System.Drawing.Size(791, 414);
+            this.tc_AdminCreateThings.TabIndex = 0;
+            // 
+            // tp_AdminCreateSubject
+            // 
+            this.tp_AdminCreateSubject.Controls.Add(this.label1);
+            this.tp_AdminCreateSubject.Controls.Add(this.treeView1);
+            this.tp_AdminCreateSubject.Location = new System.Drawing.Point(4, 25);
+            this.tp_AdminCreateSubject.Name = "tp_AdminCreateSubject";
+            this.tp_AdminCreateSubject.Padding = new System.Windows.Forms.Padding(3);
+            this.tp_AdminCreateSubject.Size = new System.Drawing.Size(783, 385);
+            this.tp_AdminCreateSubject.TabIndex = 0;
+            this.tp_AdminCreateSubject.Text = "Disciplinas";
+            this.tp_AdminCreateSubject.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(192, 71);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // treeView1
+            // 
+            this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.treeView1.Location = new System.Drawing.Point(7, 26);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(290, 353);
+            this.treeView1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(127, 17);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Selecionar a turma";
             // 
             // Admin_Panel
             // 
@@ -476,6 +534,10 @@ namespace Escola_Virtual
             this.tp_TeachersPage.PerformLayout();
             this.tp_StudentsPage.ResumeLayout(false);
             this.tp_StudentsPage.PerformLayout();
+            this.tp_AdminCreateThings.ResumeLayout(false);
+            this.tc_AdminCreateThings.ResumeLayout(false);
+            this.tp_AdminCreateSubject.ResumeLayout(false);
+            this.tp_AdminCreateSubject.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -518,6 +580,11 @@ namespace Escola_Virtual
         private System.Windows.Forms.Label lbl_TeacherPassword;
         private System.Windows.Forms.Label lbl_StudentChooseClass;
         private System.Windows.Forms.TreeView tvw_Year_Class_Student;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tp_AdminCreateThings;
+        private System.Windows.Forms.TabControl tc_AdminCreateThings;
+        private System.Windows.Forms.TabPage tp_AdminCreateSubject;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }
