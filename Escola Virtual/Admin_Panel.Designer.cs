@@ -71,8 +71,15 @@ namespace Escola_Virtual
             this.tc_AdminCreateThings = new System.Windows.Forms.TabControl();
             this.tp_AdminCreateSubject = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.tvw_CreateSubject = new System.Windows.Forms.TreeView();
             this.label1 = new System.Windows.Forms.Label();
+            this.txt_SubjectName = new System.Windows.Forms.TextBox();
+            this.lbl_SubjectName = new System.Windows.Forms.Label();
+            this.lbl_SubjectAcronym = new System.Windows.Forms.Label();
+            this.txt_SubjectAcronym = new System.Windows.Forms.TextBox();
+            this.txt_SubjectAmmountOfClasses = new System.Windows.Forms.TextBox();
+            this.lbl_SubjectAmmountOfClasses = new System.Windows.Forms.Label();
+            this.btn_CreateSubject = new System.Windows.Forms.Button();
             this.tc_Choices.SuspendLayout();
             this.tp_TeachersPage.SuspendLayout();
             this.tp_StudentsPage.SuspendLayout();
@@ -92,6 +99,7 @@ namespace Escola_Virtual
             this.tc_Choices.SelectedIndex = 0;
             this.tc_Choices.Size = new System.Drawing.Size(811, 449);
             this.tc_Choices.TabIndex = 0;
+            this.tc_Choices.SelectedIndexChanged += new System.EventHandler(this.tc_Choices_SelectedIndexChanged);
             // 
             // tp_TeachersPage
             // 
@@ -482,8 +490,15 @@ namespace Escola_Virtual
             // 
             // tp_AdminCreateSubject
             // 
+            this.tp_AdminCreateSubject.Controls.Add(this.btn_CreateSubject);
+            this.tp_AdminCreateSubject.Controls.Add(this.lbl_SubjectAmmountOfClasses);
+            this.tp_AdminCreateSubject.Controls.Add(this.txt_SubjectAmmountOfClasses);
+            this.tp_AdminCreateSubject.Controls.Add(this.txt_SubjectAcronym);
+            this.tp_AdminCreateSubject.Controls.Add(this.lbl_SubjectAcronym);
+            this.tp_AdminCreateSubject.Controls.Add(this.lbl_SubjectName);
+            this.tp_AdminCreateSubject.Controls.Add(this.txt_SubjectName);
             this.tp_AdminCreateSubject.Controls.Add(this.label1);
-            this.tp_AdminCreateSubject.Controls.Add(this.treeView1);
+            this.tp_AdminCreateSubject.Controls.Add(this.tvw_CreateSubject);
             this.tp_AdminCreateSubject.Location = new System.Drawing.Point(4, 25);
             this.tp_AdminCreateSubject.Name = "tp_AdminCreateSubject";
             this.tp_AdminCreateSubject.Padding = new System.Windows.Forms.Padding(3);
@@ -502,13 +517,13 @@ namespace Escola_Virtual
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // treeView1
+            // tvw_CreateSubject
             // 
-            this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.treeView1.Location = new System.Drawing.Point(7, 26);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(290, 353);
-            this.treeView1.TabIndex = 0;
+            this.tvw_CreateSubject.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tvw_CreateSubject.Location = new System.Drawing.Point(7, 26);
+            this.tvw_CreateSubject.Name = "tvw_CreateSubject";
+            this.tvw_CreateSubject.Size = new System.Drawing.Size(441, 353);
+            this.tvw_CreateSubject.TabIndex = 0;
             // 
             // label1
             // 
@@ -518,6 +533,65 @@ namespace Escola_Virtual
             this.label1.Size = new System.Drawing.Size(127, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Selecionar a turma";
+            // 
+            // txt_SubjectName
+            // 
+            this.txt_SubjectName.Location = new System.Drawing.Point(457, 27);
+            this.txt_SubjectName.Name = "txt_SubjectName";
+            this.txt_SubjectName.Size = new System.Drawing.Size(204, 22);
+            this.txt_SubjectName.TabIndex = 2;
+            // 
+            // lbl_SubjectName
+            // 
+            this.lbl_SubjectName.AutoSize = true;
+            this.lbl_SubjectName.Location = new System.Drawing.Point(454, 7);
+            this.lbl_SubjectName.Name = "lbl_SubjectName";
+            this.lbl_SubjectName.Size = new System.Drawing.Size(127, 17);
+            this.lbl_SubjectName.TabIndex = 3;
+            this.lbl_SubjectName.Text = "Nome da disciplina";
+            // 
+            // lbl_SubjectAcronym
+            // 
+            this.lbl_SubjectAcronym.AutoSize = true;
+            this.lbl_SubjectAcronym.Location = new System.Drawing.Point(454, 64);
+            this.lbl_SubjectAcronym.Name = "lbl_SubjectAcronym";
+            this.lbl_SubjectAcronym.Size = new System.Drawing.Size(121, 17);
+            this.lbl_SubjectAcronym.TabIndex = 4;
+            this.lbl_SubjectAcronym.Text = "Sigla da disciplina";
+            // 
+            // txt_SubjectAcronym
+            // 
+            this.txt_SubjectAcronym.Location = new System.Drawing.Point(457, 84);
+            this.txt_SubjectAcronym.Name = "txt_SubjectAcronym";
+            this.txt_SubjectAcronym.Size = new System.Drawing.Size(131, 22);
+            this.txt_SubjectAcronym.TabIndex = 5;
+            // 
+            // txt_SubjectAmmountOfClasses
+            // 
+            this.txt_SubjectAmmountOfClasses.Location = new System.Drawing.Point(457, 144);
+            this.txt_SubjectAmmountOfClasses.Name = "txt_SubjectAmmountOfClasses";
+            this.txt_SubjectAmmountOfClasses.Size = new System.Drawing.Size(100, 22);
+            this.txt_SubjectAmmountOfClasses.TabIndex = 6;
+            this.txt_SubjectAmmountOfClasses.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lbl_SubjectAmmountOfClasses
+            // 
+            this.lbl_SubjectAmmountOfClasses.AutoSize = true;
+            this.lbl_SubjectAmmountOfClasses.Location = new System.Drawing.Point(454, 124);
+            this.lbl_SubjectAmmountOfClasses.Name = "lbl_SubjectAmmountOfClasses";
+            this.lbl_SubjectAmmountOfClasses.Size = new System.Drawing.Size(141, 17);
+            this.lbl_SubjectAmmountOfClasses.TabIndex = 7;
+            this.lbl_SubjectAmmountOfClasses.Text = "Quantidade de Aulas";
+            // 
+            // btn_CreateSubject
+            // 
+            this.btn_CreateSubject.Location = new System.Drawing.Point(457, 197);
+            this.btn_CreateSubject.Name = "btn_CreateSubject";
+            this.btn_CreateSubject.Size = new System.Drawing.Size(320, 23);
+            this.btn_CreateSubject.TabIndex = 8;
+            this.btn_CreateSubject.Text = "Confirmar";
+            this.btn_CreateSubject.UseVisualStyleBackColor = true;
+            this.btn_CreateSubject.Click += new System.EventHandler(this.btn_CreateSubject_Click);
             // 
             // Admin_Panel
             // 
@@ -584,7 +658,14 @@ namespace Escola_Virtual
         private System.Windows.Forms.TabControl tc_AdminCreateThings;
         private System.Windows.Forms.TabPage tp_AdminCreateSubject;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView tvw_CreateSubject;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Label lbl_SubjectAcronym;
+        private System.Windows.Forms.Label lbl_SubjectName;
+        private System.Windows.Forms.TextBox txt_SubjectName;
+        private System.Windows.Forms.Button btn_CreateSubject;
+        private System.Windows.Forms.Label lbl_SubjectAmmountOfClasses;
+        private System.Windows.Forms.TextBox txt_SubjectAmmountOfClasses;
+        private System.Windows.Forms.TextBox txt_SubjectAcronym;
     }
 }

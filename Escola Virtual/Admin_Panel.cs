@@ -19,74 +19,8 @@ namespace Escola_Virtual
 
         private void Admin_Panel_Load(object sender, EventArgs e)
         {
-            if (Generic.StudentID < 1)
-            {
-                Generic.StudentID = 1;
-                txt_StudentNumber.Text = "S" + Generic.StudentID.ToString().PadLeft(4, '0');
-            }
-            else
-            {
-                txt_StudentNumber.Text = "S" + Generic.StudentID.ToString().PadLeft(4, '0');
-            }
 
-            if (Generic.TeacherID < 1)
-            {
-                Generic.TeacherID = 1;
-                txt_TeacherNumber.Text = "T" + Generic.TeacherID.ToString().PadLeft(4, '0');
-            }
-            else
-            {
-                txt_TeacherNumber.Text = "T" + Generic.TeacherID.ToString().PadLeft(4, '0');
-            }
-
-
-
-
-
-
-            foreach (var i in Generic._list_Of_School_Years)
-            {
-                TreeNode Ano = new TreeNode();
-                Ano.Text = i.Get_Year.ToString() + "º ano";
-                tvw_TeacherYearsAndSubjects.Nodes.Add(Ano);
-
-
-
-                foreach (var it in i.Get_List_Of_Classes)
-                {
-                    TreeNode Class = new TreeNode();
-                    Class.Text = it.Get_class_name;
-                    Ano.Nodes.Add(Class);
-
-                    foreach (var ite in it.Get_List_Of_Subject)
-                    {
-                        TreeNode Subject = new TreeNode();
-                        Subject.Text = ite.Get_name;
-                        Class.Nodes.Add(Subject);
-                    }
-
-
-                }
-
-            }
-
-            foreach (var it in Generic._list_Of_School_Years)
-            {
-                TreeNode Year = new TreeNode();
-                Year.Text = it.Get_Year.ToString() + "º ano";
-                tvw_Year_Class_Student.Nodes.Add(Year);
-
-
-
-                foreach (var ite in it.Get_List_Of_Classes)
-                {
-                    TreeNode Class = new TreeNode();
-                    Class.Text = ite.Get_class_name;
-                    Year.Nodes.Add(Class);
-                }
-            }
-
-
+            refresh();
 
         }
 
@@ -174,6 +108,7 @@ namespace Escola_Virtual
                 {
                     Set_Name = txt_TeacherName.Text,
                     Set_Address = txt_TeacherAddress.Text,
+                    Set_NIF = txt_TeacherNIF.Text,
                     Set_Contact = txt_TeacherContact.Text,
                     Set_TeacherID = txt_TeacherNumber.Text,
                     Set_Password = txt_TeacherPassword.Text,
@@ -196,6 +131,7 @@ namespace Escola_Virtual
                             school_Year = Generic._list_Of_School_Years.Where(m => m.Get_Year == Convert.ToInt32(Year)).FirstOrDefault();
                             turma = school_Year.Get_List_Of_Classes.Where(m => m.Get_class_name == Class).FirstOrDefault();
                             subject = turma.Get_List_Of_Subject.Where(m => m.Get_name == i.Text).FirstOrDefault();
+                            subject.Set_Teacherid = teacher;
 
 
                             if (i.Checked == true)
@@ -356,6 +292,126 @@ namespace Escola_Virtual
             return false;
         }
 
+        private void btn_CreateSubject_Click(object sender, EventArgs e)
+        {
+            if (txt_SubjectName.Text != "" && txt_SubjectAcronym.Text != "" && txt_SubjectAmmountOfClasses.Text != "" && tvw_CreateSubject.SelectedNode != null)
+            {
+                Subject subject = new Subject()
+                {
+                    Set_name = txt_SubjectName.Text,
+                    Set_subject_acronym = txt_SubjectAcronym.Text,
+                    Set_subject_number = Convert.ToInt32(txt_SubjectAmmountOfClasses.Text),
+                };
+
+
+                foreach (var year in Generic._list_Of_School_Years)
+                {
+                    if (year.Get_Year == Convert.ToInt32(tvw_CreateSubject.SelectedNode.Parent.Text.Split('º')[0]))
+                    {
+
+                        year.Get_List_Of_Classes.Where(m => m.Get_class_name == tvw_CreateSubject.SelectedNode.Text).ToList().FirstOrDefault().Get_List_Of_Subject.Add(subject);
+                        break;
+                    }
+                }
+            }
+
+
+        }
+
+        private void tc_Choices_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tvw_CreateSubject.Nodes.Clear();
+            tvw_TeacherYearsAndSubjects.Nodes.Clear();
+            tvw_Year_Class_Student.Nodes.Clear();
+            refresh();
+        }
+
+        private void refresh()
+        {
+            if (Generic.StudentID < 1)
+            {
+                Generic.StudentID = 1;
+                txt_StudentNumber.Text = "S" + Generic.StudentID.ToString().PadLeft(4, '0');
+            }
+            else
+            {
+                txt_StudentNumber.Text = "S" + Generic.StudentID.ToString().PadLeft(4, '0');
+            }
+
+            if (Generic.TeacherID < 1)
+            {
+                Generic.TeacherID = 1;
+                txt_TeacherNumber.Text = "T" + Generic.TeacherID.ToString().PadLeft(4, '0');
+            }
+            else
+            {
+                txt_TeacherNumber.Text = "T" + Generic.TeacherID.ToString().PadLeft(4, '0');
+            }
+
+
+
+            foreach (var i in Generic._list_Of_School_Years)
+            {
+                TreeNode Ano = new TreeNode();
+                Ano.Text = i.Get_Year.ToString() + "º ano";
+                tvw_CreateSubject.Nodes.Add(Ano);
+
+
+
+                foreach (var it in i.Get_List_Of_Classes)
+                {
+                    TreeNode Class = new TreeNode();
+                    Class.Text = it.Get_class_name;
+                    Ano.Nodes.Add(Class);
+
+                }
+
+            }
+
+
+
+            foreach (var i in Generic._list_Of_School_Years)
+            {
+                TreeNode Ano = new TreeNode();
+                Ano.Text = i.Get_Year.ToString() + "º ano";
+                tvw_TeacherYearsAndSubjects.Nodes.Add(Ano);
+
+
+
+                foreach (var it in i.Get_List_Of_Classes)
+                {
+                    TreeNode Class = new TreeNode();
+                    Class.Text = it.Get_class_name;
+                    Ano.Nodes.Add(Class);
+
+                    foreach (var ite in it.Get_List_Of_Subject)
+                    {
+                        TreeNode Subject = new TreeNode();
+                        Subject.Text = ite.Get_name;
+                        Class.Nodes.Add(Subject);
+                    }
+
+
+                }
+
+            }
+
+            foreach (var it in Generic._list_Of_School_Years)
+            {
+                TreeNode Year = new TreeNode();
+                Year.Text = it.Get_Year.ToString() + "º ano";
+                tvw_Year_Class_Student.Nodes.Add(Year);
+
+
+
+                foreach (var ite in it.Get_List_Of_Classes)
+                {
+                    TreeNode Class = new TreeNode();
+                    Class.Text = ite.Get_class_name;
+                    Year.Nodes.Add(Class);
+                }
+            }
+        }
     }
 
     
