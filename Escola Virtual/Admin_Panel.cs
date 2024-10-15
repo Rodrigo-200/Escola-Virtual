@@ -158,44 +158,44 @@ namespace Escola_Virtual
 
         private void btn_StudentConfirm_Click(object sender, EventArgs e)
         {
-            if (txt_StudentAddress.Text != "" && txt_StudentContact.Text != "" && txt_StudentName.Text != "" && txt_StudentNIF.Text != "" && tvw_Year_Class_Student.SelectedNode!=null)
+            if (txt_StudentAddress.Text != "" && txt_StudentContact.Text != "" && txt_StudentName.Text != "" && txt_StudentNIF.Text != "" && tvw_Year_Class_Student.SelectedNode != null)
             {
                 Student student = new Student()
-            {
-                Set_Name = txt_StudentName.Text,
-                Set_Address = txt_StudentAddress.Text,
-                Set_Contact = txt_StudentContact.Text,
-                Set_NIF = txt_StudentNIF.Text,
-                Set_Password = txt_StudentPassword.Text,
-                Set_StudentID = txt_StudentNumber.Text,
-                Set_ClassName = tvw_Year_Class_Student.SelectedNode.Text,
-            };
-
-
-            /*List<Student> students = new List<Student>();  
-
-
-            
-            students.Add(student);*/
-
-
-
-            foreach(var year in Generic._list_Of_School_Years)
-            {
-                if (year.Get_Year== Convert.ToInt32(tvw_Year_Class_Student.SelectedNode.Parent.Text.Split('º')[0]))
                 {
-                    year.Get_List_Of_Classes.Where(m => m.Get_class_name == tvw_Year_Class_Student.SelectedNode.Text).ToList().FirstOrDefault().Get_List_Of_Student.Add(student);
-                    break;
+                    Set_Name = txt_StudentName.Text,
+                    Set_Address = txt_StudentAddress.Text,
+                    Set_Contact = txt_StudentContact.Text,
+                    Set_NIF = txt_StudentNIF.Text,
+                    Set_Password = txt_StudentPassword.Text,
+                    Set_StudentID = txt_StudentNumber.Text,
+                    Set_ClassName = tvw_Year_Class_Student.SelectedNode.Text,
+                };
+
+
+                /*List<Student> students = new List<Student>();  
+
+
+
+                students.Add(student);*/
+
+
+
+                foreach (var year in Generic._list_Of_School_Years)
+                {
+                    if (year.Get_Year == Convert.ToInt32(tvw_Year_Class_Student.SelectedNode.Parent.Text.Split('º')[0]))
+                    {
+                        year.Get_List_Of_Classes.Where(m => m.Get_class_name == tvw_Year_Class_Student.SelectedNode.Text).ToList().FirstOrDefault().Get_List_Of_Student.Add(student);
+                        break;
+                    }
                 }
-            }
 
 
 
 
 
-            Generic.StudentID++;
+                Generic.StudentID++;
 
-            clearStudentControls();
+                clearStudentControls();
             }
             else
             {
@@ -248,11 +248,11 @@ namespace Escola_Virtual
             txt_TeacherAddress.Clear();
             txt_TeacherContact.Clear();
             txt_TeacherPassword.Clear();
-            tvw_TeacherYearsAndSubjects.CheckBoxes=false;
+            tvw_TeacherYearsAndSubjects.CheckBoxes = false;
             tvw_TeacherYearsAndSubjects.CheckBoxes = true;
             txt_TeacherNumber.Text = "T" + Generic.TeacherID.ToString().PadLeft(4, '0');
 
-          
+
         }
 
 
@@ -276,19 +276,19 @@ namespace Escola_Virtual
         private bool Teacher_Chosen_Subjects()
         {
 
-                foreach (TreeNode y in tvw_TeacherYearsAndSubjects.Nodes)
+            foreach (TreeNode y in tvw_TeacherYearsAndSubjects.Nodes)
+            {
+                foreach (TreeNode c in y.Nodes)
                 {
-                    foreach(TreeNode c in y.Nodes)
+                    foreach (TreeNode s in c.Nodes)
                     {
-                        foreach(TreeNode s in c.Nodes)
+                        if (s.Checked)
                         {
-                            if (s.Checked)
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                     }
                 }
+            }
             return false;
         }
 
@@ -320,14 +320,17 @@ namespace Escola_Virtual
 
         private void tc_Choices_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tvw_CreateSubject.Nodes.Clear();
-            tvw_TeacherYearsAndSubjects.Nodes.Clear();
-            tvw_Year_Class_Student.Nodes.Clear();
             refresh();
         }
 
         private void refresh()
         {
+            tvw_CreateSubject.Nodes.Clear();
+            tvw_TeacherYearsAndSubjects.Nodes.Clear();
+            tvw_Year_Class_Student.Nodes.Clear();
+            tvw_AdminCreateClass.Nodes.Clear();
+            cbb_ChooseSchoolYear.Items.Clear();
+
             if (Generic.StudentID < 1)
             {
                 Generic.StudentID = 1;
@@ -348,6 +351,23 @@ namespace Escola_Virtual
                 txt_TeacherNumber.Text = "T" + Generic.TeacherID.ToString().PadLeft(4, '0');
             }
 
+            foreach (var i in Generic._list_Of_School_Years)
+            {
+                TreeNode Ano = new TreeNode();
+                Ano.Text = i.Get_Year.ToString() + "º ano";
+                tvw_AdminCreateClass.Nodes.Add(Ano);
+
+
+
+                foreach (var it in i.Get_List_Of_Classes)
+                {
+                    TreeNode Class = new TreeNode();
+                    Class.Text = it.Get_class_name;
+                    Ano.Nodes.Add(Class);
+
+                }
+
+            }
 
 
             foreach (var i in Generic._list_Of_School_Years)
@@ -411,8 +431,57 @@ namespace Escola_Virtual
                     Year.Nodes.Add(Class);
                 }
             }
+
+
+            foreach (var item in Generic._list_Of_School_Years)
+            {
+                cbb_ChooseSchoolYear.Items.Add(item.Get_Year + "º ano");
+            }
         }
+
+        private void tp_AdminCreateSubject_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tc_AdminCreateThings_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refresh();
+        }
+
+        private void btn_CreateSchoolYear_Click(object sender, EventArgs e)
+        {
+            School_Year school_Year = new School_Year()
+            {
+                Set_Year = Convert.ToInt32(txt_CreateSchoolYear.Text),
+            };
+
+            Generic._list_Of_School_Years.Add(school_Year);
+
+            refresh();
+        }
+
+        private void btn_CreateClass_Click(object sender, EventArgs e)
+        {
+
+            School_Year school_Year = new School_Year();
+            school_Year = Generic._list_Of_School_Years.Where(m => m.Get_Year.ToString() == cbb_ChooseSchoolYear.SelectedItem.ToString().Split('º')[0]).FirstOrDefault();
+
+            Class newclass = new Class()
+            {
+                Set_class_name = txt_ClassName.Text,
+                Set_class_acronym = txt_ClassAcronym.Text,
+                Set_school_year = school_Year.Get_Year,
+            };
+
+            school_Year.Get_List_Of_Classes.Add(newclass);
+
+            refresh();
+
+        }
+
+
     }
 
-    
+
 }
