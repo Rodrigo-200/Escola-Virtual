@@ -301,6 +301,18 @@ namespace Escola_Virtual
 
         private void refresh()
         {
+
+            foreach (Change_Request change in Generic._list_Of_Changes)
+            {
+                int cnt = 0;
+                string str = "O User " + change.Get_UserID + "deseja alterar ";
+
+                foreach (string field in change.Get_List_Of_Changes)
+                {
+                    str += field + "para" + change.Get_List_Of_Fields_To_Change[cnt];
+                }
+            }
+
             tvw_CreateSubject.Nodes.Clear();
             tvw_TeacherYearsAndSubjects.Nodes.Clear();
             tvw_Year_Class_Student.Nodes.Clear();
@@ -574,9 +586,13 @@ namespace Escola_Virtual
         }
 
 
+
         #endregion
 
+        private void btn_Aprove_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 
 

@@ -143,13 +143,6 @@ namespace Escola_Virtual
                 btn_TeacherEdit.Enabled = true;
                 btn_TeacherSubmit.Enabled = false;
 
-                //Só atribuir nas textboxes que tiveram texto alterado
-                txt_TeacherAddress.Text = Generic.CurrentTeacher.Get_Address;
-                txt_TeacherName.Text = Generic.CurrentTeacher.Get_Name;
-                txt_TeacherContact.Text = Generic.CurrentTeacher.Get_Contact;
-                txt_TeacherNIF.Text = Generic.CurrentTeacher.Get_NIF;
-                txt_TeacherNumber.Text = Generic.CurrentTeacher.Get_TeacherID;
-                txt_TeacherPassword.Text = Generic.CurrentTeacher.Get_password;
             }
         }
 
@@ -188,6 +181,8 @@ namespace Escola_Virtual
                 Alteration.Get_List_Of_Changes.Add(txt_TeacherPassword.Text);
                 txt_TeacherPassword.Text = Generic.CurrentTeacher.Get_password;
             }
+
+            Generic._list_Of_Changes.Add(Alteration);
 
             txt_Teacher_Readonly();
         }

@@ -129,6 +129,8 @@ namespace Escola_Virtual
                 txt_StudentPassword.Text = Generic.CurrentStudent.Get_password;
             }
 
+            Generic._list_Of_Changes.Add(Alteration);
+
             txt_Student_Readonly();
 
 
