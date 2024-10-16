@@ -98,7 +98,36 @@ namespace Escola_Virtual
 
         private void btn_Submit_Click(object sender, EventArgs e)
         {
+            
+            if(txt_StudentAddress.Text != Generic.CurrentStudent.Get_Address)
+            {
+
+            }
+            if(txt_StudentName.Text != Generic.CurrentStudent.Get_Name)
+            {
+
+            }
+            if(txt_StudentContact.Text != Generic.CurrentStudent.Get_Contact)
+            {
+
+            }
+            if(txt_StudentNIF.Text != Generic.CurrentStudent.Get_NIF)
+            {
+
+            }
+            if(txt_StudentNumber.Text != Generic.CurrentStudent.Get_studentID)
+            {
+
+            }
+            if(txt_StudentNumber.Text != Generic.CurrentStudent.Get_studentID)
+            {
+
+            }
+
             txt_Student_Readonly();
+
+
+
         }
     }
 }
