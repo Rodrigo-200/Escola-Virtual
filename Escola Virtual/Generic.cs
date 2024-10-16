@@ -16,7 +16,7 @@ namespace Escola_Virtual
 
         public static List<Teachers> _listOf_Teachers = new List<Teachers>();
 
-
+        public static List<Change_Request> _list_Of_Changes = new List<Change_Request>();
 
         //public static List<Int64> _list_Of_Ids = new List<Int64>();
 

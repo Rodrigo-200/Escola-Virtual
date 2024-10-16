@@ -152,5 +152,44 @@ namespace Escola_Virtual
                 txt_TeacherPassword.Text = Generic.CurrentTeacher.Get_password;
             }
         }
+
+        private void btn_TeacherSubmit_Click(object sender, EventArgs e)
+        {
+            Change_Request Alteration = new Change_Request();
+            Alteration.Set_UserID = Generic.CurrentTeacher.Get_TeacherID;
+
+            if (txt_TeacherAddress.Text != Generic.CurrentTeacher.Get_Address)
+            {
+                Alteration.Get_List_Of_Fields_To_Change.Add("Teacher Adress");
+                Alteration.Get_List_Of_Changes.Add(txt_TeacherAddress.Text);
+                txt_TeacherAddress.Text = Generic.CurrentTeacher.Get_Address;
+            }
+            if (txt_TeacherName.Text != Generic.CurrentTeacher.Get_Name)
+            {
+                Alteration.Get_List_Of_Fields_To_Change.Add("Teacher Name");
+                Alteration.Get_List_Of_Changes.Add(txt_TeacherName.Text);
+                txt_TeacherName.Text = Generic.CurrentTeacher.Get_Name;
+            }
+            if (txt_TeacherContact.Text != Generic.CurrentTeacher.Get_Contact)
+            {
+                Alteration.Get_List_Of_Fields_To_Change.Add("Teacher Contact");
+                Alteration.Get_List_Of_Changes.Add(txt_TeacherContact.Text);
+                txt_TeacherContact.Text = Generic.CurrentTeacher.Get_Contact;
+            }
+            if (txt_TeacherNIF.Text != Generic.CurrentTeacher.Get_NIF)
+            {
+                Alteration.Get_List_Of_Fields_To_Change.Add("Teacher NIF");
+                Alteration.Get_List_Of_Changes.Add(txt_TeacherNIF.Text);
+                txt_TeacherNIF.Text = Generic.CurrentTeacher.Get_NIF;
+            }
+            if (txt_TeacherPassword.Text != Generic.CurrentTeacher.Get_password)
+            {
+                Alteration.Get_List_Of_Fields_To_Change.Add("Teacher Password");
+                Alteration.Get_List_Of_Changes.Add(txt_TeacherPassword.Text);
+                txt_TeacherPassword.Text = Generic.CurrentTeacher.Get_password;
+            }
+
+            txt_Teacher_Readonly();
+        }
     }
 }
