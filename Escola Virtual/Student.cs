@@ -9,6 +9,7 @@ namespace Escola_Virtual
     public class Student
     {
         private List<Grade> _List_Of_Grades = new List<Grade>();
+        private List<string> _History = new List<string>();
         private string _name;
         private string _address;
         private string _contact;
@@ -87,6 +88,14 @@ namespace Escola_Virtual
             }
         }
 
+        public List<string> Get_History
+        {
+            get
+            {
+                return _History;
+            }
+        }
+
         #endregion
 
         #region Propriedades de Set
@@ -155,6 +164,13 @@ namespace Escola_Virtual
             }
         }
 
+        public List<string> Set_History
+        {
+            set
+            {
+                _History = value;
+            }
+        }
 
         #endregion
 

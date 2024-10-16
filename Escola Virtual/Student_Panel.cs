@@ -19,6 +19,8 @@ namespace Escola_Virtual
 
         private void Student_Panel_Load(object sender, EventArgs e)
         {
+            lb_History.Items.Clear();
+            lb_History.Items.AddRange(Generic.CurrentStudent.Get_History.ToArray());
 
             txt_StudentAddress.Text = Generic.CurrentStudent.Get_Address;
             txt_StudentName.Text = Generic.CurrentStudent.Get_Name;
@@ -131,6 +133,26 @@ namespace Escola_Virtual
 
 
 
+        }
+
+        private void btn_Deposit_Click(object sender, EventArgs e)
+        {
+            if(txt_QuantityDeposit.Text != "")
+            {
+                lbl_QuantityDepositError.Text = "";
+
+                string aux = "Deposito no valor de " + txt_QuantityDeposit.Text + "€";
+
+                Generic.CurrentStudent.Get_History.Add(aux);
+
+                lb_History.Items.Clear();
+                lb_History.Items.AddRange(Generic.CurrentStudent.Get_History.ToArray());
+
+            }
+            else
+            {
+                lbl_QuantityDepositError.Text = "Campo obrigatório";
+            }
         }
     }
 }
