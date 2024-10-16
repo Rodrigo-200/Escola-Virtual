@@ -292,36 +292,12 @@ namespace Escola_Virtual
             return false;
         }
 
-        private void btn_CreateSubject_Click(object sender, EventArgs e)
-        {
-            if (txt_SubjectName.Text != "" && txt_SubjectAcronym.Text != "" && txt_SubjectAmmountOfClasses.Text != "" && tvw_CreateSubject.SelectedNode != null)
-            {
-                Subject subject = new Subject()
-                {
-                    Set_name = txt_SubjectName.Text,
-                    Set_subject_acronym = txt_SubjectAcronym.Text,
-                    Set_subject_number = Convert.ToInt32(txt_SubjectAmmountOfClasses.Text),
-                };
-
-
-                foreach (var year in Generic._list_Of_School_Years)
-                {
-                    if (year.Get_Year == Convert.ToInt32(tvw_CreateSubject.SelectedNode.Parent.Text.Split('º')[0]))
-                    {
-
-                        year.Get_List_Of_Classes.Where(m => m.Get_class_name == tvw_CreateSubject.SelectedNode.Text).ToList().FirstOrDefault().Get_List_Of_Subject.Add(subject);
-                        break;
-                    }
-                }
-            }
-
-
-        }
-
         private void tc_Choices_SelectedIndexChanged(object sender, EventArgs e)
         {
             refresh();
         }
+
+
 
         private void refresh()
         {
@@ -439,46 +415,166 @@ namespace Escola_Virtual
             }
         }
 
-        private void tp_AdminCreateSubject_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void tc_AdminCreateThings_SelectedIndexChanged(object sender, EventArgs e)
         {
             refresh();
         }
 
+        #region "Outros"
         private void btn_CreateSchoolYear_Click(object sender, EventArgs e)
         {
-            School_Year school_Year = new School_Year()
+            //VERIFICAR SE O ANO A CRIAR JA EXISTE
+
+            if (txt_CreateSchoolYear.Text != "")
             {
-                Set_Year = Convert.ToInt32(txt_CreateSchoolYear.Text),
-            };
+                School_Year school_Year = new School_Year()
+                {
+                    Set_Year = Convert.ToInt32(txt_CreateSchoolYear.Text),
+                };
 
-            Generic._list_Of_School_Years.Add(school_Year);
+                Generic._list_Of_School_Years.Add(school_Year);
 
-            refresh();
+                refresh();
+                refreshClassLabelErrors();
+                txt_CreateSchoolYear.Clear();
+            }
+            else
+            {
+                refreshClassLabelErrors();
+                lbl_CreateSchoolYearError.Text = "Tem de preencher este campo";
+            }
         }
 
         private void btn_CreateClass_Click(object sender, EventArgs e)
         {
+            //VERIFICAR SE A TURMA A CRIAR JÁ EXISTE
 
-            School_Year school_Year = new School_Year();
-            school_Year = Generic._list_Of_School_Years.Where(m => m.Get_Year.ToString() == cbb_ChooseSchoolYear.SelectedItem.ToString().Split('º')[0]).FirstOrDefault();
-
-            Class newclass = new Class()
+            if (txt_ClassName.Text != "" && txt_ClassAcronym.Text != "" && cbb_ChooseSchoolYear.SelectedItem != null)
             {
-                Set_class_name = txt_ClassName.Text,
-                Set_class_acronym = txt_ClassAcronym.Text,
-                Set_school_year = school_Year.Get_Year,
-            };
+                School_Year school_Year = new School_Year();
+                school_Year = Generic._list_Of_School_Years.Where(m => m.Get_Year.ToString() == cbb_ChooseSchoolYear.SelectedItem.ToString().Split('º')[0]).FirstOrDefault();
 
-            school_Year.Get_List_Of_Classes.Add(newclass);
+                Class newclass = new Class()
+                {
+                    Set_class_name = txt_ClassName.Text,
+                    Set_class_acronym = txt_ClassAcronym.Text,
+                    Set_school_year = school_Year.Get_Year,
+                };
 
-            refresh();
+                school_Year.Get_List_Of_Classes.Add(newclass);
+
+                refresh();
+                refreshClassLabelErrors();
+                clearNewClassInputs();
+            }
+            else
+            {
+                refreshClassLabelErrors();
+                if (txt_ClassName.Text == "")
+                {
+                    lbl_ClassNameError.Text = "Tem de preencher este campo";
+                    txt_ClassName.Focus();
+                }
+                if(txt_ClassAcronym.Text == "")
+                {
+                    lbl_ClassAcronymError.Text = "Tem de preencher este campo";
+                    txt_ClassAcronym.Focus();
+                }
+                if(cbb_ChooseSchoolYear.SelectedItem == null)
+                {
+                    lbl_ChooseYearError.Text = "Tem de escolher uma opção";
+                    cbb_ChooseSchoolYear.Focus();
+                }
+            }
 
         }
+
+        private void btn_CreateSubject_Click(object sender, EventArgs e)
+        {
+            //VERIFICAR SE A DISCIPLINA A CRIAR JÁ EXISTE
+
+            if (txt_SubjectName.Text != "" && txt_SubjectAcronym.Text != "" && txt_SubjectAmmountOfClasses.Text != "" && tvw_CreateSubject.SelectedNode != null)
+            {
+                Subject subject = new Subject()
+                {
+                    Set_name = txt_SubjectName.Text,
+                    Set_subject_acronym = txt_SubjectAcronym.Text,
+                    Set_subject_number = Convert.ToInt32(txt_SubjectAmmountOfClasses.Text),
+                };
+
+
+                foreach (var year in Generic._list_Of_School_Years)
+                {
+                    if (year.Get_Year == Convert.ToInt32(tvw_CreateSubject.SelectedNode.Parent.Text.Split('º')[0]))
+                    {
+
+                        year.Get_List_Of_Classes.Where(m => m.Get_class_name == tvw_CreateSubject.SelectedNode.Text).ToList().FirstOrDefault().Get_List_Of_Subject.Add(subject);
+                        break;
+                    }
+                }
+                refreshSubjectLabelErrors();
+                clearNewSubjectInputs();
+                refresh();
+            }
+            else
+            {
+                refreshSubjectLabelErrors();
+                if (txt_SubjectName.Text == "")
+                {
+                    lbl_SubjectNameError.Text = "Tem de preencher este campo";
+                    txt_SubjectName.Focus();
+                }
+                if(txt_SubjectAcronym.Text == "")
+                {
+                    lbl_SubjectAcronymError.Text = "Tem de preencher este campo";
+                    txt_SubjectAcronym.Focus();
+                }
+                if(txt_SubjectAmmountOfClasses.Text == "")
+                {
+                    lbl_AmmountOfClassesError.Text = "Tem de preencher este campo";
+                    txt_SubjectAmmountOfClasses.Focus();
+                }
+                if(tvw_CreateSubject.SelectedNode == null)
+                {
+                    lbl_ChooseClassToCreateSubjectError.Text = "Tem de preencher este campo";
+                    tvw_CreateSubject.Focus();
+                }
+            }
+
+
+        }
+
+
+        private void clearNewClassInputs()
+        {
+            txt_ClassAcronym.Clear();
+            txt_ClassName.Clear();
+        }
+
+        private void clearNewSubjectInputs()
+        {
+            txt_SubjectAcronym.Clear();
+            txt_SubjectName.Clear();
+            txt_SubjectAmmountOfClasses.Clear();
+        }
+        private void refreshClassLabelErrors()
+        {
+            lbl_CreateSchoolYearError.Text = "";
+            lbl_ChooseYearError.Text = "";
+            lbl_ClassAcronymError.Text = "";
+            lbl_ClassNameError.Text = "";
+        }
+
+        private void refreshSubjectLabelErrors()
+        {
+            lbl_SubjectNameError.Text = "";
+            lbl_SubjectAcronymError.Text = "";
+            lbl_ChooseClassToCreateSubjectError.Text = "";
+            lbl_AmmountOfClassesError.Text = "";
+        }
+
+
+        #endregion
 
 
     }
