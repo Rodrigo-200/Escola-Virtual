@@ -121,12 +121,13 @@ namespace Escola_Virtual
             // 
             // lb_History
             // 
+            this.lb_History.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lb_History.FormattingEnabled = true;
             this.lb_History.ItemHeight = 16;
             this.lb_History.Location = new System.Drawing.Point(240, 31);
             this.lb_History.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lb_History.Name = "lb_History";
-            this.lb_History.Size = new System.Drawing.Size(371, 500);
+            this.lb_History.Size = new System.Drawing.Size(371, 496);
             this.lb_History.TabIndex = 8;
             // 
             // tp_Profile
@@ -325,7 +326,7 @@ namespace Escola_Virtual
             // 
             // btn_Deposit
             // 
-            this.btn_Deposit.Location = new System.Drawing.Point(621, 96);
+            this.btn_Deposit.Location = new System.Drawing.Point(621, 100);
             this.btn_Deposit.Name = "btn_Deposit";
             this.btn_Deposit.Size = new System.Drawing.Size(170, 23);
             this.btn_Deposit.TabIndex = 14;
@@ -337,7 +338,7 @@ namespace Escola_Virtual
             // 
             this.lbl_QuantityDepositError.AutoSize = true;
             this.lbl_QuantityDepositError.ForeColor = System.Drawing.Color.Red;
-            this.lbl_QuantityDepositError.Location = new System.Drawing.Point(621, 74);
+            this.lbl_QuantityDepositError.Location = new System.Drawing.Point(621, 79);
             this.lbl_QuantityDepositError.Name = "lbl_QuantityDepositError";
             this.lbl_QuantityDepositError.Size = new System.Drawing.Size(0, 17);
             this.lbl_QuantityDepositError.TabIndex = 15;
