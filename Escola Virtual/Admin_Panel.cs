@@ -302,14 +302,18 @@ namespace Escola_Virtual
         private void refresh()
         {
 
+            lb_ChangesRequests.Items.Clear();
+
             foreach (Change_Request change in Generic._list_Of_Changes)
             {
                 int cnt = 0;
-                string str = "O User " + change.Get_UserID + "deseja alterar ";
+                
 
-                foreach (string field in change.Get_List_Of_Changes)
+                foreach (string field in change.Get_List_Of_Fields_To_Change)
                 {
-                    str += field + "para" + change.Get_List_Of_Fields_To_Change[cnt];
+                    string str = "O User " + change.Get_UserID + " deseja alterar " + field + " para " + change.Get_List_Of_Changes[cnt];
+                    lb_ChangesRequests.Items.Add(str);
+                    cnt++;
                 }
             }
 
@@ -591,7 +595,12 @@ namespace Escola_Virtual
 
         private void btn_Aprove_Click(object sender, EventArgs e)
         {
+            btn_Aprove.Enabled = false;
+        }
 
+        private void lb_ChangesRequests_SelectedValueChanged(object sender, EventArgs e)
+        {
+            btn_Aprove.Enabled = true;
         }
     }
 
