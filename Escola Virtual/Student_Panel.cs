@@ -100,31 +100,31 @@ namespace Escola_Virtual
             
             if(txt_StudentAddress.Text != Generic.CurrentStudent.Get_Address)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("Student Adress");
+                Alteration.Get_List_Of_Fields_To_Change.Add("Adress");
                 Alteration.Get_List_Of_Changes.Add(txt_StudentAddress.Text);
                 txt_StudentAddress.Text = Generic.CurrentStudent.Get_Address;
             }
             if(txt_StudentName.Text != Generic.CurrentStudent.Get_Name)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("Student Name");
+                Alteration.Get_List_Of_Fields_To_Change.Add("Name");
                 Alteration.Get_List_Of_Changes.Add(txt_StudentName.Text);
                 txt_StudentName.Text = Generic.CurrentStudent.Get_Name;
             }
             if(txt_StudentContact.Text != Generic.CurrentStudent.Get_Contact)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("Student Contact");
+                Alteration.Get_List_Of_Fields_To_Change.Add("Contact");
                 Alteration.Get_List_Of_Changes.Add(txt_StudentContact.Text);
                 txt_StudentContact.Text = Generic.CurrentStudent.Get_Contact;
             }
             if(txt_StudentNIF.Text != Generic.CurrentStudent.Get_NIF)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("Student NIF");
+                Alteration.Get_List_Of_Fields_To_Change.Add("NIF");
                 Alteration.Get_List_Of_Changes.Add(txt_StudentNIF.Text);
                 txt_StudentNIF.Text = Generic.CurrentStudent.Get_NIF;
             }
             if(txt_StudentPassword.Text != Generic.CurrentStudent.Get_password)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("Student Password");
+                Alteration.Get_List_Of_Fields_To_Change.Add("Password");
                 Alteration.Get_List_Of_Changes.Add(txt_StudentPassword.Text);
                 txt_StudentPassword.Text = Generic.CurrentStudent.Get_password;
             }
