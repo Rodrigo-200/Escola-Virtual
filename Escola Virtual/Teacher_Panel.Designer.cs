@@ -68,6 +68,7 @@
             this.tc_Teacher.Controls.Add(this.tp_StudentProfile);
             this.tc_Teacher.Controls.Add(this.tp_TeacherChat);
             this.tc_Teacher.Location = new System.Drawing.Point(12, 12);
+            this.tc_Teacher.Location = new System.Drawing.Point(12, 12);
             this.tc_Teacher.Name = "tc_Teacher";
             this.tc_Teacher.SelectedIndex = 0;
             this.tc_Teacher.Size = new System.Drawing.Size(543, 471);
@@ -81,7 +82,7 @@
             this.tp_StudentActions.Controls.Add(this.tvw_GradeLaunch);
             this.tp_StudentActions.Location = new System.Drawing.Point(4, 22);
             this.tp_StudentActions.Name = "tp_StudentActions";
-            this.tp_StudentActions.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tp_StudentActions.Padding = new System.Windows.Forms.Padding(3);
             this.tp_StudentActions.Size = new System.Drawing.Size(535, 445);
             this.tp_StudentActions.TabIndex = 0;
             this.tp_StudentActions.Text = "Ações";
@@ -98,12 +99,13 @@
             // btn_GradeLaunch
             // 
             this.btn_GradeLaunch.Location = new System.Drawing.Point(235, 402);
-            this.btn_GradeLaunch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_GradeLaunch.Margin = new System.Windows.Forms.Padding(2);
             this.btn_GradeLaunch.Name = "btn_GradeLaunch";
             this.btn_GradeLaunch.Size = new System.Drawing.Size(79, 19);
             this.btn_GradeLaunch.TabIndex = 35;
             this.btn_GradeLaunch.Text = "Confirmar";
             this.btn_GradeLaunch.UseVisualStyleBackColor = true;
+            this.btn_GradeLaunch.Click += new System.EventHandler(this.btn_GradeLaunch_Click);
             // 
             // lbl_GradeLaunch
             // 
@@ -121,154 +123,6 @@
             this.tvw_GradeLaunch.Name = "tvw_GradeLaunch";
             this.tvw_GradeLaunch.Size = new System.Drawing.Size(308, 358);
             this.tvw_GradeLaunch.TabIndex = 33;
-            // 
-            // lbl_TeacherName
-            // 
-            this.lbl_TeacherName.AutoSize = true;
-            this.lbl_TeacherName.Location = new System.Drawing.Point(3, 32);
-            this.lbl_TeacherName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbl_TeacherName.Name = "lbl_TeacherName";
-            this.lbl_TeacherName.Size = new System.Drawing.Size(0, 13);
-            this.lbl_TeacherName.TabIndex = 32;
-            // 
-            // lbl_TeacherAddress
-            // 
-            this.lbl_TeacherAddress.AutoSize = true;
-            this.lbl_TeacherAddress.Location = new System.Drawing.Point(3, 73);
-            this.lbl_TeacherAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbl_TeacherAddress.Name = "lbl_TeacherAddress";
-            this.lbl_TeacherAddress.Size = new System.Drawing.Size(0, 13);
-            this.lbl_TeacherAddress.TabIndex = 34;
-            // 
-            // lbl_TeacherContact
-            // 
-            this.lbl_TeacherContact.AutoSize = true;
-            this.lbl_TeacherContact.Location = new System.Drawing.Point(3, 117);
-            this.lbl_TeacherContact.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbl_TeacherContact.Name = "lbl_TeacherContact";
-            this.lbl_TeacherContact.Size = new System.Drawing.Size(0, 13);
-            this.lbl_TeacherContact.TabIndex = 36;
-            // 
-            // lbl_TeacherNIF
-            // 
-            this.lbl_TeacherNIF.AutoSize = true;
-            this.lbl_TeacherNIF.Location = new System.Drawing.Point(3, 162);
-            this.lbl_TeacherNIF.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbl_TeacherNIF.Name = "lbl_TeacherNIF";
-            this.lbl_TeacherNIF.Size = new System.Drawing.Size(0, 13);
-            this.lbl_TeacherNIF.TabIndex = 38;
-            // 
-            // lbl_TeacherNumber
-            // 
-            this.lbl_TeacherNumber.AutoSize = true;
-            this.lbl_TeacherNumber.Location = new System.Drawing.Point(3, 256);
-            this.lbl_TeacherNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbl_TeacherNumber.Name = "lbl_TeacherNumber";
-            this.lbl_TeacherNumber.Size = new System.Drawing.Size(0, 13);
-            this.lbl_TeacherNumber.TabIndex = 40;
-            // 
-            // lbl_TeacherPassword
-            // 
-            this.lbl_TeacherPassword.AutoSize = true;
-            this.lbl_TeacherPassword.Location = new System.Drawing.Point(3, 210);
-            this.lbl_TeacherPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbl_TeacherPassword.Name = "lbl_TeacherPassword";
-            this.lbl_TeacherPassword.Size = new System.Drawing.Size(0, 13);
-            this.lbl_TeacherPassword.TabIndex = 42;
-            // 
-            // txt_TeacherName
-            // 
-            this.txt_TeacherName.Location = new System.Drawing.Point(5, 49);
-            this.txt_TeacherName.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_TeacherName.Name = "txt_TeacherName";
-            this.txt_TeacherName.ReadOnly = true;
-            this.txt_TeacherName.Size = new System.Drawing.Size(127, 20);
-            this.txt_TeacherName.TabIndex = 33;
-            // 
-            // txt_TeacherAddress
-            // 
-            this.txt_TeacherAddress.Location = new System.Drawing.Point(5, 89);
-            this.txt_TeacherAddress.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_TeacherAddress.Name = "txt_TeacherAddress";
-            this.txt_TeacherAddress.ReadOnly = true;
-            this.txt_TeacherAddress.Size = new System.Drawing.Size(237, 20);
-            this.txt_TeacherAddress.TabIndex = 35;
-            // 
-            // txt_TeacherContact
-            // 
-            this.txt_TeacherContact.Location = new System.Drawing.Point(5, 134);
-            this.txt_TeacherContact.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_TeacherContact.Name = "txt_TeacherContact";
-            this.txt_TeacherContact.ReadOnly = true;
-            this.txt_TeacherContact.Size = new System.Drawing.Size(127, 20);
-            this.txt_TeacherContact.TabIndex = 37;
-            // 
-            // txt_TeacherNIF
-            // 
-            this.txt_TeacherNIF.Location = new System.Drawing.Point(5, 179);
-            this.txt_TeacherNIF.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_TeacherNIF.MaxLength = 9;
-            this.txt_TeacherNIF.Name = "txt_TeacherNIF";
-            this.txt_TeacherNIF.ReadOnly = true;
-            this.txt_TeacherNIF.Size = new System.Drawing.Size(127, 20);
-            this.txt_TeacherNIF.TabIndex = 39;
-            // 
-            // txt_TeacherNumber
-            // 
-            this.txt_TeacherNumber.Location = new System.Drawing.Point(5, 273);
-            this.txt_TeacherNumber.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_TeacherNumber.Name = "txt_TeacherNumber";
-            this.txt_TeacherNumber.ReadOnly = true;
-            this.txt_TeacherNumber.Size = new System.Drawing.Size(101, 20);
-            this.txt_TeacherNumber.TabIndex = 41;
-            this.txt_TeacherNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txt_TeacherPassword
-            // 
-            this.txt_TeacherPassword.Location = new System.Drawing.Point(6, 229);
-            this.txt_TeacherPassword.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_TeacherPassword.MaxLength = 9;
-            this.txt_TeacherPassword.Name = "txt_TeacherPassword";
-            this.txt_TeacherPassword.PasswordChar = '*';
-            this.txt_TeacherPassword.ReadOnly = true;
-            this.txt_TeacherPassword.Size = new System.Drawing.Size(127, 20);
-            this.txt_TeacherPassword.TabIndex = 43;
-            // 
-            // chb_TeacherShowPassword
-            // 
-            this.chb_TeacherShowPassword.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chb_TeacherShowPassword.AutoSize = true;
-            this.chb_TeacherShowPassword.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("chb_TeacherShowPassword.BackgroundImage")));
-            this.chb_TeacherShowPassword.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.chb_TeacherShowPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chb_TeacherShowPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chb_TeacherShowPassword.Location = new System.Drawing.Point(137, 229);
-            this.chb_TeacherShowPassword.Name = "chb_TeacherShowPassword";
-            this.chb_TeacherShowPassword.Size = new System.Drawing.Size(31, 19);
-            this.chb_TeacherShowPassword.TabIndex = 44;
-            this.chb_TeacherShowPassword.Text = "        ";
-            this.chb_TeacherShowPassword.UseVisualStyleBackColor = true;
-            // 
-            // btn_TeacherEdit
-            // 
-            this.btn_TeacherEdit.Location = new System.Drawing.Point(6, 416);
-            this.btn_TeacherEdit.Name = "btn_TeacherEdit";
-            this.btn_TeacherEdit.Size = new System.Drawing.Size(75, 23);
-            this.btn_TeacherEdit.TabIndex = 45;
-            this.btn_TeacherEdit.Text = "Editar";
-            this.btn_TeacherEdit.UseVisualStyleBackColor = true;
-            this.btn_TeacherEdit.Click += new System.EventHandler(this.btn_TeacherEdit_Click);
-            // 
-            // btn_TeacherSubmit
-            // 
-            this.btn_TeacherSubmit.Enabled = false;
-            this.btn_TeacherSubmit.Location = new System.Drawing.Point(244, 416);
-            this.btn_TeacherSubmit.Name = "btn_TeacherSubmit";
-            this.btn_TeacherSubmit.Size = new System.Drawing.Size(75, 23);
-            this.btn_TeacherSubmit.TabIndex = 46;
-            this.btn_TeacherSubmit.Text = "Submeter";
-            this.btn_TeacherSubmit.UseVisualStyleBackColor = true;
-            this.btn_TeacherSubmit.Click += new System.EventHandler(this.btn_TeacherSubmit_Click);
             // 
             // tp_StudentProfile
             // 
@@ -295,6 +149,110 @@
             this.tp_StudentProfile.Text = "Perfil";
             this.tp_StudentProfile.UseVisualStyleBackColor = true;
             // 
+            // lbl_TeacherAddress
+            // 
+            this.btn_TeacherSubmit.Enabled = false;
+            this.btn_TeacherSubmit.Location = new System.Drawing.Point(244, 416);
+            this.btn_TeacherSubmit.Name = "btn_TeacherSubmit";
+            this.btn_TeacherSubmit.Size = new System.Drawing.Size(75, 23);
+            this.btn_TeacherSubmit.TabIndex = 46;
+            this.btn_TeacherSubmit.Text = "Submeter";
+            this.btn_TeacherSubmit.UseVisualStyleBackColor = true;
+            this.btn_TeacherSubmit.Click += new System.EventHandler(this.btn_TeacherSubmit_Click);
+            // 
+            // lbl_TeacherContact
+            // 
+            this.btn_TeacherEdit.Location = new System.Drawing.Point(6, 416);
+            this.btn_TeacherEdit.Name = "btn_TeacherEdit";
+            this.btn_TeacherEdit.Size = new System.Drawing.Size(75, 23);
+            this.btn_TeacherEdit.TabIndex = 45;
+            this.btn_TeacherEdit.Text = "Editar";
+            this.btn_TeacherEdit.UseVisualStyleBackColor = true;
+            this.btn_TeacherEdit.Click += new System.EventHandler(this.btn_TeacherEdit_Click);
+            // 
+            // lbl_TeacherNIF
+            // 
+            this.chb_TeacherShowPassword.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chb_TeacherShowPassword.AutoSize = true;
+            this.chb_TeacherShowPassword.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("chb_TeacherShowPassword.BackgroundImage")));
+            this.chb_TeacherShowPassword.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.chb_TeacherShowPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chb_TeacherShowPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chb_TeacherShowPassword.Location = new System.Drawing.Point(137, 229);
+            this.chb_TeacherShowPassword.Name = "chb_TeacherShowPassword";
+            this.chb_TeacherShowPassword.Size = new System.Drawing.Size(31, 19);
+            this.chb_TeacherShowPassword.TabIndex = 44;
+            this.chb_TeacherShowPassword.Text = "        ";
+            this.chb_TeacherShowPassword.UseVisualStyleBackColor = true;
+            // 
+            // lbl_TeacherNumber
+            // 
+            this.txt_TeacherPassword.Location = new System.Drawing.Point(6, 229);
+            this.txt_TeacherPassword.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_TeacherPassword.MaxLength = 9;
+            this.txt_TeacherPassword.Name = "txt_TeacherPassword";
+            this.txt_TeacherPassword.PasswordChar = '*';
+            this.txt_TeacherPassword.ReadOnly = true;
+            this.txt_TeacherPassword.Size = new System.Drawing.Size(127, 20);
+            this.txt_TeacherPassword.TabIndex = 43;
+            // 
+            // txt_TeacherNumber
+            // 
+            this.txt_TeacherNumber.Location = new System.Drawing.Point(5, 273);
+            this.txt_TeacherNumber.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_TeacherNumber.Name = "txt_TeacherNumber";
+            this.txt_TeacherNumber.ReadOnly = true;
+            this.txt_TeacherNumber.Size = new System.Drawing.Size(101, 20);
+            this.txt_TeacherNumber.TabIndex = 41;
+            this.txt_TeacherNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txt_TeacherPassword
+            // 
+            this.txt_TeacherNIF.Location = new System.Drawing.Point(5, 179);
+            this.txt_TeacherNIF.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_TeacherNIF.MaxLength = 9;
+            this.txt_TeacherNIF.Name = "txt_TeacherNIF";
+            this.txt_TeacherNIF.ReadOnly = true;
+            this.txt_TeacherNIF.Size = new System.Drawing.Size(127, 20);
+            this.txt_TeacherNIF.TabIndex = 39;
+            // 
+            // chb_TeacherShowPassword
+            // 
+            this.txt_TeacherContact.Location = new System.Drawing.Point(5, 134);
+            this.txt_TeacherContact.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_TeacherContact.Name = "txt_TeacherContact";
+            this.txt_TeacherContact.ReadOnly = true;
+            this.txt_TeacherContact.Size = new System.Drawing.Size(127, 20);
+            this.txt_TeacherContact.TabIndex = 37;
+            // 
+            // btn_TeacherEdit
+            // 
+            this.txt_TeacherAddress.Location = new System.Drawing.Point(5, 89);
+            this.txt_TeacherAddress.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_TeacherAddress.Name = "txt_TeacherAddress";
+            this.txt_TeacherAddress.ReadOnly = true;
+            this.txt_TeacherAddress.Size = new System.Drawing.Size(237, 20);
+            this.txt_TeacherAddress.TabIndex = 35;
+            // 
+            // btn_TeacherSubmit
+            // 
+            this.txt_TeacherName.Location = new System.Drawing.Point(5, 49);
+            this.txt_TeacherName.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_TeacherName.Name = "txt_TeacherName";
+            this.txt_TeacherName.ReadOnly = true;
+            this.txt_TeacherName.Size = new System.Drawing.Size(127, 20);
+            this.txt_TeacherName.TabIndex = 33;
+            // 
+            // tp_StudentProfile
+            // 
+            this.lbl_TeacherPassword.AutoSize = true;
+            this.lbl_TeacherPassword.Location = new System.Drawing.Point(3, 210);
+            this.lbl_TeacherPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_TeacherPassword.Name = "lbl_TeacherPassword";
+            this.lbl_TeacherPassword.Size = new System.Drawing.Size(53, 13);
+            this.lbl_TeacherPassword.TabIndex = 42;
+            this.lbl_TeacherPassword.Text = "Password";
+            // 
             // tp_TeacherChat
             // 
             this.tp_TeacherChat.Controls.Add(this.btn_SendMsg);
@@ -308,9 +266,23 @@
             this.tp_TeacherChat.TabIndex = 2;
             this.tp_TeacherChat.Text = "Chat";
             this.tp_TeacherChat.UseVisualStyleBackColor = true;
+            this.lbl_TeacherNumber.AutoSize = true;
+            this.lbl_TeacherNumber.Location = new System.Drawing.Point(3, 256);
+            this.lbl_TeacherNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_TeacherNumber.Name = "lbl_TeacherNumber";
+            this.lbl_TeacherNumber.Size = new System.Drawing.Size(102, 13);
+            this.lbl_TeacherNumber.TabIndex = 40;
+            this.lbl_TeacherNumber.Text = "Numero Funcionário";
             // 
             // btn_SendMsg
             // 
+            this.lbl_TeacherNIF.AutoSize = true;
+            this.lbl_TeacherNIF.Location = new System.Drawing.Point(3, 162);
+            this.lbl_TeacherNIF.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_TeacherNIF.Name = "lbl_TeacherNIF";
+            this.lbl_TeacherNIF.Size = new System.Drawing.Size(24, 13);
+            this.lbl_TeacherNIF.TabIndex = 38;
+            this.lbl_TeacherNIF.Text = "NIF";
             this.btn_SendMsg.Location = new System.Drawing.Point(392, 401);
             this.btn_SendMsg.Name = "btn_SendMsg";
             this.btn_SendMsg.Size = new System.Drawing.Size(98, 23);
@@ -325,6 +297,13 @@
             this.txt_MsgContent.Name = "txt_MsgContent";
             this.txt_MsgContent.Size = new System.Drawing.Size(214, 20);
             this.txt_MsgContent.TabIndex = 6;
+            this.lbl_TeacherContact.AutoSize = true;
+            this.lbl_TeacherContact.Location = new System.Drawing.Point(3, 117);
+            this.lbl_TeacherContact.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_TeacherContact.Name = "lbl_TeacherContact";
+            this.lbl_TeacherContact.Size = new System.Drawing.Size(50, 13);
+            this.lbl_TeacherContact.TabIndex = 36;
+            this.lbl_TeacherContact.Text = "Contacto";
             // 
             // lb_Chat
             // 
@@ -333,6 +312,13 @@
             this.lb_Chat.Name = "lb_Chat";
             this.lb_Chat.Size = new System.Drawing.Size(319, 381);
             this.lb_Chat.TabIndex = 5;
+            this.lbl_TeacherAddress.AutoSize = true;
+            this.lbl_TeacherAddress.Location = new System.Drawing.Point(3, 73);
+            this.lbl_TeacherAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_TeacherAddress.Name = "lbl_TeacherAddress";
+            this.lbl_TeacherAddress.Size = new System.Drawing.Size(43, 13);
+            this.lbl_TeacherAddress.TabIndex = 34;
+            this.lbl_TeacherAddress.Text = "Morada";
             // 
             // cbb_SelectUserChat
             // 
@@ -342,6 +328,13 @@
             this.cbb_SelectUserChat.Size = new System.Drawing.Size(121, 21);
             this.cbb_SelectUserChat.TabIndex = 4;
             this.cbb_SelectUserChat.SelectedIndexChanged += new System.EventHandler(this.cbb_SelectUserChat_SelectedIndexChanged);
+            this.lbl_TeacherName.AutoSize = true;
+            this.lbl_TeacherName.Location = new System.Drawing.Point(3, 32);
+            this.lbl_TeacherName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_TeacherName.Name = "lbl_TeacherName";
+            this.lbl_TeacherName.Size = new System.Drawing.Size(35, 13);
+            this.lbl_TeacherName.TabIndex = 32;
+            this.lbl_TeacherName.Text = "Nome";
             // 
             // Teacher_Panel
             // 

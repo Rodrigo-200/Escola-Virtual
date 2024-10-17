@@ -115,36 +115,57 @@ namespace Escola_Virtual
         private void btn_Submit_Click(object sender, EventArgs e)
         {
 
-            Change_Request Alteration = new Change_Request();
-            Alteration.Set_UserID = Generic.CurrentStudent.Get_studentID;
-
-            if (txt_StudentAddress.Text != Generic.CurrentStudent.Get_Address)
+            
+            if(txt_StudentAddress.Text != Generic.CurrentStudent.Get_Address)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar a morada para " + txt_StudentAddress.Text);
+                Change_Request Alteration = new Change_Request();
+                Alteration.Set_UserID = Generic.CurrentStudent.Get_studentID;
+                Alteration.Set_Message = "O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar a morada para " + txt_StudentAddress.Text;
+                Alteration.Set_Name_Of_Field = "morada";
+                Alteration.Set_New_Content = txt_StudentAddress.Text;
                 txt_StudentAddress.Text = Generic.CurrentStudent.Get_Address;
+                Generic._list_Of_Changes.Add(Alteration);
             }
-            if (txt_StudentName.Text != Generic.CurrentStudent.Get_Name)
+            if(txt_StudentName.Text != Generic.CurrentStudent.Get_Name)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar o nome para " + txt_StudentName.Text);
+                Change_Request Alteration = new Change_Request();
+                Alteration.Set_UserID = Generic.CurrentStudent.Get_studentID;
+                Alteration.Set_Message = "O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar o nome para " + txt_StudentName.Text;
+                Alteration.Set_Name_Of_Field = "nome";
+                Alteration.Set_New_Content = txt_StudentName.Text;
                 txt_StudentName.Text = Generic.CurrentStudent.Get_Name;
+                Generic._list_Of_Changes.Add(Alteration);
             }
-            if (txt_StudentContact.Text != Generic.CurrentStudent.Get_Contact)
+            if(txt_StudentContact.Text != Generic.CurrentStudent.Get_Contact)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar o contacto para " + txt_StudentContact.Text);
+                Change_Request Alteration = new Change_Request();
+                Alteration.Set_UserID = Generic.CurrentStudent.Get_studentID;
+                Alteration.Set_Message = "O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar o contacto para " + txt_StudentContact.Text;
+                Alteration.Set_Name_Of_Field = "contacto";
+                Alteration.Set_New_Content = txt_StudentContact.Text;
                 txt_StudentContact.Text = Generic.CurrentStudent.Get_Contact;
+                Generic._list_Of_Changes.Add(Alteration);
             }
-            if (txt_StudentNIF.Text != Generic.CurrentStudent.Get_NIF)
+            if(txt_StudentNIF.Text != Generic.CurrentStudent.Get_NIF)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar o NIF para " + txt_StudentNIF.Text);
+                Change_Request Alteration = new Change_Request();
+                Alteration.Set_UserID = Generic.CurrentStudent.Get_studentID;
+                Alteration.Set_Message = "O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar o NIF para " + txt_StudentNIF.Text;
+                Alteration.Set_Name_Of_Field = "NIF";
+                Alteration.Set_New_Content = txt_StudentNIF.Text;
                 txt_StudentNIF.Text = Generic.CurrentStudent.Get_NIF;
+                Generic._list_Of_Changes.Add(Alteration);
             }
-            if (txt_StudentPassword.Text != Generic.CurrentStudent.Get_password)
+            if(txt_StudentPassword.Text != Generic.CurrentStudent.Get_password)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar a password para " + txt_StudentPassword.Text);
+                Change_Request Alteration = new Change_Request();
+                Alteration.Set_UserID = Generic.CurrentStudent.Get_studentID;
+                Alteration.Set_Message = "O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar a password para " + txt_StudentPassword.Text;
+                Alteration.Set_Name_Of_Field = "password";
+                Alteration.Set_New_Content = txt_StudentPassword.Text;
                 txt_StudentPassword.Text = Generic.CurrentStudent.Get_password;
+                Generic._list_Of_Changes.Add(Alteration);
             }
-
-            Generic._list_Of_Changes.Add(Alteration);
 
             txt_Student_Readonly();
 
@@ -154,6 +175,7 @@ namespace Escola_Virtual
 
         private void btn_Deposit_Click(object sender, EventArgs e)
         {
+            //ADICIONAR REALMENTE O SALDO AO USER
             if (txt_QuantityDeposit.Text != "")
             {
                 lbl_QuantityDepositError.Text = "";

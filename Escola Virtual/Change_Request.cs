@@ -9,8 +9,9 @@ namespace Escola_Virtual
     public class Change_Request
     {
         private string _userID;
-        private List<string> _list_Of_Fields_To_Change = new List<string>();
-        private List<string> _list_new_content = new List<string>();
+        private string _message;
+        private string _name_Of_Field;
+        private string _new_content;
 
         #region Propriedades Get
         public string Get_UserID
@@ -20,18 +21,26 @@ namespace Escola_Virtual
                 return _userID;
             }
         }
-        public List<string> Get_List_New_Content
+        public string Get_Message
         {
             get
             {
-                return _list_new_content;
+                return _message;
             }
         }
-        public List<string> Get_List_Of_Fields_To_Change
+        public string Get_Name_Of_Field
         {
             get
             {
-                return _list_Of_Fields_To_Change;
+                return _name_Of_Field;
+            }
+        }
+        
+        public string Get_New_Content
+        {
+            get 
+            {
+                return _new_content;
             }
         }
         #endregion
@@ -44,21 +53,30 @@ namespace Escola_Virtual
                 _userID = value;
             }
         }
-
-        public List<string> Set_List_New_Content
+        
+        public string Set_Message
         {
             set
             {
-                _list_new_content = value;
+                _message = value;
             }
         }
-
-        public List<string> Set_List_Of_Fields_To_Change
+        
+        public string Set_Name_Of_Field
 
         {
             set
             {
-                _list_Of_Fields_To_Change = value;
+                _name_Of_Field = value;
+            }
+        }
+        
+        public string Set_New_Content
+
+        {
+            set
+            {
+                _new_content = value;
             }
         }
         #endregion

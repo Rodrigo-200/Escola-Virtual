@@ -649,7 +649,6 @@ namespace Escola_Virtual
             // 
             this.txt_StudentContact.Location = new System.Drawing.Point(8, 105);
             this.txt_StudentContact.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_StudentContact.MaxLength = 9;
             this.txt_StudentContact.Name = "txt_StudentContact";
             this.txt_StudentContact.Size = new System.Drawing.Size(127, 20);
             this.txt_StudentContact.TabIndex = 20;
@@ -890,7 +889,6 @@ namespace Escola_Virtual
             // 
             this.txt_TeacherContact.Location = new System.Drawing.Point(8, 108);
             this.txt_TeacherContact.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_TeacherContact.MaxLength = 9;
             this.txt_TeacherContact.Name = "txt_TeacherContact";
             this.txt_TeacherContact.Size = new System.Drawing.Size(127, 20);
             this.txt_TeacherContact.TabIndex = 5;
@@ -1059,6 +1057,7 @@ namespace Escola_Virtual
             this.btn_Deny.TabIndex = 2;
             this.btn_Deny.Text = "Recusar";
             this.btn_Deny.UseVisualStyleBackColor = true;
+            this.btn_Deny.Click += new System.EventHandler(this.btn_Deny_Click);
             // 
             // btn_Aprove
             // 
