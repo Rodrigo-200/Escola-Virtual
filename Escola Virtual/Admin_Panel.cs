@@ -128,14 +128,15 @@ namespace Escola_Virtual
                             Subject subject = new Subject();
                             Class turma = new Class();
 
-                            school_Year = Generic._list_Of_School_Years.Where(m => m.Get_Year == Convert.ToInt32(Year)).FirstOrDefault();
-                            turma = school_Year.Get_List_Of_Classes.Where(m => m.Get_class_name == Class).FirstOrDefault();
-                            subject = turma.Get_List_Of_Subject.Where(m => m.Get_name == i.Text).FirstOrDefault();
-                            subject.Set_Teacherid = teacher;
+                            
 
 
                             if (i.Checked == true)
                             {
+                                school_Year = Generic._list_Of_School_Years.Where(m => m.Get_Year == Convert.ToInt32(Year)).FirstOrDefault();
+                                turma = school_Year.Get_List_Of_Classes.Where(m => m.Get_class_name == Class).FirstOrDefault();
+                                subject = turma.Get_List_Of_Subject.Where(m => m.Get_name == i.Text).FirstOrDefault();
+                                subject.Set_Teacherid = teacher.Get_TeacherID;
                                 teacher.Get_List_Of_Subjects_Teaching.Add(subject);
                             }
 
@@ -306,12 +307,8 @@ namespace Escola_Virtual
 
             foreach (Change_Request change in Generic._list_Of_Changes)
             {
-
-                foreach (string field in change.Get_List_Of_Fields_To_Change)
-                {
                     
-                    lb_ChangesRequests.Items.Add(field);
-                }
+                    lb_ChangesRequests.Items.Add(change.Get_Message);
             }
 
             tvw_CreateSubject.Nodes.Clear();
@@ -595,7 +592,7 @@ namespace Escola_Virtual
             btn_Deny.Enabled = false;
 
             Change_Request User_change = new Change_Request();
-            User_change = Generic._list_Of_Changes.Where(c => c.Get_List_Of_Fields_To_Change.Contains(lb_ChangesRequests.SelectedItem.ToString())).FirstOrDefault();
+            User_change = Generic._list_Of_Changes.Where(c => c.Get_Message == lb_ChangesRequests.SelectedItem.ToString()).FirstOrDefault();
 
             if (User_change.Get_UserID.ToLower().Contains("s"))
             {
@@ -603,28 +600,23 @@ namespace Escola_Virtual
 
                 if (lb_ChangesRequests.SelectedItem.ToString().Contains("morada"))
                 {
-                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
-                    User_std.Set_Address = User_change.Get_List_New_Content[idx];
+                    User_std.Set_Address = User_change.Get_New_Content;
                 }
                 if (lb_ChangesRequests.SelectedItem.ToString().Contains("nome"))
                 {
-                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
-                    User_std.Set_Name = User_change.Get_List_New_Content[idx];
+                    User_std.Set_Name = User_change.Get_New_Content;
                 }
                 if (lb_ChangesRequests.SelectedItem.ToString().Contains("contacto"))
                 {
-                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
-                    User_std.Set_Contact = User_change.Get_List_New_Content[idx];
+                    User_std.Set_Contact = User_change.Get_New_Content;
                 }
                 if (lb_ChangesRequests.SelectedItem.ToString().Contains("NIF"))
                 {
-                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
-                    User_std.Set_NIF = User_change.Get_List_New_Content[idx];
+                    User_std.Set_NIF = User_change.Get_New_Content;
                 }
                 if (lb_ChangesRequests.SelectedItem.ToString().Contains("password"))
                 {
-                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
-                    User_std.Set_Password = User_change.Get_List_New_Content[idx];
+                    User_std.Set_Password = User_change.Get_New_Content;
                 }
 
                 
@@ -634,36 +626,32 @@ namespace Escola_Virtual
                 var User_tch = Generic._listOf_Teachers.FirstOrDefault(t => t.Get_TeacherID == User_change.Get_UserID);
 
                 if (lb_ChangesRequests.SelectedItem.ToString().Contains("morada"))
-                {  
-                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
-                    User_tch.Set_Address = User_change.Get_List_New_Content[idx];
+                {
+                    User_tch.Set_Address = User_change.Get_New_Content;
                 }
                 if (lb_ChangesRequests.SelectedItem.ToString().Contains("nome"))
                 {
-                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
-                    User_tch.Set_Name = User_change.Get_List_New_Content[idx];
+                    User_tch.Set_Name = User_change.Get_New_Content;
                 }
                 if (lb_ChangesRequests.SelectedItem.ToString().Contains("contacto"))
                 {
-                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
-                    User_tch.Set_Contact = User_change.Get_List_New_Content[idx];
+                    User_tch.Set_Contact = User_change.Get_New_Content;
                 }
                 if (lb_ChangesRequests.SelectedItem.ToString().Contains("NIF"))
                 {
-                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
-                    User_tch.Set_NIF = User_change.Get_List_New_Content[idx];
+                    User_tch.Set_NIF = User_change.Get_New_Content;
                 }
                 if (lb_ChangesRequests.SelectedItem.ToString().Contains("password"))
                 {
-                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
-                    User_tch.Set_Password = User_change.Get_List_New_Content[idx];
+                    User_tch.Set_Password = User_change.Get_New_Content;
                 }
             }
 
 
-            lb_ChangesRequests.SelectedItem.ToString();
+            Generic._list_Of_Changes.Remove(User_change);
+            lb_ChangesRequests.Items.Remove(lb_ChangesRequests.SelectedItem.ToString());
+            
 
-            //remover o pedido da lista
         }
 
         private void lb_ChangesRequests_SelectedValueChanged(object sender, EventArgs e)
@@ -679,6 +667,15 @@ namespace Escola_Virtual
                 btn_Aprove.Enabled = false;
                 btn_Deny.Enabled = false;
             }
+        }
+
+        private void btn_Deny_Click(object sender, EventArgs e)
+        {
+            Change_Request User_change = new Change_Request();
+            User_change = Generic._list_Of_Changes.Where(c => c.Get_Message == lb_ChangesRequests.SelectedItem.ToString()).FirstOrDefault();
+
+            Generic._list_Of_Changes.Remove(User_change);
+            lb_ChangesRequests.Items.Remove(lb_ChangesRequests.SelectedItem.ToString());
         }
     }
 

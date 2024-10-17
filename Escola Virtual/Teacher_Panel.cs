@@ -29,31 +29,33 @@ namespace Escola_Virtual
             txt_TeacherNumber.Text = Generic.CurrentTeacher.Get_TeacherID;
             txt_TeacherPassword.Text = Generic.CurrentTeacher.Get_password;
 
-            foreach (var i in Generic._list_Of_School_Years)
+            List<School_Year> Year = new List<School_Year>();
+            Year = Generic._list_Of_School_Years.Where(y => y.Get_List_Of_Classes.Any(c => c.Get_List_Of_Subject.Any(s => s.Get_Teacherid == Generic.CurrentTeacher.Get_TeacherID))).ToList();
+            
+            foreach (var i in Year)
             {
                 TreeNode year = new TreeNode();
                 year.Text = i.Get_Year.ToString() + "º ano";
                 year.Tag = i.Get_Year;
                 tvw_GradeLaunch.Nodes.Add(year);
 
+                List<Class> classes = new List<Class>();
+                classes = i.Get_List_Of_Classes.Where(c => c.Get_List_Of_Subject.Any(s => s.Get_Teacherid == Generic.CurrentTeacher.Get_TeacherID)).ToList();
 
-                foreach (var c in i.Get_List_Of_Classes)
+                foreach (var c in classes)
                 {
-                    if (Generic.CurrentTeacher.Get_List_Of_Subjects_Teaching.Any(c.Get_List_Of_Subject.Contains))
-                    {
                         TreeNode Class = new TreeNode();
                         Class.Text = c.Get_class_name;
                         Class.Tag = "Turma";
                         year.Nodes.Add(Class);
-
+                        
                         foreach (var s in c.Get_List_Of_Subject)
                         {
                             TreeNode subject = new TreeNode();
                             subject.Text = s.Get_name;
                             subject.Tag = "Disciplina";
 
-
-                            if (Generic.CurrentTeacher.Get_List_Of_Subjects_Teaching.Contains(s))
+                            if (Generic.CurrentTeacher.Get_TeacherID==s.Get_Teacherid)
                             {
                                 Class.Nodes.Add(subject);
 
@@ -68,7 +70,7 @@ namespace Escola_Virtual
                         }
 
 
-                    }
+                    
                 }
 
 
@@ -77,34 +79,6 @@ namespace Escola_Virtual
             }
         }
 
-        private void btn_GradeLaunch_Click(object sender, EventArgs e)
-        {
-            if (Convert.ToInt32(txt_GradeValue.Text) > 20)
-            {
-                MessageBox.Show("Valor de nota inválido!", "Escola Virtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (tvw_GradeLaunch.SelectedNode.Parent.Tag.ToString() != "Disciplina" || tvw_GradeLaunch.SelectedNode == null)
-            {
-                MessageBox.Show("Não selecionou um aluno!", "Escola Virtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-
-                //Procurar a turma a que o aluno pertence
-                School_Year year = new School_Year();
-                Class _class = new Class();
-                year = Generic._list_Of_School_Years.Where(y => y.Get_Year.ToString() == tvw_GradeLaunch.SelectedNode.Parent.Parent.Parent.Tag.ToString()).FirstOrDefault();
-                _class = year.Get_List_Of_Classes.Where(c => c.Get_class_name == tvw_GradeLaunch.SelectedNode.Parent.Parent.Text).FirstOrDefault();
-
-                //Criação da nota
-                Grade nota = new Grade();
-                nota.Set_Grade = Convert.ToInt32(txt_GradeValue.Text);
-                nota.Set_subject = _class.Get_List_Of_Subject.Where(s => s.Get_name == tvw_GradeLaunch.SelectedNode.Parent.Text).FirstOrDefault();
-
-                _class.Get_List_Of_Student.Where(st => st.Get_studentID == tvw_GradeLaunch.SelectedNode.Text.Split('-')[1]).FirstOrDefault().Get_List_Of_Grades.Add(nota);
-            }
-
-        }
 
         private void txt_GradeValue_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -150,44 +124,88 @@ namespace Escola_Virtual
 
         private void btn_TeacherSubmit_Click(object sender, EventArgs e)
         {
-            Change_Request Alteration = new Change_Request();
-            Alteration.Set_UserID = Generic.CurrentTeacher.Get_TeacherID;
 
             if (txt_TeacherAddress.Text != Generic.CurrentTeacher.Get_Address)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentTeacher.Get_TeacherID + " deseja alterar a morada para " + txt_TeacherAddress.Text);
-                Alteration.Get_List_New_Content.Add(txt_TeacherAddress.Text);
+                Change_Request Alteration = new Change_Request();
+                Alteration.Set_UserID = Generic.CurrentTeacher.Get_TeacherID;
+                Alteration.Set_Message="O User " + Generic.CurrentTeacher.Get_TeacherID + " deseja alterar a morada para " + txt_TeacherAddress.Text;
+                Alteration.Set_Name_Of_Field = "morada";
+                Alteration.Set_New_Content = txt_TeacherAddress.Text;
                 txt_TeacherAddress.Text = Generic.CurrentTeacher.Get_Address;
+                Generic._list_Of_Changes.Add(Alteration);
             }
             if (txt_TeacherName.Text != Generic.CurrentTeacher.Get_Name)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentTeacher.Get_TeacherID + " deseja alterar o nome para " + txt_TeacherName.Text);
+                Change_Request Alteration = new Change_Request();
+                Alteration.Set_UserID = Generic.CurrentTeacher.Get_TeacherID;
+                Alteration.Set_Message = "O User " + Generic.CurrentTeacher.Get_TeacherID + " deseja alterar o nome para " + txt_TeacherName.Text;
+                Alteration.Set_New_Content=txt_TeacherName.Text;
+                Alteration.Set_Name_Of_Field = "nome";
                 txt_TeacherName.Text = Generic.CurrentTeacher.Get_Name;
-                Alteration.Get_List_New_Content.Add(txt_TeacherName.Text);
+                Generic._list_Of_Changes.Add(Alteration);
             }
             if (txt_TeacherContact.Text != Generic.CurrentTeacher.Get_Contact)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentTeacher.Get_TeacherID + " deseja alterar o contacto para " + txt_TeacherContact.Text);
+                Change_Request Alteration = new Change_Request();
+                Alteration.Set_UserID = Generic.CurrentTeacher.Get_TeacherID;
+                Alteration.Set_Message="O User " + Generic.CurrentTeacher.Get_TeacherID + " deseja alterar o contacto para " + txt_TeacherContact.Text;
+                Alteration.Set_New_Content=txt_TeacherContact.Text;
+                Alteration.Set_Name_Of_Field= "contacto";  
                 txt_TeacherContact.Text = Generic.CurrentTeacher.Get_Contact;
-                Alteration.Get_List_New_Content.Add(txt_TeacherContact.Text);
+                Generic._list_Of_Changes.Add(Alteration);
 
             }
             if (txt_TeacherNIF.Text != Generic.CurrentTeacher.Get_NIF)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentTeacher.Get_TeacherID + " deseja alterar o NIF para " + txt_TeacherNIF.Text);
-                txt_TeacherNIF.Text = Generic.CurrentTeacher.Get_NIF;
-                Alteration.Get_List_New_Content.Add(txt_TeacherNIF.Text);
+                Change_Request Alteration = new Change_Request();
+                Alteration.Set_UserID = Generic.CurrentTeacher.Get_TeacherID;
+                Alteration.Set_Message = "O User " + Generic.CurrentTeacher.Get_TeacherID + " deseja alterar o NIF para " + txt_TeacherNIF.Text;
+                Alteration.Set_New_Content = txt_TeacherNIF.Text;
+                Alteration.Set_Name_Of_Field = "NIF";
+                txt_TeacherContact.Text = Generic.CurrentTeacher.Get_NIF;
+                Generic._list_Of_Changes.Add(Alteration);
             }
             if (txt_TeacherPassword.Text != Generic.CurrentTeacher.Get_password)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentTeacher.Get_TeacherID + " deseja alterar a password para " + txt_TeacherPassword.Text);
-                txt_TeacherPassword.Text = Generic.CurrentTeacher.Get_password;
-                Alteration.Get_List_New_Content.Add(txt_TeacherPassword.Text);
+                Change_Request Alteration = new Change_Request();
+                Alteration.Set_UserID = Generic.CurrentTeacher.Get_TeacherID;
+                Alteration.Set_Message = "O User " + Generic.CurrentTeacher.Get_TeacherID + " deseja alterar a password para " + txt_TeacherPassword.Text;
+                Alteration.Set_New_Content = txt_TeacherPassword.Text;
+                Alteration.Set_Name_Of_Field = "password";
+                txt_TeacherContact.Text = Generic.CurrentTeacher.Get_password;
+                Generic._list_Of_Changes.Add(Alteration);
             }
 
-            Generic._list_Of_Changes.Add(Alteration);
-
             txt_Teacher_Readonly();
+        }
+
+        private void btn_GradeLaunch_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(txt_GradeValue.Text) > 20 || Convert.ToInt32(txt_GradeValue.Text) < 0)
+            {
+                MessageBox.Show("Valor de nota inválido!", "Escola Virtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (tvw_GradeLaunch.SelectedNode.Parent.Tag.ToString() != "Disciplina" || tvw_GradeLaunch.SelectedNode == null)
+            {
+                MessageBox.Show("Não selecionou um aluno!", "Escola Virtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+
+                //Procurar a turma a que o aluno pertence
+                School_Year year = new School_Year();
+                Class _class = new Class();
+                year = Generic._list_Of_School_Years.Where(y => y.Get_Year.ToString() == tvw_GradeLaunch.SelectedNode.Parent.Parent.Parent.Tag.ToString()).FirstOrDefault();
+                _class = year.Get_List_Of_Classes.Where(c => c.Get_class_name == tvw_GradeLaunch.SelectedNode.Parent.Parent.Text).FirstOrDefault();
+
+                //Criação da nota
+                Grade nota = new Grade();
+                nota.Set_Grade = Convert.ToInt32(txt_GradeValue.Text);
+                nota.Set_subject = _class.Get_List_Of_Subject.Where(s => s.Get_name == tvw_GradeLaunch.SelectedNode.Parent.Text).FirstOrDefault();
+
+                _class.Get_List_Of_Student.Where(st => st.Get_studentID == tvw_GradeLaunch.SelectedNode.Text.Split('-')[1]).FirstOrDefault().Get_List_Of_Grades.Add(nota);
+            }
         }
     }
 }

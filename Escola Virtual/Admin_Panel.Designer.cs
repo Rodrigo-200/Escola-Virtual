@@ -119,7 +119,7 @@ namespace Escola_Virtual
             // 
             this.tp_AdminCreateThings.Controls.Add(this.tc_AdminCreateThings);
             this.tp_AdminCreateThings.Location = new System.Drawing.Point(4, 22);
-            this.tp_AdminCreateThings.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tp_AdminCreateThings.Margin = new System.Windows.Forms.Padding(2);
             this.tp_AdminCreateThings.Name = "tp_AdminCreateThings";
             this.tp_AdminCreateThings.Size = new System.Drawing.Size(600, 339);
             this.tp_AdminCreateThings.TabIndex = 2;
@@ -131,7 +131,7 @@ namespace Escola_Virtual
             this.tc_AdminCreateThings.Controls.Add(this.tp_AdminCreateSubject);
             this.tc_AdminCreateThings.Controls.Add(this.tp_AdminCreateYears);
             this.tc_AdminCreateThings.Location = new System.Drawing.Point(5, 2);
-            this.tc_AdminCreateThings.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tc_AdminCreateThings.Margin = new System.Windows.Forms.Padding(2);
             this.tc_AdminCreateThings.Name = "tc_AdminCreateThings";
             this.tc_AdminCreateThings.SelectedIndex = 0;
             this.tc_AdminCreateThings.Size = new System.Drawing.Size(593, 336);
@@ -155,9 +155,9 @@ namespace Escola_Virtual
             this.tp_AdminCreateSubject.Controls.Add(this.label1);
             this.tp_AdminCreateSubject.Controls.Add(this.tvw_CreateSubject);
             this.tp_AdminCreateSubject.Location = new System.Drawing.Point(4, 22);
-            this.tp_AdminCreateSubject.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tp_AdminCreateSubject.Margin = new System.Windows.Forms.Padding(2);
             this.tp_AdminCreateSubject.Name = "tp_AdminCreateSubject";
-            this.tp_AdminCreateSubject.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tp_AdminCreateSubject.Padding = new System.Windows.Forms.Padding(2);
             this.tp_AdminCreateSubject.Size = new System.Drawing.Size(585, 310);
             this.tp_AdminCreateSubject.TabIndex = 0;
             this.tp_AdminCreateSubject.Text = "Disciplinas";
@@ -205,7 +205,7 @@ namespace Escola_Virtual
             // btn_CreateSubject
             // 
             this.btn_CreateSubject.Location = new System.Drawing.Point(343, 172);
-            this.btn_CreateSubject.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_CreateSubject.Margin = new System.Windows.Forms.Padding(2);
             this.btn_CreateSubject.Name = "btn_CreateSubject";
             this.btn_CreateSubject.Size = new System.Drawing.Size(240, 19);
             this.btn_CreateSubject.TabIndex = 8;
@@ -226,7 +226,7 @@ namespace Escola_Virtual
             // txt_SubjectAmmountOfClasses
             // 
             this.txt_SubjectAmmountOfClasses.Location = new System.Drawing.Point(343, 129);
-            this.txt_SubjectAmmountOfClasses.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_SubjectAmmountOfClasses.Margin = new System.Windows.Forms.Padding(2);
             this.txt_SubjectAmmountOfClasses.Name = "txt_SubjectAmmountOfClasses";
             this.txt_SubjectAmmountOfClasses.Size = new System.Drawing.Size(76, 20);
             this.txt_SubjectAmmountOfClasses.TabIndex = 6;
@@ -235,7 +235,7 @@ namespace Escola_Virtual
             // txt_SubjectAcronym
             // 
             this.txt_SubjectAcronym.Location = new System.Drawing.Point(343, 76);
-            this.txt_SubjectAcronym.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_SubjectAcronym.Margin = new System.Windows.Forms.Padding(2);
             this.txt_SubjectAcronym.Name = "txt_SubjectAcronym";
             this.txt_SubjectAcronym.Size = new System.Drawing.Size(99, 20);
             this.txt_SubjectAcronym.TabIndex = 5;
@@ -263,7 +263,7 @@ namespace Escola_Virtual
             // txt_SubjectName
             // 
             this.txt_SubjectName.Location = new System.Drawing.Point(343, 22);
-            this.txt_SubjectName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_SubjectName.Margin = new System.Windows.Forms.Padding(2);
             this.txt_SubjectName.Name = "txt_SubjectName";
             this.txt_SubjectName.Size = new System.Drawing.Size(154, 20);
             this.txt_SubjectName.TabIndex = 2;
@@ -283,7 +283,7 @@ namespace Escola_Virtual
             this.tvw_CreateSubject.BackColor = System.Drawing.Color.White;
             this.tvw_CreateSubject.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tvw_CreateSubject.Location = new System.Drawing.Point(5, 21);
-            this.tvw_CreateSubject.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tvw_CreateSubject.Margin = new System.Windows.Forms.Padding(2);
             this.tvw_CreateSubject.Name = "tvw_CreateSubject";
             this.tvw_CreateSubject.Size = new System.Drawing.Size(331, 287);
             this.tvw_CreateSubject.TabIndex = 0;
@@ -308,9 +308,9 @@ namespace Escola_Virtual
             this.tp_AdminCreateYears.Controls.Add(this.txt_CreateSchoolYear);
             this.tp_AdminCreateYears.Controls.Add(this.lbl_CreateSchoolYear);
             this.tp_AdminCreateYears.Location = new System.Drawing.Point(4, 22);
-            this.tp_AdminCreateYears.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tp_AdminCreateYears.Margin = new System.Windows.Forms.Padding(2);
             this.tp_AdminCreateYears.Name = "tp_AdminCreateYears";
-            this.tp_AdminCreateYears.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tp_AdminCreateYears.Padding = new System.Windows.Forms.Padding(2);
             this.tp_AdminCreateYears.Size = new System.Drawing.Size(585, 310);
             this.tp_AdminCreateYears.TabIndex = 1;
             this.tp_AdminCreateYears.Text = "Anos";
@@ -435,7 +435,7 @@ namespace Escola_Virtual
             // btn_CreateSchoolYear
             // 
             this.btn_CreateSchoolYear.Location = new System.Drawing.Point(8, 46);
-            this.btn_CreateSchoolYear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_CreateSchoolYear.Margin = new System.Windows.Forms.Padding(2);
             this.btn_CreateSchoolYear.Name = "btn_CreateSchoolYear";
             this.btn_CreateSchoolYear.Size = new System.Drawing.Size(75, 19);
             this.btn_CreateSchoolYear.TabIndex = 2;
@@ -446,7 +446,7 @@ namespace Escola_Virtual
             // txt_CreateSchoolYear
             // 
             this.txt_CreateSchoolYear.Location = new System.Drawing.Point(8, 22);
-            this.txt_CreateSchoolYear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_CreateSchoolYear.Margin = new System.Windows.Forms.Padding(2);
             this.txt_CreateSchoolYear.Name = "txt_CreateSchoolYear";
             this.txt_CreateSchoolYear.Size = new System.Drawing.Size(76, 20);
             this.txt_CreateSchoolYear.TabIndex = 1;
@@ -481,9 +481,9 @@ namespace Escola_Virtual
             this.tp_StudentsPage.Controls.Add(this.lbl_StudentAddress);
             this.tp_StudentsPage.Controls.Add(this.lbl_StudentName);
             this.tp_StudentsPage.Location = new System.Drawing.Point(4, 22);
-            this.tp_StudentsPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tp_StudentsPage.Margin = new System.Windows.Forms.Padding(2);
             this.tp_StudentsPage.Name = "tp_StudentsPage";
-            this.tp_StudentsPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tp_StudentsPage.Padding = new System.Windows.Forms.Padding(2);
             this.tp_StudentsPage.Size = new System.Drawing.Size(600, 339);
             this.tp_StudentsPage.TabIndex = 1;
             this.tp_StudentsPage.Text = "Alunos";
@@ -503,7 +503,7 @@ namespace Escola_Virtual
             this.tvw_Year_Class_Student.BackColor = System.Drawing.Color.White;
             this.tvw_Year_Class_Student.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tvw_Year_Class_Student.Location = new System.Drawing.Point(246, 15);
-            this.tvw_Year_Class_Student.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tvw_Year_Class_Student.Margin = new System.Windows.Forms.Padding(2);
             this.tvw_Year_Class_Student.Name = "tvw_Year_Class_Student";
             this.tvw_Year_Class_Student.Size = new System.Drawing.Size(350, 299);
             this.tvw_Year_Class_Student.TabIndex = 29;
@@ -527,7 +527,7 @@ namespace Escola_Virtual
             // txt_StudentPassword
             // 
             this.txt_StudentPassword.Location = new System.Drawing.Point(9, 197);
-            this.txt_StudentPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_StudentPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txt_StudentPassword.MaxLength = 9;
             this.txt_StudentPassword.Name = "txt_StudentPassword";
             this.txt_StudentPassword.PasswordChar = '*';
@@ -537,7 +537,7 @@ namespace Escola_Virtual
             // txt_StudentNumber
             // 
             this.txt_StudentNumber.Location = new System.Drawing.Point(9, 248);
-            this.txt_StudentNumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_StudentNumber.Margin = new System.Windows.Forms.Padding(2);
             this.txt_StudentNumber.Name = "txt_StudentNumber";
             this.txt_StudentNumber.ReadOnly = true;
             this.txt_StudentNumber.Size = new System.Drawing.Size(101, 20);
@@ -547,7 +547,7 @@ namespace Escola_Virtual
             // txt_StudentNIF
             // 
             this.txt_StudentNIF.Location = new System.Drawing.Point(8, 150);
-            this.txt_StudentNIF.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_StudentNIF.Margin = new System.Windows.Forms.Padding(2);
             this.txt_StudentNIF.MaxLength = 9;
             this.txt_StudentNIF.Name = "txt_StudentNIF";
             this.txt_StudentNIF.Size = new System.Drawing.Size(127, 20);
@@ -556,7 +556,7 @@ namespace Escola_Virtual
             // txt_StudentContact
             // 
             this.txt_StudentContact.Location = new System.Drawing.Point(8, 105);
-            this.txt_StudentContact.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_StudentContact.Margin = new System.Windows.Forms.Padding(2);
             this.txt_StudentContact.Name = "txt_StudentContact";
             this.txt_StudentContact.Size = new System.Drawing.Size(127, 20);
             this.txt_StudentContact.TabIndex = 20;
@@ -564,7 +564,7 @@ namespace Escola_Virtual
             // txt_StudentAddress
             // 
             this.txt_StudentAddress.Location = new System.Drawing.Point(8, 60);
-            this.txt_StudentAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_StudentAddress.Margin = new System.Windows.Forms.Padding(2);
             this.txt_StudentAddress.Name = "txt_StudentAddress";
             this.txt_StudentAddress.Size = new System.Drawing.Size(237, 20);
             this.txt_StudentAddress.TabIndex = 18;
@@ -572,7 +572,7 @@ namespace Escola_Virtual
             // txt_StudentName
             // 
             this.txt_StudentName.Location = new System.Drawing.Point(8, 20);
-            this.txt_StudentName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_StudentName.Margin = new System.Windows.Forms.Padding(2);
             this.txt_StudentName.Name = "txt_StudentName";
             this.txt_StudentName.Size = new System.Drawing.Size(127, 20);
             this.txt_StudentName.TabIndex = 16;
@@ -590,7 +590,7 @@ namespace Escola_Virtual
             // btn_StudentConfirm
             // 
             this.btn_StudentConfirm.Location = new System.Drawing.Point(519, 318);
-            this.btn_StudentConfirm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_StudentConfirm.Margin = new System.Windows.Forms.Padding(2);
             this.btn_StudentConfirm.Name = "btn_StudentConfirm";
             this.btn_StudentConfirm.Size = new System.Drawing.Size(79, 19);
             this.btn_StudentConfirm.TabIndex = 25;
@@ -668,9 +668,9 @@ namespace Escola_Virtual
             this.tp_TeachersPage.Controls.Add(this.lbl_TeacherAddress);
             this.tp_TeachersPage.Controls.Add(this.lbl_TeacherName);
             this.tp_TeachersPage.Location = new System.Drawing.Point(4, 22);
-            this.tp_TeachersPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tp_TeachersPage.Margin = new System.Windows.Forms.Padding(2);
             this.tp_TeachersPage.Name = "tp_TeachersPage";
-            this.tp_TeachersPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tp_TeachersPage.Padding = new System.Windows.Forms.Padding(2);
             this.tp_TeachersPage.Size = new System.Drawing.Size(600, 339);
             this.tp_TeachersPage.TabIndex = 0;
             this.tp_TeachersPage.Text = "Professores";
@@ -694,7 +694,7 @@ namespace Escola_Virtual
             // txt_TeacherPassword
             // 
             this.txt_TeacherPassword.Location = new System.Drawing.Point(9, 203);
-            this.txt_TeacherPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_TeacherPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txt_TeacherPassword.MaxLength = 9;
             this.txt_TeacherPassword.Name = "txt_TeacherPassword";
             this.txt_TeacherPassword.PasswordChar = '*';
@@ -704,7 +704,7 @@ namespace Escola_Virtual
             // txt_TeacherNumber
             // 
             this.txt_TeacherNumber.Location = new System.Drawing.Point(8, 247);
-            this.txt_TeacherNumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_TeacherNumber.Margin = new System.Windows.Forms.Padding(2);
             this.txt_TeacherNumber.Name = "txt_TeacherNumber";
             this.txt_TeacherNumber.ReadOnly = true;
             this.txt_TeacherNumber.Size = new System.Drawing.Size(101, 20);
@@ -714,7 +714,7 @@ namespace Escola_Virtual
             // txt_TeacherNIF
             // 
             this.txt_TeacherNIF.Location = new System.Drawing.Point(8, 153);
-            this.txt_TeacherNIF.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_TeacherNIF.Margin = new System.Windows.Forms.Padding(2);
             this.txt_TeacherNIF.MaxLength = 9;
             this.txt_TeacherNIF.Name = "txt_TeacherNIF";
             this.txt_TeacherNIF.Size = new System.Drawing.Size(127, 20);
@@ -724,7 +724,7 @@ namespace Escola_Virtual
             // txt_TeacherContact
             // 
             this.txt_TeacherContact.Location = new System.Drawing.Point(8, 108);
-            this.txt_TeacherContact.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_TeacherContact.Margin = new System.Windows.Forms.Padding(2);
             this.txt_TeacherContact.Name = "txt_TeacherContact";
             this.txt_TeacherContact.Size = new System.Drawing.Size(127, 20);
             this.txt_TeacherContact.TabIndex = 5;
@@ -733,7 +733,7 @@ namespace Escola_Virtual
             // txt_TeacherAddress
             // 
             this.txt_TeacherAddress.Location = new System.Drawing.Point(8, 63);
-            this.txt_TeacherAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_TeacherAddress.Margin = new System.Windows.Forms.Padding(2);
             this.txt_TeacherAddress.Name = "txt_TeacherAddress";
             this.txt_TeacherAddress.Size = new System.Drawing.Size(237, 20);
             this.txt_TeacherAddress.TabIndex = 3;
@@ -741,7 +741,7 @@ namespace Escola_Virtual
             // txt_TeacherName
             // 
             this.txt_TeacherName.Location = new System.Drawing.Point(8, 23);
-            this.txt_TeacherName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_TeacherName.Margin = new System.Windows.Forms.Padding(2);
             this.txt_TeacherName.Name = "txt_TeacherName";
             this.txt_TeacherName.Size = new System.Drawing.Size(127, 20);
             this.txt_TeacherName.TabIndex = 1;
@@ -760,7 +760,7 @@ namespace Escola_Virtual
             // btn_TeacherConfirm
             // 
             this.btn_TeacherConfirm.Location = new System.Drawing.Point(519, 318);
-            this.btn_TeacherConfirm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_TeacherConfirm.Margin = new System.Windows.Forms.Padding(2);
             this.btn_TeacherConfirm.Name = "btn_TeacherConfirm";
             this.btn_TeacherConfirm.Size = new System.Drawing.Size(79, 19);
             this.btn_TeacherConfirm.TabIndex = 26;
@@ -784,7 +784,7 @@ namespace Escola_Virtual
             this.tvw_TeacherYearsAndSubjects.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tvw_TeacherYearsAndSubjects.CheckBoxes = true;
             this.tvw_TeacherYearsAndSubjects.Location = new System.Drawing.Point(248, 23);
-            this.tvw_TeacherYearsAndSubjects.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tvw_TeacherYearsAndSubjects.Margin = new System.Windows.Forms.Padding(2);
             this.tvw_TeacherYearsAndSubjects.Name = "tvw_TeacherYearsAndSubjects";
             this.tvw_TeacherYearsAndSubjects.Size = new System.Drawing.Size(350, 294);
             this.tvw_TeacherYearsAndSubjects.TabIndex = 12;
@@ -847,7 +847,7 @@ namespace Escola_Virtual
             this.tc_Choices.Controls.Add(this.tp_AdminCreateThings);
             this.tc_Choices.Controls.Add(this.tabPage1);
             this.tc_Choices.Location = new System.Drawing.Point(1, 0);
-            this.tc_Choices.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tc_Choices.Margin = new System.Windows.Forms.Padding(2);
             this.tc_Choices.Name = "tc_Choices";
             this.tc_Choices.SelectedIndex = 0;
             this.tc_Choices.Size = new System.Drawing.Size(608, 365);
@@ -861,9 +861,9 @@ namespace Escola_Virtual
             this.tabPage1.Controls.Add(this.btn_Aprove);
             this.tabPage1.Controls.Add(this.lb_ChangesRequests);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage1.Size = new System.Drawing.Size(600, 339);
             this.tabPage1.TabIndex = 3;
             this.tabPage1.Text = "Pedidos de Alteração";
@@ -883,18 +883,19 @@ namespace Escola_Virtual
             // 
             this.btn_Deny.Enabled = false;
             this.btn_Deny.Location = new System.Drawing.Point(535, 301);
-            this.btn_Deny.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Deny.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Deny.Name = "btn_Deny";
             this.btn_Deny.Size = new System.Drawing.Size(56, 19);
             this.btn_Deny.TabIndex = 2;
             this.btn_Deny.Text = "Recusar";
             this.btn_Deny.UseVisualStyleBackColor = true;
+            this.btn_Deny.Click += new System.EventHandler(this.btn_Deny_Click);
             // 
             // btn_Aprove
             // 
             this.btn_Aprove.Enabled = false;
             this.btn_Aprove.Location = new System.Drawing.Point(467, 301);
-            this.btn_Aprove.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Aprove.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Aprove.Name = "btn_Aprove";
             this.btn_Aprove.Size = new System.Drawing.Size(56, 19);
             this.btn_Aprove.TabIndex = 1;
@@ -906,7 +907,7 @@ namespace Escola_Virtual
             // 
             this.lb_ChangesRequests.FormattingEnabled = true;
             this.lb_ChangesRequests.Location = new System.Drawing.Point(2, 24);
-            this.lb_ChangesRequests.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lb_ChangesRequests.Margin = new System.Windows.Forms.Padding(2);
             this.lb_ChangesRequests.Name = "lb_ChangesRequests";
             this.lb_ChangesRequests.Size = new System.Drawing.Size(596, 264);
             this.lb_ChangesRequests.TabIndex = 0;
@@ -918,7 +919,7 @@ namespace Escola_Virtual
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(611, 366);
             this.Controls.Add(this.tc_Choices);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Admin_Panel";
             this.Text = "Admin_Panel";
             this.Load += new System.EventHandler(this.Admin_Panel_Load);

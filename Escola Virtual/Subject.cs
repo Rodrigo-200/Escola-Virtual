@@ -11,9 +11,8 @@ namespace Escola_Virtual
         private string _name;
         private int _subject_number;
         private string _subject_acronym;
-        Teachers _Teacherid = new Teachers();
+        private string _teacherid;
 
-        //private Int64 _classID;
 
 
         #region Propriedades de Get
@@ -42,21 +41,13 @@ namespace Escola_Virtual
             }
         }
 
-        public Teachers Get_Teacherid
+        public string Get_Teacherid
         {
             get
             {
-                return _Teacherid;
+                return _teacherid;
             }
         }
-
-       /* public Int64 Get_ClassID
-        {
-            get
-            {
-                return _classID;
-            }
-        }*/
 
         #endregion
 
@@ -86,21 +77,13 @@ namespace Escola_Virtual
             }
         }
 
-        public Teachers Set_Teacherid
+        public string Set_Teacherid
         {
             set
             {
-                _Teacherid = value;
+                _teacherid = value;
             }
         }
-
-        /*public Int64 Set_ClassID
-        {
-            set
-            {
-                _classID = value;
-            }
-        }*/
 
         #endregion
 
