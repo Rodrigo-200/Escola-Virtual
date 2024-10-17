@@ -10,7 +10,7 @@ namespace Escola_Virtual
     {
         private string _userID;
         private List<string> _list_Of_Fields_To_Change = new List<string>();
-        private List<string> _list_Of_Changes = new List<string>();
+        private List<string> _list_new_content = new List<string>();
 
         public string Get_UserID
         {
@@ -19,19 +19,18 @@ namespace Escola_Virtual
                 return _userID;
             }
         }
+        public List<string> Get_List_New_Content
+        {
+            get
+            {
+                return _list_new_content;
+            }
+        }
         public List<string> Get_List_Of_Fields_To_Change
         {
             get 
             {
                 return _list_Of_Fields_To_Change;
-            }
-        }
-
-        public List<string> Get_List_Of_Changes
-        {
-            get
-            {
-                return _list_Of_Changes;
             }
         }
 
@@ -43,20 +42,20 @@ namespace Escola_Virtual
             }
         }
         
+        public List<string> Set_List_New_Content
+        {
+            set
+            {
+                _list_new_content = value;
+            }
+        }
+        
         public List<string> Set_List_Of_Fields_To_Change
 
         {
             set
             {
                 _list_Of_Fields_To_Change = value;
-            }
-        }
-
-        public List<string> Set_List_Of_Changes
-        {
-            set
-            {
-                _list_Of_Changes = value;
             }
         }
     }

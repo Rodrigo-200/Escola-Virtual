@@ -155,33 +155,34 @@ namespace Escola_Virtual
 
             if (txt_TeacherAddress.Text != Generic.CurrentTeacher.Get_Address)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("Adress");
-                Alteration.Get_List_Of_Changes.Add(txt_TeacherAddress.Text);
+                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentTeacher.Get_TeacherID + " deseja alterar a morada para " + txt_TeacherAddress.Text);
+                Alteration.Get_List_New_Content.Add(txt_TeacherAddress.Text);
                 txt_TeacherAddress.Text = Generic.CurrentTeacher.Get_Address;
             }
             if (txt_TeacherName.Text != Generic.CurrentTeacher.Get_Name)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("Name");
-                Alteration.Get_List_Of_Changes.Add(txt_TeacherName.Text);
+                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentTeacher.Get_TeacherID + " deseja alterar o nome para " + txt_TeacherName.Text);
                 txt_TeacherName.Text = Generic.CurrentTeacher.Get_Name;
+                Alteration.Get_List_New_Content.Add(txt_TeacherName.Text);
             }
             if (txt_TeacherContact.Text != Generic.CurrentTeacher.Get_Contact)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("Contact");
-                Alteration.Get_List_Of_Changes.Add(txt_TeacherContact.Text);
+                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentTeacher.Get_TeacherID + " deseja alterar o contacto para " + txt_TeacherContact.Text);
                 txt_TeacherContact.Text = Generic.CurrentTeacher.Get_Contact;
+                Alteration.Get_List_New_Content.Add(txt_TeacherContact.Text);
+
             }
             if (txt_TeacherNIF.Text != Generic.CurrentTeacher.Get_NIF)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("NIF");
-                Alteration.Get_List_Of_Changes.Add(txt_TeacherNIF.Text);
+                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentTeacher.Get_TeacherID + " deseja alterar o NIF para " + txt_TeacherNIF.Text);
                 txt_TeacherNIF.Text = Generic.CurrentTeacher.Get_NIF;
+                Alteration.Get_List_New_Content.Add(txt_TeacherNIF.Text);
             }
             if (txt_TeacherPassword.Text != Generic.CurrentTeacher.Get_password)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("Password");
-                Alteration.Get_List_Of_Changes.Add(txt_TeacherPassword.Text);
+                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentTeacher.Get_TeacherID + " deseja alterar a password para " + txt_TeacherPassword.Text);
                 txt_TeacherPassword.Text = Generic.CurrentTeacher.Get_password;
+                Alteration.Get_List_New_Content.Add(txt_TeacherPassword.Text);
             }
 
             Generic._list_Of_Changes.Add(Alteration);

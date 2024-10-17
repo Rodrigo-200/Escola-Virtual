@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -100,32 +101,27 @@ namespace Escola_Virtual
             
             if(txt_StudentAddress.Text != Generic.CurrentStudent.Get_Address)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("Adress");
-                Alteration.Get_List_Of_Changes.Add(txt_StudentAddress.Text);
+                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar a morada para " + txt_StudentAddress.Text);
                 txt_StudentAddress.Text = Generic.CurrentStudent.Get_Address;
             }
             if(txt_StudentName.Text != Generic.CurrentStudent.Get_Name)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("Name");
-                Alteration.Get_List_Of_Changes.Add(txt_StudentName.Text);
+                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar o nome para " + txt_StudentName.Text);
                 txt_StudentName.Text = Generic.CurrentStudent.Get_Name;
             }
             if(txt_StudentContact.Text != Generic.CurrentStudent.Get_Contact)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("Contact");
-                Alteration.Get_List_Of_Changes.Add(txt_StudentContact.Text);
+                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar o contacto para " + txt_StudentContact.Text);
                 txt_StudentContact.Text = Generic.CurrentStudent.Get_Contact;
             }
             if(txt_StudentNIF.Text != Generic.CurrentStudent.Get_NIF)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("NIF");
-                Alteration.Get_List_Of_Changes.Add(txt_StudentNIF.Text);
+                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar o NIF para " + txt_StudentNIF.Text);
                 txt_StudentNIF.Text = Generic.CurrentStudent.Get_NIF;
             }
             if(txt_StudentPassword.Text != Generic.CurrentStudent.Get_password)
             {
-                Alteration.Get_List_Of_Fields_To_Change.Add("Password");
-                Alteration.Get_List_Of_Changes.Add(txt_StudentPassword.Text);
+                Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar a password para " + txt_StudentPassword.Text);
                 txt_StudentPassword.Text = Generic.CurrentStudent.Get_password;
             }
 

@@ -365,16 +365,13 @@ namespace Escola_Virtual
              * Foreach encarregue de adicionar à listbox todos os items dentro da lista de pedidos de mudanças.
              */
 
-            foreach (Change_Request change in Generic._list_Of_Changes) // Generic._list_Of_Changes Contem todos os pedidos de alteração de algum dado de um professor e/ou aluno 
+            foreach (Change_Request change in Generic._list_Of_Changes)
             {
-                int cnt = 0;
-
 
                 foreach (string field in change.Get_List_Of_Fields_To_Change)
                 {
-                    string str = "O User " + change.Get_UserID + " deseja alterar " + field + " para " + change.Get_List_Of_Changes[cnt];
-                    lb_ChangesRequests.Items.Add(str);
-                    cnt++;
+
+                    lb_ChangesRequests.Items.Add(field);
                 }
             }
 
@@ -697,7 +694,76 @@ namespace Escola_Virtual
             btn_Aprove.Enabled = false;
             btn_Deny.Enabled = false;
 
+            Change_Request User_change = new Change_Request();
+            User_change = Generic._list_Of_Changes.Where(c => c.Get_List_Of_Fields_To_Change.Contains(lb_ChangesRequests.SelectedItem.ToString())).FirstOrDefault();
 
+            if (User_change.Get_UserID.ToLower().Contains("s"))
+            {
+                var User_std = Generic._list_Of_School_Years.SelectMany(y => y.Get_List_Of_Classes).SelectMany(c => c.Get_List_Of_Student).FirstOrDefault(s => s.Get_studentID == User_change.Get_UserID);
+
+                if (lb_ChangesRequests.SelectedItem.ToString().Contains("morada"))
+                {
+                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
+                    User_std.Set_Address = User_change.Get_List_New_Content[idx];
+                }
+                if (lb_ChangesRequests.SelectedItem.ToString().Contains("nome"))
+                {
+                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
+                    User_std.Set_Name = User_change.Get_List_New_Content[idx];
+                }
+                if (lb_ChangesRequests.SelectedItem.ToString().Contains("contacto"))
+                {
+                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
+                    User_std.Set_Contact = User_change.Get_List_New_Content[idx];
+                }
+                if (lb_ChangesRequests.SelectedItem.ToString().Contains("NIF"))
+                {
+                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
+                    User_std.Set_NIF = User_change.Get_List_New_Content[idx];
+                }
+                if (lb_ChangesRequests.SelectedItem.ToString().Contains("password"))
+                {
+                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
+                    User_std.Set_Password = User_change.Get_List_New_Content[idx];
+                }
+
+                
+            }
+            else
+            {
+                var User_tch = Generic._listOf_Teachers.FirstOrDefault(t => t.Get_TeacherID == User_change.Get_UserID);
+
+                if (lb_ChangesRequests.SelectedItem.ToString().Contains("morada"))
+                {  
+                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
+                    User_tch.Set_Address = User_change.Get_List_New_Content[idx];
+                }
+                if (lb_ChangesRequests.SelectedItem.ToString().Contains("nome"))
+                {
+                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
+                    User_tch.Set_Name = User_change.Get_List_New_Content[idx];
+                }
+                if (lb_ChangesRequests.SelectedItem.ToString().Contains("contacto"))
+                {
+                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
+                    User_tch.Set_Contact = User_change.Get_List_New_Content[idx];
+                }
+                if (lb_ChangesRequests.SelectedItem.ToString().Contains("NIF"))
+                {
+                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
+                    User_tch.Set_NIF = User_change.Get_List_New_Content[idx];
+                }
+                if (lb_ChangesRequests.SelectedItem.ToString().Contains("password"))
+                {
+                    int idx = User_change.Get_List_Of_Fields_To_Change.IndexOf(lb_ChangesRequests.SelectedItem.ToString());
+                    User_tch.Set_Password = User_change.Get_List_New_Content[idx];
+                }
+            }
+
+
+            lb_ChangesRequests.SelectedItem.ToString();
+
+            //remover o pedido da lista
         }
 
         private void lb_ChangesRequests_SelectedValueChanged(object sender, EventArgs e)
