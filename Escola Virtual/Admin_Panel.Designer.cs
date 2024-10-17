@@ -35,6 +35,7 @@ namespace Escola_Virtual
             this.tp_AdminCreateThings = new System.Windows.Forms.TabPage();
             this.tc_AdminCreateThings = new System.Windows.Forms.TabControl();
             this.tp_AdminCreateSubject = new System.Windows.Forms.TabPage();
+            this.lbl_SubjectExistsError = new System.Windows.Forms.Label();
             this.lbl_AmmountOfClassesError = new System.Windows.Forms.Label();
             this.lbl_SubjectAcronymError = new System.Windows.Forms.Label();
             this.lbl_SubjectNameError = new System.Windows.Forms.Label();
@@ -49,6 +50,7 @@ namespace Escola_Virtual
             this.label1 = new System.Windows.Forms.Label();
             this.tvw_CreateSubject = new System.Windows.Forms.TreeView();
             this.tp_AdminCreateYears = new System.Windows.Forms.TabPage();
+            this.lbl_ClassExistsError = new System.Windows.Forms.Label();
             this.lbl_ChooseYearError = new System.Windows.Forms.Label();
             this.lbl_ClassAcronymError = new System.Windows.Forms.Label();
             this.lbl_ClassNameError = new System.Windows.Forms.Label();
@@ -117,8 +119,6 @@ namespace Escola_Virtual
             this.btn_Deny = new System.Windows.Forms.Button();
             this.btn_Aprove = new System.Windows.Forms.Button();
             this.lb_ChangesRequests = new System.Windows.Forms.ListBox();
-            this.lbl_ClassExistsError = new System.Windows.Forms.Label();
-            this.lbl_SubjectExistsError = new System.Windows.Forms.Label();
             this.tp_AdminCreateThings.SuspendLayout();
             this.tc_AdminCreateThings.SuspendLayout();
             this.tp_AdminCreateSubject.SuspendLayout();
@@ -176,6 +176,16 @@ namespace Escola_Virtual
             this.tp_AdminCreateSubject.Size = new System.Drawing.Size(585, 310);
             this.tp_AdminCreateSubject.TabIndex = 0;
             this.tp_AdminCreateSubject.Text = "Disciplinas";
+            // 
+            // lbl_SubjectExistsError
+            // 
+            this.lbl_SubjectExistsError.AutoSize = true;
+            this.lbl_SubjectExistsError.ForeColor = System.Drawing.Color.Red;
+            this.lbl_SubjectExistsError.Location = new System.Drawing.Point(417, 194);
+            this.lbl_SubjectExistsError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_SubjectExistsError.Name = "lbl_SubjectExistsError";
+            this.lbl_SubjectExistsError.Size = new System.Drawing.Size(0, 13);
+            this.lbl_SubjectExistsError.TabIndex = 17;
             // 
             // lbl_AmmountOfClassesError
             // 
@@ -333,6 +343,16 @@ namespace Escola_Virtual
             this.tp_AdminCreateYears.Size = new System.Drawing.Size(585, 310);
             this.tp_AdminCreateYears.TabIndex = 1;
             this.tp_AdminCreateYears.Text = "Anos";
+            // 
+            // lbl_ClassExistsError
+            // 
+            this.lbl_ClassExistsError.AutoSize = true;
+            this.lbl_ClassExistsError.ForeColor = System.Drawing.Color.Red;
+            this.lbl_ClassExistsError.Location = new System.Drawing.Point(458, 280);
+            this.lbl_ClassExistsError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_ClassExistsError.Name = "lbl_ClassExistsError";
+            this.lbl_ClassExistsError.Size = new System.Drawing.Size(0, 13);
+            this.lbl_ClassExistsError.TabIndex = 16;
             // 
             // lbl_ChooseYearError
             // 
@@ -649,6 +669,7 @@ namespace Escola_Virtual
             // 
             this.txt_StudentContact.Location = new System.Drawing.Point(8, 105);
             this.txt_StudentContact.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_StudentContact.MaxLength = 9;
             this.txt_StudentContact.Name = "txt_StudentContact";
             this.txt_StudentContact.Size = new System.Drawing.Size(127, 20);
             this.txt_StudentContact.TabIndex = 20;
@@ -889,6 +910,7 @@ namespace Escola_Virtual
             // 
             this.txt_TeacherContact.Location = new System.Drawing.Point(8, 108);
             this.txt_TeacherContact.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_TeacherContact.MaxLength = 9;
             this.txt_TeacherContact.Name = "txt_TeacherContact";
             this.txt_TeacherContact.Size = new System.Drawing.Size(127, 20);
             this.txt_TeacherContact.TabIndex = 5;
@@ -1080,26 +1102,6 @@ namespace Escola_Virtual
             this.lb_ChangesRequests.Size = new System.Drawing.Size(596, 264);
             this.lb_ChangesRequests.TabIndex = 0;
             this.lb_ChangesRequests.SelectedValueChanged += new System.EventHandler(this.lb_ChangesRequests_SelectedValueChanged);
-            // 
-            // lbl_ClassExistsError
-            // 
-            this.lbl_ClassExistsError.AutoSize = true;
-            this.lbl_ClassExistsError.ForeColor = System.Drawing.Color.Red;
-            this.lbl_ClassExistsError.Location = new System.Drawing.Point(458, 280);
-            this.lbl_ClassExistsError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbl_ClassExistsError.Name = "lbl_ClassExistsError";
-            this.lbl_ClassExistsError.Size = new System.Drawing.Size(0, 13);
-            this.lbl_ClassExistsError.TabIndex = 16;
-            // 
-            // lbl_SubjectExistsError
-            // 
-            this.lbl_SubjectExistsError.AutoSize = true;
-            this.lbl_SubjectExistsError.ForeColor = System.Drawing.Color.Red;
-            this.lbl_SubjectExistsError.Location = new System.Drawing.Point(417, 194);
-            this.lbl_SubjectExistsError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbl_SubjectExistsError.Name = "lbl_SubjectExistsError";
-            this.lbl_SubjectExistsError.Size = new System.Drawing.Size(0, 13);
-            this.lbl_SubjectExistsError.TabIndex = 17;
             // 
             // Admin_Panel
             // 

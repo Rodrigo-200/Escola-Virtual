@@ -133,7 +133,7 @@ namespace Escola_Virtual
                             school_Year = Generic._list_Of_School_Years.Where(m => m.Get_Year == Convert.ToInt32(Year)).FirstOrDefault();
                             turma = school_Year.Get_List_Of_Classes.Where(m => m.Get_class_name == Class).FirstOrDefault();
                             subject = turma.Get_List_Of_Subject.Where(m => m.Get_name == i.Text).FirstOrDefault();
-                            subject.Set_Teacherid = teacher;
+                            subject.Set_Teacherid = teacher.Get_TeacherID;
 
 
                             if (i.Checked == true)
@@ -320,6 +320,7 @@ namespace Escola_Virtual
         private void refresh()
         {
 
+
             lb_ChangesRequests.Items.Clear(); // Apaga todos os items dentro da listbox para evitar a repitição de items.
 
             /*
@@ -328,17 +329,13 @@ namespace Escola_Virtual
 
             foreach (Change_Request change in Generic._list_Of_Changes)
             {
-
-                foreach (string field in change.Get_List_Of_Fields_To_Change)
-                {
-
-                    lb_ChangesRequests.Items.Add(field);
-                }
+                lb_ChangesRequests.Items.Add(change.Get_Message);
             }
 
             /*
              * Limpar todas as treeviews e comboboxes para evitar a repitição de items
              */
+
 
             tvw_CreateSubject.Nodes.Clear();
             tvw_TeacherYearsAndSubjects.Nodes.Clear();
@@ -475,6 +472,7 @@ namespace Escola_Virtual
         {
             refresh();
         }
+
 
         private void btn_Aprove_Click(object sender, EventArgs e)
         {
@@ -763,22 +761,18 @@ namespace Escola_Virtual
             if (txt_SubjectName.Text == "")
             {
                 lbl_SubjectNameError.Text = "Tem de preencher este campo";
-                txt_SubjectName.Focus();
             }
             if (txt_SubjectAcronym.Text == "")
             {
                 lbl_SubjectAcronymError.Text = "Tem de preencher este campo";
-                txt_SubjectAcronym.Focus();
             }
             if (txt_SubjectAmmountOfClasses.Text == "")
             {
                 lbl_AmmountOfClassesError.Text = "Tem de preencher este campo";
-                txt_SubjectAmmountOfClasses.Focus();
             }
             if (tvw_CreateSubject.SelectedNode == null)
             {
                 lbl_ChooseClassToCreateSubjectError.Text = "Tem de preencher este campo";
-                tvw_CreateSubject.Focus();
             }
         }
 
@@ -787,6 +781,7 @@ namespace Escola_Virtual
         #endregion
 
         #region Refresh New Student Labels
+
 
         /// <summary>
         /// Metodo para limpar as labels de erro do painel de criar um novo aluno
@@ -859,6 +854,7 @@ namespace Escola_Virtual
         #endregion
 
         #region Refresh New Teacher Labels
+
 
         /// <summary>
         /// Metodo para limpar as labels de erro do painel de criar um novo professor
