@@ -54,6 +54,7 @@
       <DependentUpon>Admin_Panel.cs</DependentUpon>
     </Compile>
     <Compile Include="Change_Request.cs" />
+    <Compile Include="Chat.cs" />
     <Compile Include="Class.cs" />
     <Compile Include="Generic.cs" />
     <Compile Include="Grade.cs" />

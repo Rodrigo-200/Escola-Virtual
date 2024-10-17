@@ -18,6 +18,8 @@ namespace Escola_Virtual
 
         public static List<Change_Request> _list_Of_Changes = new List<Change_Request>();
 
+        public static List<Chat> _List_Of_Chats = new List<Chat>();
+
         //public static List<Int64> _list_Of_Ids = new List<Int64>();
 
         public static Student CurrentStudent = new Student();

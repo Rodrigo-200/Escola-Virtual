@@ -12,6 +12,7 @@ namespace Escola_Virtual
         private List<string> _list_Of_Fields_To_Change = new List<string>();
         private List<string> _list_new_content = new List<string>();
 
+        #region Propriedades Get
         public string Get_UserID
         {
             get
@@ -28,12 +29,14 @@ namespace Escola_Virtual
         }
         public List<string> Get_List_Of_Fields_To_Change
         {
-            get 
+            get
             {
                 return _list_Of_Fields_To_Change;
             }
         }
+        #endregion
 
+        #region Propriedades Set
         public string Set_UserID
         {
             set
@@ -41,7 +44,7 @@ namespace Escola_Virtual
                 _userID = value;
             }
         }
-        
+
         public List<string> Set_List_New_Content
         {
             set
@@ -49,7 +52,7 @@ namespace Escola_Virtual
                 _list_new_content = value;
             }
         }
-        
+
         public List<string> Set_List_Of_Fields_To_Change
 
         {
@@ -58,5 +61,6 @@ namespace Escola_Virtual
                 _list_Of_Fields_To_Change = value;
             }
         }
+        #endregion
     }
 }

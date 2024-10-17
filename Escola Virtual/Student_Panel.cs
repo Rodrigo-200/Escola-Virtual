@@ -20,6 +20,25 @@ namespace Escola_Virtual
 
         private void Student_Panel_Load(object sender, EventArgs e)
         {
+            cbb_SelectUserChat.Items.Clear();
+
+            foreach (var item in Generic._listOf_Teachers)
+            {
+                cbb_SelectUserChat.Items.Add(item.Get_Name + "-" + item.Get_TeacherID);
+            }
+
+            foreach (var item in Generic._list_Of_School_Years)
+            {
+                foreach (var item2 in item.Get_List_Of_Classes)
+                {
+                    foreach (var item3 in item2.Get_List_Of_Student)
+                    {
+                        cbb_SelectUserChat.Items.Add(item3.Get_Name + "-" + item3.Get_studentID);
+                    }
+                }
+            }
+
+
             lb_History.Items.Clear();
             lb_History.Items.AddRange(Generic.CurrentStudent.Get_History.ToArray());
 
@@ -34,19 +53,19 @@ namespace Escola_Virtual
             School_Year year = new School_Year();
             Class _class = new Class();
             year = Generic._list_Of_School_Years.FirstOrDefault(y => y.Get_List_Of_Classes.Any(c => c.Get_List_Of_Student.Any(s => s.Get_studentID == Generic.CurrentStudent.Get_studentID)));
-            
-            
-            
-            _class =year.Get_List_Of_Classes.Where(c => c.Get_class_name.ToString() == Generic.CurrentStudent.Get_ClassName).FirstOrDefault();
+
+
+
+            _class = year.Get_List_Of_Classes.Where(c => c.Get_class_name.ToString() == Generic.CurrentStudent.Get_ClassName).FirstOrDefault();
 
             foreach (var s in _class.Get_List_Of_Subject)
             {
                 TreeNode subject = new TreeNode();
                 subject.Text = s.Get_name;
                 tvw_Grades.Nodes.Add(subject);
-                foreach(var g in Generic.CurrentStudent.Get_List_Of_Grades)
+                foreach (var g in Generic.CurrentStudent.Get_List_Of_Grades)
                 {
-                    if(g.Get_subject.Get_name==subject.Text)
+                    if (g.Get_subject.Get_name == subject.Text)
                     {
                         TreeNode grade = new TreeNode();
                         grade.Text = g.Get_Grade.ToString();
@@ -69,7 +88,7 @@ namespace Escola_Virtual
 
         private void txt_Student_Readonly()
         {
-            if(btn_Submit.Enabled==false)
+            if (btn_Submit.Enabled == false)
             {
                 txt_StudentAddress.ReadOnly = false;
                 txt_StudentName.ReadOnly = false;
@@ -89,7 +108,7 @@ namespace Escola_Virtual
                 btn_edit.Enabled = true;
                 btn_Submit.Enabled = false;
 
-                
+
             }
         }
 
@@ -98,28 +117,28 @@ namespace Escola_Virtual
 
             Change_Request Alteration = new Change_Request();
             Alteration.Set_UserID = Generic.CurrentStudent.Get_studentID;
-            
-            if(txt_StudentAddress.Text != Generic.CurrentStudent.Get_Address)
+
+            if (txt_StudentAddress.Text != Generic.CurrentStudent.Get_Address)
             {
                 Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar a morada para " + txt_StudentAddress.Text);
                 txt_StudentAddress.Text = Generic.CurrentStudent.Get_Address;
             }
-            if(txt_StudentName.Text != Generic.CurrentStudent.Get_Name)
+            if (txt_StudentName.Text != Generic.CurrentStudent.Get_Name)
             {
                 Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar o nome para " + txt_StudentName.Text);
                 txt_StudentName.Text = Generic.CurrentStudent.Get_Name;
             }
-            if(txt_StudentContact.Text != Generic.CurrentStudent.Get_Contact)
+            if (txt_StudentContact.Text != Generic.CurrentStudent.Get_Contact)
             {
                 Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar o contacto para " + txt_StudentContact.Text);
                 txt_StudentContact.Text = Generic.CurrentStudent.Get_Contact;
             }
-            if(txt_StudentNIF.Text != Generic.CurrentStudent.Get_NIF)
+            if (txt_StudentNIF.Text != Generic.CurrentStudent.Get_NIF)
             {
                 Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar o NIF para " + txt_StudentNIF.Text);
                 txt_StudentNIF.Text = Generic.CurrentStudent.Get_NIF;
             }
-            if(txt_StudentPassword.Text != Generic.CurrentStudent.Get_password)
+            if (txt_StudentPassword.Text != Generic.CurrentStudent.Get_password)
             {
                 Alteration.Get_List_Of_Fields_To_Change.Add("O User " + Generic.CurrentStudent.Get_studentID + " deseja alterar a password para " + txt_StudentPassword.Text);
                 txt_StudentPassword.Text = Generic.CurrentStudent.Get_password;
@@ -135,7 +154,7 @@ namespace Escola_Virtual
 
         private void btn_Deposit_Click(object sender, EventArgs e)
         {
-            if(txt_QuantityDeposit.Text != "")
+            if (txt_QuantityDeposit.Text != "")
             {
                 lbl_QuantityDepositError.Text = "";
 
@@ -150,6 +169,44 @@ namespace Escola_Virtual
             else
             {
                 lbl_QuantityDepositError.Text = "Campo obrigatório";
+            }
+        }
+
+        private void cbb_SelectUserChat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refreshChat();
+        }
+
+        private void btn_SendMsg_Click(object sender, EventArgs e)
+        {
+            string mensagem = txt_MsgContent.Text;
+
+            Chat NewChatMsg = new Chat()
+            {
+                Set_isRead = false,
+                Set_destinatary = cbb_SelectUserChat.SelectedItem.ToString().Trim().Split('-')[1],
+                Set_origin = Generic.CurrentStudent.Get_studentID,
+                Set_Message = mensagem,
+            };
+
+            Generic._List_Of_Chats.Add(NewChatMsg);
+
+            refreshChat();
+        }
+
+        private void refreshChat()
+        {
+            lb_Chat.Items.Clear();
+            foreach (var item in Generic._List_Of_Chats)
+            {
+                if (item.Get_origin == Generic.CurrentStudent.Get_studentID && item.Get_destinatary == cbb_SelectUserChat.SelectedItem.ToString().Trim().Split('-')[1])
+                {
+                    lb_Chat.Items.Add("Eu: " + item.Get_Message);
+                }
+                if (item.Get_destinatary == Generic.CurrentStudent.Get_studentID && item.Get_origin == cbb_SelectUserChat.SelectedItem.ToString().Trim().Split('-')[1])
+                {
+                    lb_Chat.Items.Add(cbb_SelectUserChat.SelectedItem.ToString().Trim().Split('-')[0] + ": " + item.Get_Message);
+                }
             }
         }
     }

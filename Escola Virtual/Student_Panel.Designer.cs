@@ -56,15 +56,22 @@ namespace Escola_Virtual
             this.lbl_StudentContact = new System.Windows.Forms.Label();
             this.lbl_StudentAddress = new System.Windows.Forms.Label();
             this.lbl_StudentName = new System.Windows.Forms.Label();
+            this.tp_StudentChat = new System.Windows.Forms.TabPage();
+            this.cbb_SelectUserChat = new System.Windows.Forms.ComboBox();
+            this.lb_Chat = new System.Windows.Forms.ListBox();
+            this.txt_MsgContent = new System.Windows.Forms.TextBox();
+            this.btn_SendMsg = new System.Windows.Forms.Button();
             this.tc_Student.SuspendLayout();
             this.tp_Actions.SuspendLayout();
             this.tp_Profile.SuspendLayout();
+            this.tp_StudentChat.SuspendLayout();
             this.SuspendLayout();
             // 
             // tc_Student
             // 
             this.tc_Student.Controls.Add(this.tp_Actions);
             this.tc_Student.Controls.Add(this.tp_Profile);
+            this.tc_Student.Controls.Add(this.tp_StudentChat);
             this.tc_Student.Location = new System.Drawing.Point(2, 1);
             this.tc_Student.Name = "tc_Student";
             this.tc_Student.SelectedIndex = 0;
@@ -348,6 +355,54 @@ namespace Escola_Virtual
             this.lbl_StudentName.TabIndex = 29;
             this.lbl_StudentName.Text = "Nome";
             // 
+            // tp_StudentChat
+            // 
+            this.tp_StudentChat.Controls.Add(this.btn_SendMsg);
+            this.tp_StudentChat.Controls.Add(this.txt_MsgContent);
+            this.tp_StudentChat.Controls.Add(this.lb_Chat);
+            this.tp_StudentChat.Controls.Add(this.cbb_SelectUserChat);
+            this.tp_StudentChat.Location = new System.Drawing.Point(4, 22);
+            this.tp_StudentChat.Name = "tp_StudentChat";
+            this.tp_StudentChat.Padding = new System.Windows.Forms.Padding(3);
+            this.tp_StudentChat.Size = new System.Drawing.Size(598, 430);
+            this.tp_StudentChat.TabIndex = 2;
+            this.tp_StudentChat.Text = "Chat";
+            this.tp_StudentChat.UseVisualStyleBackColor = true;
+            // 
+            // cbb_SelectUserChat
+            // 
+            this.cbb_SelectUserChat.FormattingEnabled = true;
+            this.cbb_SelectUserChat.Location = new System.Drawing.Point(146, 6);
+            this.cbb_SelectUserChat.Name = "cbb_SelectUserChat";
+            this.cbb_SelectUserChat.Size = new System.Drawing.Size(121, 21);
+            this.cbb_SelectUserChat.TabIndex = 0;
+            this.cbb_SelectUserChat.SelectedIndexChanged += new System.EventHandler(this.cbb_SelectUserChat_SelectedIndexChanged);
+            // 
+            // lb_Chat
+            // 
+            this.lb_Chat.FormattingEnabled = true;
+            this.lb_Chat.Location = new System.Drawing.Point(273, 5);
+            this.lb_Chat.Name = "lb_Chat";
+            this.lb_Chat.Size = new System.Drawing.Size(319, 381);
+            this.lb_Chat.TabIndex = 1;
+            // 
+            // txt_MsgContent
+            // 
+            this.txt_MsgContent.Location = new System.Drawing.Point(273, 387);
+            this.txt_MsgContent.Name = "txt_MsgContent";
+            this.txt_MsgContent.Size = new System.Drawing.Size(214, 20);
+            this.txt_MsgContent.TabIndex = 2;
+            // 
+            // btn_SendMsg
+            // 
+            this.btn_SendMsg.Location = new System.Drawing.Point(494, 386);
+            this.btn_SendMsg.Name = "btn_SendMsg";
+            this.btn_SendMsg.Size = new System.Drawing.Size(98, 23);
+            this.btn_SendMsg.TabIndex = 3;
+            this.btn_SendMsg.Text = "Enviar";
+            this.btn_SendMsg.UseVisualStyleBackColor = true;
+            this.btn_SendMsg.Click += new System.EventHandler(this.btn_SendMsg_Click);
+            // 
             // Student_Panel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -363,6 +418,8 @@ namespace Escola_Virtual
             this.tp_Actions.PerformLayout();
             this.tp_Profile.ResumeLayout(false);
             this.tp_Profile.PerformLayout();
+            this.tp_StudentChat.ResumeLayout(false);
+            this.tp_StudentChat.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -395,5 +452,10 @@ namespace Escola_Virtual
         private System.Windows.Forms.Button btn_Deposit;
         private System.Windows.Forms.TextBox txt_QuantityDeposit;
         private System.Windows.Forms.Label lbl_DepositQuantity;
+        private System.Windows.Forms.TabPage tp_StudentChat;
+        private System.Windows.Forms.ListBox lb_Chat;
+        private System.Windows.Forms.ComboBox cbb_SelectUserChat;
+        private System.Windows.Forms.Button btn_SendMsg;
+        private System.Windows.Forms.TextBox txt_MsgContent;
     }
 }

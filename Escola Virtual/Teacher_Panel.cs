@@ -21,6 +21,23 @@ namespace Escola_Virtual
 
         private void Teacher_Panel_Load(object sender, EventArgs e)
         {
+            cbb_SelectUserChat.Items.Clear();
+
+            foreach (var item in Generic._listOf_Teachers)
+            {
+                cbb_SelectUserChat.Items.Add(item.Get_Name + "-" + item.Get_TeacherID);
+            }
+
+            foreach (var item in Generic._list_Of_School_Years)
+            {
+                foreach (var item2 in item.Get_List_Of_Classes)
+                {
+                    foreach (var item3 in item2.Get_List_Of_Student)
+                    {
+                        cbb_SelectUserChat.Items.Add(item3.Get_Name + "-" + item3.Get_studentID);
+                    }
+                }
+            }
 
             txt_TeacherAddress.Text = Generic.CurrentTeacher.Get_Address;
             txt_TeacherName.Text = Generic.CurrentTeacher.Get_Name;
@@ -189,5 +206,49 @@ namespace Escola_Virtual
 
             txt_Teacher_Readonly();
         }
+
+        private void btn_SendMsg_Click(object sender, EventArgs e)
+        {
+            string mensagem = txt_MsgContent.Text;
+
+            Chat NewChatMsg = new Chat()
+            {
+                Set_isRead = false,
+                Set_destinatary = cbb_SelectUserChat.SelectedItem.ToString().Trim().Split('-')[1],
+                Set_origin = Generic.CurrentTeacher.Get_TeacherID,
+                Set_Message = mensagem,
+            };
+
+            Generic._List_Of_Chats.Add(NewChatMsg);
+
+            refreshChat();
+        }
+
+        private void cbb_SelectUserChat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refreshChat();
+        }
+        private void refreshChat()
+        {
+            lb_Chat.Items.Clear();
+            foreach (var item in Generic._List_Of_Chats)
+            {
+
+                if (item.Get_origin == Generic.CurrentTeacher.Get_TeacherID && item.Get_destinatary == cbb_SelectUserChat.SelectedItem.ToString().Trim().Split('-')[1])
+                {
+                    lb_Chat.Items.Add("Eu: " + item.Get_Message);
+                }
+
+                if (item.Get_destinatary == Generic.CurrentTeacher.Get_TeacherID && item.Get_origin == cbb_SelectUserChat.SelectedItem.ToString().Trim().Split('-')[1])
+                {
+                    lb_Chat.Items.Add(cbb_SelectUserChat.SelectedItem.ToString().Trim().Split('-')[0] + ": " + item.Get_Message);
+                }
+
+
+            }
+        }
     }
+
+
+
 }

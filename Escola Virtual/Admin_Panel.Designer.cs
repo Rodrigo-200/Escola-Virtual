@@ -66,6 +66,12 @@ namespace Escola_Virtual
             this.txt_CreateSchoolYear = new System.Windows.Forms.TextBox();
             this.lbl_CreateSchoolYear = new System.Windows.Forms.Label();
             this.tp_StudentsPage = new System.Windows.Forms.TabPage();
+            this.lbl_StudentSelectClassError = new System.Windows.Forms.Label();
+            this.lbl_StudentPasswordError = new System.Windows.Forms.Label();
+            this.lbl_StudentNIFError = new System.Windows.Forms.Label();
+            this.lbl_StudentContactError = new System.Windows.Forms.Label();
+            this.lbl_StudentAddressError = new System.Windows.Forms.Label();
+            this.lbl_StudentNameError = new System.Windows.Forms.Label();
             this.lbl_StudentChooseClass = new System.Windows.Forms.Label();
             this.tvw_Year_Class_Student = new System.Windows.Forms.TreeView();
             this.chb_show_Password = new System.Windows.Forms.CheckBox();
@@ -111,6 +117,8 @@ namespace Escola_Virtual
             this.btn_Deny = new System.Windows.Forms.Button();
             this.btn_Aprove = new System.Windows.Forms.Button();
             this.lb_ChangesRequests = new System.Windows.Forms.ListBox();
+            this.lbl_ClassExistsError = new System.Windows.Forms.Label();
+            this.lbl_SubjectExistsError = new System.Windows.Forms.Label();
             this.tp_AdminCreateThings.SuspendLayout();
             this.tc_AdminCreateThings.SuspendLayout();
             this.tp_AdminCreateSubject.SuspendLayout();
@@ -147,6 +155,7 @@ namespace Escola_Virtual
             // tp_AdminCreateSubject
             // 
             this.tp_AdminCreateSubject.BackColor = System.Drawing.Color.White;
+            this.tp_AdminCreateSubject.Controls.Add(this.lbl_SubjectExistsError);
             this.tp_AdminCreateSubject.Controls.Add(this.lbl_AmmountOfClassesError);
             this.tp_AdminCreateSubject.Controls.Add(this.lbl_SubjectAcronymError);
             this.tp_AdminCreateSubject.Controls.Add(this.lbl_SubjectNameError);
@@ -237,6 +246,7 @@ namespace Escola_Virtual
             this.txt_SubjectAmmountOfClasses.Size = new System.Drawing.Size(76, 20);
             this.txt_SubjectAmmountOfClasses.TabIndex = 6;
             this.txt_SubjectAmmountOfClasses.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txt_SubjectAmmountOfClasses.TextChanged += new System.EventHandler(this.txt_SubjectAmmountOfClasses_TextChanged);
             // 
             // txt_SubjectAcronym
             // 
@@ -245,6 +255,7 @@ namespace Escola_Virtual
             this.txt_SubjectAcronym.Name = "txt_SubjectAcronym";
             this.txt_SubjectAcronym.Size = new System.Drawing.Size(99, 20);
             this.txt_SubjectAcronym.TabIndex = 5;
+            this.txt_SubjectAcronym.TextChanged += new System.EventHandler(this.txt_SubjectAcronym_TextChanged);
             // 
             // lbl_SubjectAcronym
             // 
@@ -273,6 +284,7 @@ namespace Escola_Virtual
             this.txt_SubjectName.Name = "txt_SubjectName";
             this.txt_SubjectName.Size = new System.Drawing.Size(154, 20);
             this.txt_SubjectName.TabIndex = 2;
+            this.txt_SubjectName.TextChanged += new System.EventHandler(this.txt_SubjectName_TextChanged);
             // 
             // label1
             // 
@@ -297,6 +309,7 @@ namespace Escola_Virtual
             // tp_AdminCreateYears
             // 
             this.tp_AdminCreateYears.BackColor = System.Drawing.Color.White;
+            this.tp_AdminCreateYears.Controls.Add(this.lbl_ClassExistsError);
             this.tp_AdminCreateYears.Controls.Add(this.lbl_ChooseYearError);
             this.tp_AdminCreateYears.Controls.Add(this.lbl_ClassAcronymError);
             this.tp_AdminCreateYears.Controls.Add(this.lbl_ClassNameError);
@@ -388,6 +401,7 @@ namespace Escola_Virtual
             this.cbb_ChooseSchoolYear.Name = "cbb_ChooseSchoolYear";
             this.cbb_ChooseSchoolYear.Size = new System.Drawing.Size(141, 21);
             this.cbb_ChooseSchoolYear.TabIndex = 9;
+            this.cbb_ChooseSchoolYear.SelectedIndexChanged += new System.EventHandler(this.cbb_ChooseSchoolYear_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -404,6 +418,7 @@ namespace Escola_Virtual
             this.txt_ClassAcronym.Name = "txt_ClassAcronym";
             this.txt_ClassAcronym.Size = new System.Drawing.Size(114, 20);
             this.txt_ClassAcronym.TabIndex = 7;
+            this.txt_ClassAcronym.TextChanged += new System.EventHandler(this.txt_ClassAcronym_TextChanged);
             // 
             // label3
             // 
@@ -420,6 +435,7 @@ namespace Escola_Virtual
             this.txt_ClassName.Name = "txt_ClassName";
             this.txt_ClassName.Size = new System.Drawing.Size(141, 20);
             this.txt_ClassName.TabIndex = 5;
+            this.txt_ClassName.TextChanged += new System.EventHandler(this.txt_ClassName_TextChanged);
             // 
             // label2
             // 
@@ -456,6 +472,7 @@ namespace Escola_Virtual
             this.txt_CreateSchoolYear.Name = "txt_CreateSchoolYear";
             this.txt_CreateSchoolYear.Size = new System.Drawing.Size(76, 20);
             this.txt_CreateSchoolYear.TabIndex = 1;
+            this.txt_CreateSchoolYear.TextChanged += new System.EventHandler(this.txt_CreateSchoolYear_TextChanged);
             // 
             // lbl_CreateSchoolYear
             // 
@@ -470,6 +487,12 @@ namespace Escola_Virtual
             // tp_StudentsPage
             // 
             this.tp_StudentsPage.BackColor = System.Drawing.Color.White;
+            this.tp_StudentsPage.Controls.Add(this.lbl_StudentSelectClassError);
+            this.tp_StudentsPage.Controls.Add(this.lbl_StudentPasswordError);
+            this.tp_StudentsPage.Controls.Add(this.lbl_StudentNIFError);
+            this.tp_StudentsPage.Controls.Add(this.lbl_StudentContactError);
+            this.tp_StudentsPage.Controls.Add(this.lbl_StudentAddressError);
+            this.tp_StudentsPage.Controls.Add(this.lbl_StudentNameError);
             this.tp_StudentsPage.Controls.Add(this.lbl_StudentChooseClass);
             this.tp_StudentsPage.Controls.Add(this.tvw_Year_Class_Student);
             this.tp_StudentsPage.Controls.Add(this.chb_show_Password);
@@ -494,6 +517,66 @@ namespace Escola_Virtual
             this.tp_StudentsPage.TabIndex = 1;
             this.tp_StudentsPage.Text = "Alunos";
             // 
+            // lbl_StudentSelectClassError
+            // 
+            this.lbl_StudentSelectClassError.AutoSize = true;
+            this.lbl_StudentSelectClassError.ForeColor = System.Drawing.Color.Red;
+            this.lbl_StudentSelectClassError.Location = new System.Drawing.Point(329, 2);
+            this.lbl_StudentSelectClassError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_StudentSelectClassError.Name = "lbl_StudentSelectClassError";
+            this.lbl_StudentSelectClassError.Size = new System.Drawing.Size(0, 13);
+            this.lbl_StudentSelectClassError.TabIndex = 38;
+            // 
+            // lbl_StudentPasswordError
+            // 
+            this.lbl_StudentPasswordError.AutoSize = true;
+            this.lbl_StudentPasswordError.ForeColor = System.Drawing.Color.Red;
+            this.lbl_StudentPasswordError.Location = new System.Drawing.Point(63, 178);
+            this.lbl_StudentPasswordError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_StudentPasswordError.Name = "lbl_StudentPasswordError";
+            this.lbl_StudentPasswordError.Size = new System.Drawing.Size(0, 13);
+            this.lbl_StudentPasswordError.TabIndex = 37;
+            // 
+            // lbl_StudentNIFError
+            // 
+            this.lbl_StudentNIFError.AutoSize = true;
+            this.lbl_StudentNIFError.ForeColor = System.Drawing.Color.Red;
+            this.lbl_StudentNIFError.Location = new System.Drawing.Point(33, 132);
+            this.lbl_StudentNIFError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_StudentNIFError.Name = "lbl_StudentNIFError";
+            this.lbl_StudentNIFError.Size = new System.Drawing.Size(0, 13);
+            this.lbl_StudentNIFError.TabIndex = 36;
+            // 
+            // lbl_StudentContactError
+            // 
+            this.lbl_StudentContactError.AutoSize = true;
+            this.lbl_StudentContactError.ForeColor = System.Drawing.Color.Red;
+            this.lbl_StudentContactError.Location = new System.Drawing.Point(59, 90);
+            this.lbl_StudentContactError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_StudentContactError.Name = "lbl_StudentContactError";
+            this.lbl_StudentContactError.Size = new System.Drawing.Size(0, 13);
+            this.lbl_StudentContactError.TabIndex = 35;
+            // 
+            // lbl_StudentAddressError
+            // 
+            this.lbl_StudentAddressError.AutoSize = true;
+            this.lbl_StudentAddressError.ForeColor = System.Drawing.Color.Red;
+            this.lbl_StudentAddressError.Location = new System.Drawing.Point(52, 45);
+            this.lbl_StudentAddressError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_StudentAddressError.Name = "lbl_StudentAddressError";
+            this.lbl_StudentAddressError.Size = new System.Drawing.Size(0, 13);
+            this.lbl_StudentAddressError.TabIndex = 34;
+            // 
+            // lbl_StudentNameError
+            // 
+            this.lbl_StudentNameError.AutoSize = true;
+            this.lbl_StudentNameError.ForeColor = System.Drawing.Color.Red;
+            this.lbl_StudentNameError.Location = new System.Drawing.Point(44, 2);
+            this.lbl_StudentNameError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_StudentNameError.Name = "lbl_StudentNameError";
+            this.lbl_StudentNameError.Size = new System.Drawing.Size(0, 13);
+            this.lbl_StudentNameError.TabIndex = 33;
+            // 
             // lbl_StudentChooseClass
             // 
             this.lbl_StudentChooseClass.AutoSize = true;
@@ -513,6 +596,7 @@ namespace Escola_Virtual
             this.tvw_Year_Class_Student.Name = "tvw_Year_Class_Student";
             this.tvw_Year_Class_Student.Size = new System.Drawing.Size(350, 299);
             this.tvw_Year_Class_Student.TabIndex = 29;
+            this.tvw_Year_Class_Student.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvw_Year_Class_Student_AfterSelect);
             // 
             // chb_show_Password
             // 
@@ -539,6 +623,7 @@ namespace Escola_Virtual
             this.txt_StudentPassword.PasswordChar = '*';
             this.txt_StudentPassword.Size = new System.Drawing.Size(127, 20);
             this.txt_StudentPassword.TabIndex = 27;
+            this.txt_StudentPassword.TextChanged += new System.EventHandler(this.txt_StudentPassword_TextChanged);
             // 
             // txt_StudentNumber
             // 
@@ -558,6 +643,7 @@ namespace Escola_Virtual
             this.txt_StudentNIF.Name = "txt_StudentNIF";
             this.txt_StudentNIF.Size = new System.Drawing.Size(127, 20);
             this.txt_StudentNIF.TabIndex = 22;
+            this.txt_StudentNIF.TextChanged += new System.EventHandler(this.txt_StudentNIF_TextChanged);
             // 
             // txt_StudentContact
             // 
@@ -567,6 +653,7 @@ namespace Escola_Virtual
             this.txt_StudentContact.Name = "txt_StudentContact";
             this.txt_StudentContact.Size = new System.Drawing.Size(127, 20);
             this.txt_StudentContact.TabIndex = 20;
+            this.txt_StudentContact.TextChanged += new System.EventHandler(this.txt_StudentContact_TextChanged);
             this.txt_StudentContact.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_StudentContact_KeyPress_1);
             // 
             // txt_StudentAddress
@@ -576,6 +663,7 @@ namespace Escola_Virtual
             this.txt_StudentAddress.Name = "txt_StudentAddress";
             this.txt_StudentAddress.Size = new System.Drawing.Size(237, 20);
             this.txt_StudentAddress.TabIndex = 18;
+            this.txt_StudentAddress.TextChanged += new System.EventHandler(this.txt_StudentAddress_TextChanged);
             // 
             // txt_StudentName
             // 
@@ -584,6 +672,7 @@ namespace Escola_Virtual
             this.txt_StudentName.Name = "txt_StudentName";
             this.txt_StudentName.Size = new System.Drawing.Size(127, 20);
             this.txt_StudentName.TabIndex = 16;
+            this.txt_StudentName.TextChanged += new System.EventHandler(this.txt_StudentName_TextChanged);
             // 
             // lbl_StudentPassword
             // 
@@ -774,6 +863,7 @@ namespace Escola_Virtual
             this.txt_TeacherPassword.PasswordChar = '*';
             this.txt_TeacherPassword.Size = new System.Drawing.Size(127, 20);
             this.txt_TeacherPassword.TabIndex = 30;
+            this.txt_TeacherPassword.TextChanged += new System.EventHandler(this.txt_TeacherPassword_TextChanged);
             // 
             // txt_TeacherNumber
             // 
@@ -793,6 +883,7 @@ namespace Escola_Virtual
             this.txt_TeacherNIF.Name = "txt_TeacherNIF";
             this.txt_TeacherNIF.Size = new System.Drawing.Size(127, 20);
             this.txt_TeacherNIF.TabIndex = 7;
+            this.txt_TeacherNIF.TextChanged += new System.EventHandler(this.txt_TeacherNIF_TextChanged);
             this.txt_TeacherNIF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_TeacherNIF_KeyPress);
             // 
             // txt_TeacherContact
@@ -803,6 +894,7 @@ namespace Escola_Virtual
             this.txt_TeacherContact.Name = "txt_TeacherContact";
             this.txt_TeacherContact.Size = new System.Drawing.Size(127, 20);
             this.txt_TeacherContact.TabIndex = 5;
+            this.txt_TeacherContact.TextChanged += new System.EventHandler(this.txt_TeacherContact_TextChanged);
             this.txt_TeacherContact.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_TeacherContact_KeyPress);
             // 
             // txt_TeacherAddress
@@ -812,6 +904,7 @@ namespace Escola_Virtual
             this.txt_TeacherAddress.Name = "txt_TeacherAddress";
             this.txt_TeacherAddress.Size = new System.Drawing.Size(237, 20);
             this.txt_TeacherAddress.TabIndex = 3;
+            this.txt_TeacherAddress.TextChanged += new System.EventHandler(this.txt_TeacherAddress_TextChanged);
             // 
             // txt_TeacherName
             // 
@@ -820,6 +913,7 @@ namespace Escola_Virtual
             this.txt_TeacherName.Name = "txt_TeacherName";
             this.txt_TeacherName.Size = new System.Drawing.Size(127, 20);
             this.txt_TeacherName.TabIndex = 1;
+            this.txt_TeacherName.TextChanged += new System.EventHandler(this.txt_TeacherName_TextChanged);
             this.txt_TeacherName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_TeacherName_KeyPress);
             // 
             // lbl_TeacherPassword
@@ -864,6 +958,7 @@ namespace Escola_Virtual
             this.tvw_TeacherYearsAndSubjects.Size = new System.Drawing.Size(350, 294);
             this.tvw_TeacherYearsAndSubjects.TabIndex = 12;
             this.tvw_TeacherYearsAndSubjects.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvw_TeacherYearsAndSubjects_AfterCheck);
+            this.tvw_TeacherYearsAndSubjects.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvw_TeacherYearsAndSubjects_AfterSelect);
             // 
             // lbl_TeacherYearsAndSubjects
             // 
@@ -987,6 +1082,26 @@ namespace Escola_Virtual
             this.lb_ChangesRequests.TabIndex = 0;
             this.lb_ChangesRequests.SelectedValueChanged += new System.EventHandler(this.lb_ChangesRequests_SelectedValueChanged);
             // 
+            // lbl_ClassExistsError
+            // 
+            this.lbl_ClassExistsError.AutoSize = true;
+            this.lbl_ClassExistsError.ForeColor = System.Drawing.Color.Red;
+            this.lbl_ClassExistsError.Location = new System.Drawing.Point(458, 280);
+            this.lbl_ClassExistsError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_ClassExistsError.Name = "lbl_ClassExistsError";
+            this.lbl_ClassExistsError.Size = new System.Drawing.Size(0, 13);
+            this.lbl_ClassExistsError.TabIndex = 16;
+            // 
+            // lbl_SubjectExistsError
+            // 
+            this.lbl_SubjectExistsError.AutoSize = true;
+            this.lbl_SubjectExistsError.ForeColor = System.Drawing.Color.Red;
+            this.lbl_SubjectExistsError.Location = new System.Drawing.Point(417, 194);
+            this.lbl_SubjectExistsError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_SubjectExistsError.Name = "lbl_SubjectExistsError";
+            this.lbl_SubjectExistsError.Size = new System.Drawing.Size(0, 13);
+            this.lbl_SubjectExistsError.TabIndex = 17;
+            // 
             // Admin_Panel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1096,5 +1211,13 @@ namespace Escola_Virtual
         private System.Windows.Forms.Label lbl_TeacherContactError;
         private System.Windows.Forms.Label lbl_TeacherAddressError;
         private System.Windows.Forms.Label lbl_TeacherNameError;
+        private System.Windows.Forms.Label lbl_StudentContactError;
+        private System.Windows.Forms.Label lbl_StudentAddressError;
+        private System.Windows.Forms.Label lbl_StudentNameError;
+        private System.Windows.Forms.Label lbl_StudentSelectClassError;
+        private System.Windows.Forms.Label lbl_StudentPasswordError;
+        private System.Windows.Forms.Label lbl_StudentNIFError;
+        private System.Windows.Forms.Label lbl_ClassExistsError;
+        private System.Windows.Forms.Label lbl_SubjectExistsError;
     }
 }
