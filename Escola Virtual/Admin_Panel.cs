@@ -596,11 +596,24 @@ namespace Escola_Virtual
         private void btn_Aprove_Click(object sender, EventArgs e)
         {
             btn_Aprove.Enabled = false;
+            btn_Deny.Enabled = false;
+
+
         }
 
         private void lb_ChangesRequests_SelectedValueChanged(object sender, EventArgs e)
         {
-            btn_Aprove.Enabled = true;
+            if (lb_ChangesRequests.SelectedItem != null)
+            {
+
+                btn_Aprove.Enabled = true;
+                btn_Deny.Enabled = true;
+            }
+            else
+            { 
+                btn_Aprove.Enabled = false;
+                btn_Deny.Enabled = false;
+            }
         }
     }
 
