@@ -17,6 +17,7 @@ namespace Escola_Virtual
             InitializeComponent();
         }
 
+
         private void Admin_Panel_Load(object sender, EventArgs e)
         {
 
@@ -98,7 +99,6 @@ namespace Escola_Virtual
 
         private void btn_TeacherConfirm_Click(object sender, EventArgs e)
         {
-
             if (txt_TeacherAddress.Text != "" && txt_TeacherContact.Text != "" && txt_TeacherName.Text != "" && txt_TeacherNIF.Text != "" && Teacher_Chosen_Subjects())
             {
 
@@ -148,11 +148,56 @@ namespace Escola_Virtual
                 Generic._listOf_Teachers.Add(teacher);
 
                 clearTeahcerControls();
+                refreshNewTeacherLabels();
+
+                /* Mostrar que o Professor foi criado
+                MessageBox.Show("Nome: " + teacher.Get_Name + "\nId: " + teacher.Get_TeacherID + "\nPassword: " + teacher.Get_password, 
+                                "Professor criado com sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information); */
             }
             else
             {
-                MessageBox.Show("Tem de preencher todos os campos!", "Escola Virtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                refreshNewTeacherLabels();
+
+                if (txt_TeacherName.Text == "")
+                {
+                    lbl_TeacherNameError.Text = "Campo obrigatório";
+                }
+                if (txt_TeacherAddress.Text == "")
+                {
+                    lbl_TeacherAddressError.Text = "Campo obrigatório";
+                }
+                if (txt_TeacherContact.Text == "")
+                {
+                    lbl_TeacherContactError.Text = "Campo obrigatório";
+                }
+                if (txt_TeacherNIF.Text == "")
+                {
+                    lbl_TeacherNIFError.Text = "Campo obrigatório";
+                }
+                if (txt_TeacherPassword.Text == "")
+                {
+                    lbl_TeacherPasswordError.Text = "Campo obrigatório";
+                }
+                if (tvw_TeacherYearsAndSubjects.SelectedNode == null)
+                {
+                    lbl_ChooseYearSubjectError.Text = "Campo obrigatório";
+                }
+
             }
+
+        }
+
+        /// <summary>
+        /// Metodo para limpar as labels de erro do painel de criar um novo professor
+        /// </summary>
+        private void refreshNewTeacherLabels()
+        {
+            lbl_TeacherNameError.Text = "";
+            lbl_TeacherAddressError.Text = "";
+            lbl_TeacherContactError.Text = "";
+            lbl_TeacherNIFError.Text = "";
+            lbl_TeacherPasswordError.Text = "";
+            lbl_ChooseYearSubjectError.Text = "";
 
         }
 
@@ -231,6 +276,7 @@ namespace Escola_Virtual
             }
         }
 
+
         private void clearStudentControls()
         {
             txt_StudentNIF.Clear();
@@ -241,6 +287,9 @@ namespace Escola_Virtual
             txt_StudentNumber.Text = "S" + Generic.StudentID.ToString().PadLeft(4, '0');
         }
 
+        /// <summary>
+        /// Metodo para limpar as textboxes e checked nodes do painel de criar um novo Professor
+        /// </summary>
         private void clearTeahcerControls()
         {
             txt_TeacherNIF.Clear();
@@ -261,9 +310,15 @@ namespace Escola_Virtual
         {
 
             CheckChildren(e.Node, e.Node.Checked);
+            
 
         }
 
+        /// <summary>
+        /// Metodo encarregue por selecionar todos os nodes "filhos" quando o node "pai" é selecionado
+        /// </summary>
+        /// <param name="rootNode">Node "Pai"</param>
+        /// <param name="isChecked">Node "Pai" está checked ou não</param>
         private void CheckChildren(TreeNode rootNode, bool isChecked)
         {
             foreach (TreeNode node in rootNode.Nodes)
@@ -298,16 +353,22 @@ namespace Escola_Virtual
         }
 
 
-
+        /// <summary>
+        /// Metodo responsavél por Atualizar todas as treeviews, comboboxes, lisboxes e textboxes dos IDs dos professores e alunos
+        /// </summary>
         private void refresh()
         {
 
-            lb_ChangesRequests.Items.Clear();
+            lb_ChangesRequests.Items.Clear(); // Apaga todos os items dentro da listbox para evitar a repitição de items.
 
-            foreach (Change_Request change in Generic._list_Of_Changes)
+            /*
+             * Foreach encarregue de adicionar à listbox todos os items dentro da lista de pedidos de mudanças.
+             */
+
+            foreach (Change_Request change in Generic._list_Of_Changes) // Generic._list_Of_Changes Contem todos os pedidos de alteração de algum dado de um professor e/ou aluno 
             {
                 int cnt = 0;
-                
+
 
                 foreach (string field in change.Get_List_Of_Fields_To_Change)
                 {
@@ -317,12 +378,20 @@ namespace Escola_Virtual
                 }
             }
 
+            /*
+             * Limpar todas as treeviews e comboboxes para evitar a repitição de items
+             */
+
             tvw_CreateSubject.Nodes.Clear();
             tvw_TeacherYearsAndSubjects.Nodes.Clear();
             tvw_Year_Class_Student.Nodes.Clear();
             tvw_AdminCreateClass.Nodes.Clear();
             cbb_ChooseSchoolYear.Items.Clear();
 
+
+            /*
+             * "Comboio" de ifs encarregues de inserir nas textboxes dos ids do proximo professor/aluno a ser criado
+             */
             if (Generic.StudentID < 1)
             {
                 Generic.StudentID = 1;
@@ -343,6 +412,10 @@ namespace Escola_Virtual
                 txt_TeacherNumber.Text = "T" + Generic.TeacherID.ToString().PadLeft(4, '0');
             }
 
+            /*
+             * Foreach encarregue de adicionar os anos e turmas a treeview tvw_AdminCreateClass utilizada no painel de criar uma nova Turma/Ano
+             */
+
             foreach (var i in Generic._list_Of_School_Years)
             {
                 TreeNode Ano = new TreeNode();
@@ -361,6 +434,9 @@ namespace Escola_Virtual
 
             }
 
+            /*
+             * Foreach encarregue de adicionar os anos e turmas a treeview tvw_CreateSubject utilizada no painel de criar uma nova Disciplina
+             */
 
             foreach (var i in Generic._list_Of_School_Years)
             {
@@ -378,9 +454,9 @@ namespace Escola_Virtual
                 }
 
             }
-
-
-
+            /*
+             * Foreach encarregue de adicionar os anos turmas e disciplinas à treeview tvw_TeacherYearsAndSubjects utilizada no painel de criar um novo Professor
+             */
             foreach (var i in Generic._list_Of_School_Years)
             {
                 TreeNode Ano = new TreeNode();
@@ -407,6 +483,10 @@ namespace Escola_Virtual
 
             }
 
+
+            /*
+             * Foreach encarregue de adicionar os anos e turmas a treeview tvw_Year_Class_Student utilizada no painel de criar um novo Aluno
+             */
             foreach (var it in Generic._list_Of_School_Years)
             {
                 TreeNode Year = new TreeNode();
@@ -423,7 +503,9 @@ namespace Escola_Virtual
                 }
             }
 
-
+            /*
+             * Foreach encarregue de adicionar a combobox cbb_ChooseSchoolYear todos os anos existentes na lista de anos escolares (Generic._list_Of_School_Years) 
+             */
             foreach (var item in Generic._list_Of_School_Years)
             {
                 cbb_ChooseSchoolYear.Items.Add(item.Get_Year + "º ano");
@@ -527,13 +609,17 @@ namespace Escola_Virtual
                         break;
                     }
                 }
+
                 refreshSubjectLabelErrors();
+                //Uma vez que a Disciplina foi criada com sucesso as textboxes são limpas para que se possa criar outra
                 clearNewSubjectInputs();
+
                 refresh();
             }
             else
             {
                 refreshSubjectLabelErrors();
+
                 if (txt_SubjectName.Text == "")
                 {
                     lbl_SubjectNameError.Text = "Tem de preencher este campo";
@@ -559,19 +645,28 @@ namespace Escola_Virtual
 
         }
 
-
+        /// <summary>
+        /// Metodo para limpar as textboxes do painel de criar uma noca Turma/Ano
+        /// </summary>
         private void clearNewClassInputs()
         {
             txt_ClassAcronym.Clear();
             txt_ClassName.Clear();
         }
 
+        /// <summary>
+        /// Metodo para limpar as textboxes do painel de criar uma nova Disciplina
+        /// </summary>
         private void clearNewSubjectInputs()
         {
             txt_SubjectAcronym.Clear();
             txt_SubjectName.Clear();
             txt_SubjectAmmountOfClasses.Clear();
         }
+
+        /// <summary>
+        /// Metodo para limpar as labels de erro do painel de criar uma nova Turma/Ano
+        /// </summary>
         private void refreshClassLabelErrors()
         {
             lbl_CreateSchoolYearError.Text = "";
@@ -580,6 +675,9 @@ namespace Escola_Virtual
             lbl_ClassNameError.Text = "";
         }
 
+        /// <summary>
+        /// Metodo para limpar as labels de erro do painel de criar uma nova Disciplina
+        /// </summary>
         private void refreshSubjectLabelErrors()
         {
             lbl_SubjectNameError.Text = "";
@@ -591,6 +689,8 @@ namespace Escola_Virtual
 
 
         #endregion
+
+
 
         private void btn_Aprove_Click(object sender, EventArgs e)
         {
@@ -609,9 +709,21 @@ namespace Escola_Virtual
                 btn_Deny.Enabled = true;
             }
             else
-            { 
+            {
                 btn_Aprove.Enabled = false;
                 btn_Deny.Enabled = false;
+            }
+        }
+
+        private void txt_StudentContact_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+
+            }
+            else
+            {
+                e.Handled = true;
             }
         }
     }
