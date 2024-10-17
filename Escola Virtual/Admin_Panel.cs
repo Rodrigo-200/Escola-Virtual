@@ -375,7 +375,6 @@ namespace Escola_Virtual
                     TreeNode Class = new TreeNode();
                     Class.Text = it.Get_class_name;
                     Ano.Nodes.Add(Class);
-
                 }
 
             }
@@ -491,12 +490,12 @@ namespace Escola_Virtual
                     lbl_ClassNameError.Text = "Tem de preencher este campo";
                     txt_ClassName.Focus();
                 }
-                if(txt_ClassAcronym.Text == "")
+                if (txt_ClassAcronym.Text == "")
                 {
                     lbl_ClassAcronymError.Text = "Tem de preencher este campo";
                     txt_ClassAcronym.Focus();
                 }
-                if(cbb_ChooseSchoolYear.SelectedItem == null)
+                if (cbb_ChooseSchoolYear.SelectedItem == null)
                 {
                     lbl_ChooseYearError.Text = "Tem de escolher uma opção";
                     cbb_ChooseSchoolYear.Focus();
@@ -540,17 +539,17 @@ namespace Escola_Virtual
                     lbl_SubjectNameError.Text = "Tem de preencher este campo";
                     txt_SubjectName.Focus();
                 }
-                if(txt_SubjectAcronym.Text == "")
+                if (txt_SubjectAcronym.Text == "")
                 {
                     lbl_SubjectAcronymError.Text = "Tem de preencher este campo";
                     txt_SubjectAcronym.Focus();
                 }
-                if(txt_SubjectAmmountOfClasses.Text == "")
+                if (txt_SubjectAmmountOfClasses.Text == "")
                 {
                     lbl_AmmountOfClassesError.Text = "Tem de preencher este campo";
                     txt_SubjectAmmountOfClasses.Focus();
                 }
-                if(tvw_CreateSubject.SelectedNode == null)
+                if (tvw_CreateSubject.SelectedNode == null)
                 {
                     lbl_ChooseClassToCreateSubjectError.Text = "Tem de preencher este campo";
                     tvw_CreateSubject.Focus();
