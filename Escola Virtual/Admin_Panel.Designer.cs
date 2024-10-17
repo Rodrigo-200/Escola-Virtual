@@ -83,6 +83,12 @@ namespace Escola_Virtual
             this.lbl_StudentAddress = new System.Windows.Forms.Label();
             this.lbl_StudentName = new System.Windows.Forms.Label();
             this.tp_TeachersPage = new System.Windows.Forms.TabPage();
+            this.lbl_ChooseYearSubjectError = new System.Windows.Forms.Label();
+            this.lbl_TeacherPasswordError = new System.Windows.Forms.Label();
+            this.lbl_TeacherNIFError = new System.Windows.Forms.Label();
+            this.lbl_TeacherContactError = new System.Windows.Forms.Label();
+            this.lbl_TeacherAddressError = new System.Windows.Forms.Label();
+            this.lbl_TeacherNameError = new System.Windows.Forms.Label();
             this.chb_TeacherShowPassword = new System.Windows.Forms.CheckBox();
             this.txt_TeacherPassword = new System.Windows.Forms.TextBox();
             this.txt_TeacherNumber = new System.Windows.Forms.TextBox();
@@ -651,6 +657,12 @@ namespace Escola_Virtual
             // tp_TeachersPage
             // 
             this.tp_TeachersPage.BackColor = System.Drawing.Color.White;
+            this.tp_TeachersPage.Controls.Add(this.lbl_ChooseYearSubjectError);
+            this.tp_TeachersPage.Controls.Add(this.lbl_TeacherPasswordError);
+            this.tp_TeachersPage.Controls.Add(this.lbl_TeacherNIFError);
+            this.tp_TeachersPage.Controls.Add(this.lbl_TeacherContactError);
+            this.tp_TeachersPage.Controls.Add(this.lbl_TeacherAddressError);
+            this.tp_TeachersPage.Controls.Add(this.lbl_TeacherNameError);
             this.tp_TeachersPage.Controls.Add(this.chb_TeacherShowPassword);
             this.tp_TeachersPage.Controls.Add(this.txt_TeacherPassword);
             this.tp_TeachersPage.Controls.Add(this.txt_TeacherNumber);
@@ -674,6 +686,66 @@ namespace Escola_Virtual
             this.tp_TeachersPage.Size = new System.Drawing.Size(600, 339);
             this.tp_TeachersPage.TabIndex = 0;
             this.tp_TeachersPage.Text = "Professores";
+            // 
+            // lbl_ChooseYearSubjectError
+            // 
+            this.lbl_ChooseYearSubjectError.AutoSize = true;
+            this.lbl_ChooseYearSubjectError.ForeColor = System.Drawing.Color.Red;
+            this.lbl_ChooseYearSubjectError.Location = new System.Drawing.Point(405, 6);
+            this.lbl_ChooseYearSubjectError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_ChooseYearSubjectError.Name = "lbl_ChooseYearSubjectError";
+            this.lbl_ChooseYearSubjectError.Size = new System.Drawing.Size(0, 13);
+            this.lbl_ChooseYearSubjectError.TabIndex = 37;
+            // 
+            // lbl_TeacherPasswordError
+            // 
+            this.lbl_TeacherPasswordError.AutoSize = true;
+            this.lbl_TeacherPasswordError.ForeColor = System.Drawing.Color.Red;
+            this.lbl_TeacherPasswordError.Location = new System.Drawing.Point(63, 184);
+            this.lbl_TeacherPasswordError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_TeacherPasswordError.Name = "lbl_TeacherPasswordError";
+            this.lbl_TeacherPasswordError.Size = new System.Drawing.Size(0, 13);
+            this.lbl_TeacherPasswordError.TabIndex = 36;
+            // 
+            // lbl_TeacherNIFError
+            // 
+            this.lbl_TeacherNIFError.AutoSize = true;
+            this.lbl_TeacherNIFError.ForeColor = System.Drawing.Color.Red;
+            this.lbl_TeacherNIFError.Location = new System.Drawing.Point(34, 138);
+            this.lbl_TeacherNIFError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_TeacherNIFError.Name = "lbl_TeacherNIFError";
+            this.lbl_TeacherNIFError.Size = new System.Drawing.Size(0, 13);
+            this.lbl_TeacherNIFError.TabIndex = 35;
+            // 
+            // lbl_TeacherContactError
+            // 
+            this.lbl_TeacherContactError.AutoSize = true;
+            this.lbl_TeacherContactError.ForeColor = System.Drawing.Color.Red;
+            this.lbl_TeacherContactError.Location = new System.Drawing.Point(60, 91);
+            this.lbl_TeacherContactError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_TeacherContactError.Name = "lbl_TeacherContactError";
+            this.lbl_TeacherContactError.Size = new System.Drawing.Size(0, 13);
+            this.lbl_TeacherContactError.TabIndex = 34;
+            // 
+            // lbl_TeacherAddressError
+            // 
+            this.lbl_TeacherAddressError.AutoSize = true;
+            this.lbl_TeacherAddressError.ForeColor = System.Drawing.Color.Red;
+            this.lbl_TeacherAddressError.Location = new System.Drawing.Point(53, 48);
+            this.lbl_TeacherAddressError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_TeacherAddressError.Name = "lbl_TeacherAddressError";
+            this.lbl_TeacherAddressError.Size = new System.Drawing.Size(0, 13);
+            this.lbl_TeacherAddressError.TabIndex = 33;
+            // 
+            // lbl_TeacherNameError
+            // 
+            this.lbl_TeacherNameError.AutoSize = true;
+            this.lbl_TeacherNameError.ForeColor = System.Drawing.Color.Red;
+            this.lbl_TeacherNameError.Location = new System.Drawing.Point(45, 8);
+            this.lbl_TeacherNameError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_TeacherNameError.Name = "lbl_TeacherNameError";
+            this.lbl_TeacherNameError.Size = new System.Drawing.Size(0, 13);
+            this.lbl_TeacherNameError.TabIndex = 32;
             // 
             // chb_TeacherShowPassword
             // 
@@ -1016,5 +1088,11 @@ namespace Escola_Virtual
         private System.Windows.Forms.Button btn_Deny;
         private System.Windows.Forms.Button btn_Aprove;
         private System.Windows.Forms.ListBox lb_ChangesRequests;
+        private System.Windows.Forms.Label lbl_ChooseYearSubjectError;
+        private System.Windows.Forms.Label lbl_TeacherPasswordError;
+        private System.Windows.Forms.Label lbl_TeacherNIFError;
+        private System.Windows.Forms.Label lbl_TeacherContactError;
+        private System.Windows.Forms.Label lbl_TeacherAddressError;
+        private System.Windows.Forms.Label lbl_TeacherNameError;
     }
 }
