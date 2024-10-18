@@ -23,78 +23,6 @@ namespace Escola_Virtual
             refresh();
         }
 
-        private void txt_TeacherName_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
-            {
-
-            }
-            else
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txt_TeacherContact_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
-            {
-
-            }
-            else
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txt_TeacherNIF_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
-            {
-
-            }
-            else
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txt_StudentName_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar))
-            {
-
-            }
-            else
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txt_StudentContact_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
-            {
-
-            }
-            else
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txt_StudentNIF_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
-            {
-
-            }
-            else
-            {
-                e.Handled = true;
-            }
-        }
-
         private void btn_TeacherConfirm_Click(object sender, EventArgs e)
         {
             if (txt_TeacherAddress.Text != "" && txt_TeacherContact.Text != "" && txt_TeacherName.Text != "" && txt_TeacherNIF.Text != "" && Teacher_Chosen_Subjects())
@@ -150,9 +78,8 @@ namespace Escola_Virtual
                     clearTeahcerControls();
                     refresh();
 
-                    /* Mostrar que o Professor foi criado
                     MessageBox.Show("Nome: " + teacher.Get_Name + "\nId: " + teacher.Get_TeacherID + "\nPassword: " + teacher.Get_password, 
-                                    "Professor criado com sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information); */
+                                    "Professor criado com sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -168,48 +95,65 @@ namespace Escola_Virtual
 
         private void btn_StudentConfirm_Click(object sender, EventArgs e)
         {
-            if (txt_StudentAddress.Text != "" && txt_StudentContact.Text != "" && txt_StudentName.Text != "" && txt_StudentNIF.Text != "" && tvw_Year_Class_Student.SelectedNode != null)
+            if (txt_StudentAddress.Text != "" && txt_StudentContact.Text != "" && txt_StudentName.Text != "" && txt_StudentPassword.Text != "" && txt_StudentNIF.Text != "" && tvw_Year_Class_Student.SelectedNode != null)
             {
-                if (!Generic._list_Of_School_Years.Any(m => m.Get_List_Of_Classes.Any(c => c.Get_List_Of_Student.Exists(s => s.Get_NIF == txt_StudentNIF.Text))))
+                School_Year getYear = new School_Year();
+                getYear = Generic._list_Of_School_Years.Where(y => y.Get_Year.ToString() == tvw_Year_Class_Student.SelectedNode.Parent.Text.Split('º')[0]).FirstOrDefault();
+
+                Class checkAmtOfStudent = new Class();
+                checkAmtOfStudent = getYear.Get_List_Of_Classes.Where(c => c.Get_class_name == tvw_Year_Class_Student.SelectedNode.Text).FirstOrDefault();
+
+               
+                if (checkAmtOfStudent.Get_List_Of_Student.Count + 1 <= checkAmtOfStudent.Get_AmountOfStudents)
                 {
-                    Student student = new Student()
+
+
+                    if (!Generic._list_Of_School_Years.Any(m => m.Get_List_Of_Classes.Any(c => c.Get_List_Of_Student.Exists(s => s.Get_NIF == txt_StudentNIF.Text))))
                     {
-                        Set_Name = txt_StudentName.Text,
-                        Set_Address = txt_StudentAddress.Text,
-                        Set_Contact = txt_StudentContact.Text,
-                        Set_NIF = txt_StudentNIF.Text,
-                        Set_Password = txt_StudentPassword.Text,
-                        Set_StudentID = txt_StudentNumber.Text,
-                        Set_ClassName = tvw_Year_Class_Student.SelectedNode.Text,
-                    };
-
-
-
-                    foreach (var year in Generic._list_Of_School_Years)
-                    {
-                        if (year.Get_Year == Convert.ToInt32(tvw_Year_Class_Student.SelectedNode.Parent.Text.Split('º')[0]))
+                        Student student = new Student()
                         {
-                            year.Get_List_Of_Classes.Where(m => m.Get_class_name == tvw_Year_Class_Student.SelectedNode.Text).ToList().FirstOrDefault().Get_List_Of_Student.Add(student);
-                            break;
+                            Set_Name = txt_StudentName.Text,
+                            Set_Address = txt_StudentAddress.Text,
+                            Set_Contact = txt_StudentContact.Text,
+                            Set_NIF = txt_StudentNIF.Text,
+                            Set_Password = txt_StudentPassword.Text,
+                            Set_StudentID = txt_StudentNumber.Text,
+                            Set_ClassName = tvw_Year_Class_Student.SelectedNode.Text,
+                        };
+
+
+
+                        foreach (var year in Generic._list_Of_School_Years)
+                        {
+                            if (year.Get_Year == Convert.ToInt32(tvw_Year_Class_Student.SelectedNode.Parent.Text.Split('º')[0]))
+                            {
+                                year.Get_List_Of_Classes.Where(m => m.Get_class_name == tvw_Year_Class_Student.SelectedNode.Text).ToList().FirstOrDefault().Get_List_Of_Student.Add(student);
+                                break;
+                            }
                         }
+
+
+
+
+
+                        Generic.StudentID++;
+
+                        clearStudentControls();
+
+                        MessageBox.Show("Nome: " + student.Get_Name + "\nId: " + student.Get_studentID + "\nPassword: " + student.Get_password, 
+                                       "Aluno criado com sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information); 
                     }
-
-
-
-
-
-                    Generic.StudentID++;
-
-                    clearStudentControls();
-
-                    /* Mostrar que o Aluno foi criado
-                    MessageBox.Show("Nome: " + student.Get_Name + "\nId: " + student.Get_TeacherID + "\nPassword: " + student.Get_password, 
-                                   "Aluno criado com sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information); */
+                    else
+                    {
+                        lbl_StudentNIFError.Text = "Um aluno com este NIF já existe!";
+                    }
                 }
                 else
                 {
-                    lbl_StudentNIFError.Text = "Um aluno com este NIF já existe!";
+                    MessageBox.Show("Esta turma já não aceita mais alunos!",
+                                      "Limite Excedido", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
             }
             else
             {
@@ -245,35 +189,6 @@ namespace Escola_Virtual
                 txt_TeacherPassword.PasswordChar = '*';
             }
         }
-
-
-        private void clearStudentControls()
-        {
-            txt_StudentNIF.Clear();
-            txt_StudentName.Clear();
-            txt_StudentAddress.Clear();
-            txt_StudentContact.Clear();
-            txt_StudentPassword.Clear();
-            txt_StudentNumber.Text = "S" + Generic.StudentID.ToString().PadLeft(4, '0');
-        }
-
-        /// <summary>
-        /// Metodo para limpar as textboxes e checked nodes do painel de criar um novo Professor
-        /// </summary>
-        private void clearTeahcerControls()
-        {
-            txt_TeacherNIF.Clear();
-            txt_TeacherName.Clear();
-            txt_TeacherAddress.Clear();
-            txt_TeacherContact.Clear();
-            txt_TeacherPassword.Clear();
-            tvw_TeacherYearsAndSubjects.CheckBoxes = false;
-            tvw_TeacherYearsAndSubjects.CheckBoxes = true;
-            txt_TeacherNumber.Text = "T" + Generic.TeacherID.ToString().PadLeft(4, '0');
-
-
-        }
-
 
 
         private void tvw_TeacherYearsAndSubjects_AfterCheck(object sender, TreeViewEventArgs e)
@@ -403,8 +318,8 @@ namespace Escola_Virtual
             }
 
             /*
- * Foreach encarregue de adicionar a treeview tvw_ShowEverything todos os anos, turmas, disciplinas, alunos e professores
- */
+             * Foreach encarregue de adicionar a treeview tvw_ShowEverything todos os anos, turmas, disciplinas, alunos e professores
+             */
 
             foreach (var i in Generic._list_Of_School_Years)
             {
@@ -637,18 +552,6 @@ namespace Escola_Virtual
             lb_ChangesRequests.Items.Remove(lb_ChangesRequests.SelectedItem.ToString());
         }
 
-        private void txt_StudentContact_KeyPress_1(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
-            {
-
-            }
-            else
-            {
-                e.Handled = true;
-            }
-        }
-
         #region "Outros"
         private void btn_CreateSchoolYear_Click(object sender, EventArgs e)
         {
@@ -696,6 +599,7 @@ namespace Escola_Virtual
                         Set_class_name = txt_ClassName.Text,
                         Set_class_acronym = txt_ClassAcronym.Text,
                         Set_school_year = school_Year.Get_Year,
+                        Set_AmountOfStudents = Convert.ToInt32(txt_MaxAmountOfStudents.Text),
                     };
 
                     school_Year.Get_List_Of_Classes.Add(newclass);
@@ -766,7 +670,37 @@ namespace Escola_Virtual
 
         }
 
-        #region Limpar Labels Erros E INPUTS
+        #region Limpar Inputs
+
+        /// <summary>
+        /// Metodo para limpar as textboxes e checked nodes do painel de criar um novo aluno
+        /// </summary>
+        private void clearStudentControls()
+        {
+            txt_StudentNIF.Clear();
+            txt_StudentName.Clear();
+            txt_StudentAddress.Clear();
+            txt_StudentContact.Clear();
+            txt_StudentPassword.Clear();
+            txt_StudentNumber.Text = "S" + Generic.StudentID.ToString().PadLeft(4, '0');
+        }
+
+        /// <summary>
+        /// Metodo para limpar as textboxes e checked nodes do painel de criar um novo Professor
+        /// </summary>
+        private void clearTeahcerControls()
+        {
+            txt_TeacherNIF.Clear();
+            txt_TeacherName.Clear();
+            txt_TeacherAddress.Clear();
+            txt_TeacherContact.Clear();
+            txt_TeacherPassword.Clear();
+            tvw_TeacherYearsAndSubjects.CheckBoxes = false;
+            tvw_TeacherYearsAndSubjects.CheckBoxes = true;
+            txt_TeacherNumber.Text = "T" + Generic.TeacherID.ToString().PadLeft(4, '0');
+
+
+        }
 
         /// <summary>
         /// Metodo para limpar as textboxes do painel de criar uma noca Turma/Ano
@@ -775,6 +709,7 @@ namespace Escola_Virtual
         {
             txt_ClassAcronym.Clear();
             txt_ClassName.Clear();
+            txt_MaxAmountOfStudents.Clear();
         }
 
         /// <summary>
@@ -785,66 +720,6 @@ namespace Escola_Virtual
             txt_SubjectAcronym.Clear();
             txt_SubjectName.Clear();
             txt_SubjectAmmountOfClasses.Clear();
-        }
-
-        /// <summary>
-        /// Metodo para limpar as labels de erro do painel de criar uma nova Turma/Ano
-        /// </summary>
-        private void refreshClassLabelErrors()
-        {
-            lbl_CreateSchoolYearError.Text = "";
-            lbl_ChooseYearError.Text = "";
-            lbl_ClassAcronymError.Text = "";
-            lbl_ClassNameError.Text = "";
-            lbl_ClassExistsError.Text = "";
-
-            if (txt_CreateSchoolYear.Text == "")
-            {
-                lbl_CreateSchoolYearError.Text = "Tem de preencher este campo";
-            }
-
-            if (txt_ClassName.Text == "")
-            {
-                lbl_ClassNameError.Text = "Tem de preencher este campo";
-            }
-            if (txt_ClassAcronym.Text == "")
-            {
-                lbl_ClassAcronymError.Text = "Tem de preencher este campo";
-            }
-            if (cbb_ChooseSchoolYear.SelectedItem == null)
-            {
-                lbl_ChooseYearError.Text = "Tem de escolher uma opção";
-            }
-
-        }
-
-        /// <summary>
-        /// Metodo para limpar as labels de erro do painel de criar uma nova Disciplina
-        /// </summary>
-        private void refreshSubjectLabelErrors()
-        {
-            lbl_SubjectNameError.Text = "";
-            lbl_SubjectAcronymError.Text = "";
-            lbl_ChooseClassToCreateSubjectError.Text = "";
-            lbl_AmmountOfClassesError.Text = "";
-            lbl_SubjectExistsError.Text = "";
-
-            if (txt_SubjectName.Text == "")
-            {
-                lbl_SubjectNameError.Text = "Tem de preencher este campo";
-            }
-            if (txt_SubjectAcronym.Text == "")
-            {
-                lbl_SubjectAcronymError.Text = "Tem de preencher este campo";
-            }
-            if (txt_SubjectAmmountOfClasses.Text == "")
-            {
-                lbl_AmmountOfClassesError.Text = "Tem de preencher este campo";
-            }
-            if (tvw_CreateSubject.SelectedNode == null)
-            {
-                lbl_ChooseClassToCreateSubjectError.Text = "Tem de preencher este campo";
-            }
         }
 
         #endregion
@@ -998,6 +873,42 @@ namespace Escola_Virtual
         #endregion
 
         #region Refresh New Year/Class Labels
+
+        /// <summary>
+        /// Metodo para limpar as labels de erro do painel de criar uma nova Turma/Ano
+        /// </summary>
+        private void refreshClassLabelErrors()
+        {
+            lbl_CreateSchoolYearError.Text = "";
+            lbl_ChooseYearError.Text = "";
+            lbl_ClassAcronymError.Text = "";
+            lbl_ClassNameError.Text = "";
+            lbl_ClassExistsError.Text = "";
+            lbl_MaxAmountOfStudentsError.Text = "";
+
+            if (txt_CreateSchoolYear.Text == "")
+            {
+                lbl_CreateSchoolYearError.Text = "Tem de preencher este campo";
+            }
+
+            if (txt_ClassName.Text == "")
+            {
+                lbl_ClassNameError.Text = "Tem de preencher este campo";
+            }
+            if (txt_ClassAcronym.Text == "")
+            {
+                lbl_ClassAcronymError.Text = "Tem de preencher este campo";
+            }
+            if (txt_MaxAmountOfStudents.Text == "")
+            {
+                lbl_MaxAmountOfStudentsError.Text = "Tem de preencher este campo";
+            }
+            if (cbb_ChooseSchoolYear.SelectedItem == null)
+            {
+                lbl_ChooseYearError.Text = "Tem de escolher uma opção";
+            }
+
+        }
         private void txt_CreateSchoolYear_TextChanged(object sender, EventArgs e)
         {
             refreshClassLabelErrors();
@@ -1017,9 +928,42 @@ namespace Escola_Virtual
             refreshClassLabelErrors();
         }
 
+        private void txt_MaxAmountOfStudents_TextChanged(object sender, EventArgs e)
+        {
+            refreshClassLabelErrors();
+        }
         #endregion
 
         #region Refresh New Subject Labels
+
+        /// <summary>
+        /// Metodo para limpar as labels de erro do painel de criar uma nova Disciplina
+        /// </summary>
+        private void refreshSubjectLabelErrors()
+        {
+            lbl_SubjectNameError.Text = "";
+            lbl_SubjectAcronymError.Text = "";
+            lbl_ChooseClassToCreateSubjectError.Text = "";
+            lbl_AmmountOfClassesError.Text = "";
+            lbl_SubjectExistsError.Text = "";
+
+            if (txt_SubjectName.Text == "")
+            {
+                lbl_SubjectNameError.Text = "Tem de preencher este campo";
+            }
+            if (txt_SubjectAcronym.Text == "")
+            {
+                lbl_SubjectAcronymError.Text = "Tem de preencher este campo";
+            }
+            if (txt_SubjectAmmountOfClasses.Text == "")
+            {
+                lbl_AmmountOfClassesError.Text = "Tem de preencher este campo";
+            }
+            if (tvw_CreateSubject.SelectedNode == null)
+            {
+                lbl_ChooseClassToCreateSubjectError.Text = "Tem de preencher este campo";
+            }
+        }
         private void txt_SubjectName_TextChanged(object sender, EventArgs e)
         {
             refreshSubjectLabelErrors();
@@ -1036,6 +980,19 @@ namespace Escola_Virtual
         }
         #endregion
 
+        #region KeyPress's
+
+        private void txt_StudentContact_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
         private void txt_StudentNIF_KeyPress_1(object sender, KeyPressEventArgs e)
         {
             if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
@@ -1047,6 +1004,104 @@ namespace Escola_Virtual
                 e.Handled = true;
             }
         }
+
+        private void txt_MaxAmountOfStudents_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txt_StudentName_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txt_StudentNIF_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txt_TeacherName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txt_TeacherContact_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txt_TeacherNIF_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txt_StudentName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txt_StudentContact_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        #endregion
     }
 
 

@@ -56,6 +56,8 @@
             this.txt_MsgContent = new System.Windows.Forms.TextBox();
             this.lb_Chat = new System.Windows.Forms.ListBox();
             this.cbb_SelectUserChat = new System.Windows.Forms.ComboBox();
+            this.lbl_Contacts = new System.Windows.Forms.Label();
+            this.lbl_PlaceHolder = new System.Windows.Forms.Label();
             this.tc_Teacher.SuspendLayout();
             this.tp_StudentActions.SuspendLayout();
             this.tp_StudentProfile.SuspendLayout();
@@ -305,6 +307,8 @@
             // 
             // tp_TeacherChat
             // 
+            this.tp_TeacherChat.Controls.Add(this.lbl_PlaceHolder);
+            this.tp_TeacherChat.Controls.Add(this.lbl_Contacts);
             this.tp_TeacherChat.Controls.Add(this.btn_SendMsg);
             this.tp_TeacherChat.Controls.Add(this.txt_MsgContent);
             this.tp_TeacherChat.Controls.Add(this.lb_Chat);
@@ -320,7 +324,7 @@
             // 
             // btn_SendMsg
             // 
-            this.btn_SendMsg.Location = new System.Drawing.Point(585, 464);
+            this.btn_SendMsg.Location = new System.Drawing.Point(582, 464);
             this.btn_SendMsg.Margin = new System.Windows.Forms.Padding(4);
             this.btn_SendMsg.Name = "btn_SendMsg";
             this.btn_SendMsg.Size = new System.Drawing.Size(131, 28);
@@ -336,6 +340,7 @@
             this.txt_MsgContent.Name = "txt_MsgContent";
             this.txt_MsgContent.Size = new System.Drawing.Size(284, 22);
             this.txt_MsgContent.TabIndex = 6;
+            this.txt_MsgContent.Click += new System.EventHandler(this.txt_MsgContent_Click);
             // 
             // lb_Chat
             // 
@@ -350,12 +355,31 @@
             // cbb_SelectUserChat
             // 
             this.cbb_SelectUserChat.FormattingEnabled = true;
-            this.cbb_SelectUserChat.Location = new System.Drawing.Point(120, 9);
+            this.cbb_SelectUserChat.Location = new System.Drawing.Point(120, 33);
             this.cbb_SelectUserChat.Margin = new System.Windows.Forms.Padding(4);
             this.cbb_SelectUserChat.Name = "cbb_SelectUserChat";
             this.cbb_SelectUserChat.Size = new System.Drawing.Size(160, 24);
             this.cbb_SelectUserChat.TabIndex = 4;
             this.cbb_SelectUserChat.SelectedIndexChanged += new System.EventHandler(this.cbb_SelectUserChat_SelectedIndexChanged);
+            // 
+            // lbl_Contacts
+            // 
+            this.lbl_Contacts.AutoSize = true;
+            this.lbl_Contacts.Location = new System.Drawing.Point(120, 9);
+            this.lbl_Contacts.Name = "lbl_Contacts";
+            this.lbl_Contacts.Size = new System.Drawing.Size(71, 17);
+            this.lbl_Contacts.TabIndex = 8;
+            this.lbl_Contacts.Text = "Contactos";
+            // 
+            // lbl_PlaceHolder
+            // 
+            this.lbl_PlaceHolder.AutoSize = true;
+            this.lbl_PlaceHolder.Location = new System.Drawing.Point(292, 468);
+            this.lbl_PlaceHolder.Name = "lbl_PlaceHolder";
+            this.lbl_PlaceHolder.Size = new System.Drawing.Size(202, 17);
+            this.lbl_PlaceHolder.TabIndex = 9;
+            this.lbl_PlaceHolder.Text = "Escreva aqui a sua mensagem";
+            this.lbl_PlaceHolder.Click += new System.EventHandler(this.lbl_PlaceHolder_Click);
             // 
             // Teacher_Panel
             // 
@@ -407,5 +431,7 @@
         private System.Windows.Forms.TextBox txt_MsgContent;
         private System.Windows.Forms.ListBox lb_Chat;
         private System.Windows.Forms.ComboBox cbb_SelectUserChat;
+        private System.Windows.Forms.Label lbl_PlaceHolder;
+        private System.Windows.Forms.Label lbl_Contacts;
     }
 }

@@ -21,6 +21,10 @@ namespace Escola_Virtual
 
         private void Teacher_Panel_Load(object sender, EventArgs e)
         {
+            if (txt_MsgContent.Text == "")
+            {
+                lbl_PlaceHolder.Visible = true;
+            }
             int Num_New_Msg = 0;
             foreach (var chat in Generic._List_Of_Chats)
             {
@@ -234,14 +238,22 @@ namespace Escola_Virtual
                 nota.Set_Grade = Convert.ToInt32(txt_GradeValue.Text);
                 nota.Set_subject = _class.Get_List_Of_Subject.Where(s => s.Get_name == tvw_GradeLaunch.SelectedNode.Parent.Text).FirstOrDefault();
 
-                _class.Get_List_Of_Student.Where(st => st.Get_studentID == tvw_GradeLaunch.SelectedNode.Text.Split('-')[1]).FirstOrDefault().Get_List_Of_Grades.Add(nota);
-                txt_GradeValue.Clear();
-                txt_GradeValue.Focus();
+                if (_class.Get_List_Of_Student.Where(s => s.Get_studentID == tvw_GradeLaunch.SelectedNode.Text.Split('-')[1]).FirstOrDefault().Get_List_Of_Grades.Where(sb => sb.Get_subject == nota.Get_subject).Count() > 0) 
+                {
+                    MessageBox.Show("Já foi lançada uma nota para este aluno nesta disciplina", "Escola Virtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    _class.Get_List_Of_Student.Where(st => st.Get_studentID == tvw_GradeLaunch.SelectedNode.Text.Split('-')[1]).FirstOrDefault().Get_List_Of_Grades.Add(nota);
+                    txt_GradeValue.Clear();
+                    txt_GradeValue.Focus();
+                }
             }
         }
 
         private void btn_SendMsg_Click(object sender, EventArgs e)
         {
+
             string mensagem = txt_MsgContent.Text;
 
             Chat NewChatMsg = new Chat()
@@ -256,12 +268,20 @@ namespace Escola_Virtual
 
             refreshChat();
             txt_MsgContent.Clear();
-            txt_MsgContent.Focus();
+
+            if (txt_MsgContent.Text == "")
+            {
+                lbl_PlaceHolder.Visible = true;
+            }
         }
 
         private void cbb_SelectUserChat_SelectedIndexChanged(object sender, EventArgs e)
         {
             refreshChat();
+            if (txt_MsgContent.Text == "")
+            {
+                lbl_PlaceHolder.Visible = true;
+            }
         }
         private void refreshChat()
         {
@@ -282,6 +302,17 @@ namespace Escola_Virtual
 
 
             }
+        }
+
+        private void txt_MsgContent_Click(object sender, EventArgs e)
+        {
+            lbl_PlaceHolder.Visible = false;
+        }
+
+        private void lbl_PlaceHolder_Click(object sender, EventArgs e)
+        {
+            lbl_PlaceHolder.Visible = false;
+            txt_MsgContent.Focus();
         }
     }
 

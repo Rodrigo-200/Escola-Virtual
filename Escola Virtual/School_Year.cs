@@ -11,10 +11,10 @@ namespace Escola_Virtual
           private int _year;
           private List<Class> _list_Of_Classes = new List<Class>()
           {
-              new Class() { Set_class_name = "Técnico de Gestão e Programação de Sistemas Informáticos", Set_class_acronym = "TGPSI" },
-              new Class() { Set_class_name = "Técnico de Eletrónica Automação e Comando", Set_class_acronym = "TEAC" },
-              new Class() { Set_class_name = "Técnico de Gestão", Set_class_acronym = "TG" },
-              new Class() { Set_class_name = "técnico de Mecatronica Automóvel", Set_class_acronym = "TMA" }
+              new Class() { Set_class_name = "Técnico de Gestão e Programação de Sistemas Informáticos", Set_class_acronym = "TGPSI" , Set_AmountOfStudents = 30 },
+              new Class() { Set_class_name = "Técnico de Eletrónica Automação e Comando", Set_class_acronym = "TEAC", Set_AmountOfStudents = 12 },
+              new Class() { Set_class_name = "Técnico de Gestão", Set_class_acronym = "TG", Set_AmountOfStudents = 15  },
+              new Class() { Set_class_name = "técnico de Mecatronica Automóvel", Set_class_acronym = "TMA", Set_AmountOfStudents = 20 }
 
           };
 
