@@ -20,9 +20,7 @@ namespace Escola_Virtual
 
         private void Admin_Panel_Load(object sender, EventArgs e)
         {
-
             refresh();
-
         }
 
         private void txt_TeacherName_KeyPress(object sender, KeyPressEventArgs e)
@@ -99,61 +97,67 @@ namespace Escola_Virtual
 
         private void btn_TeacherConfirm_Click(object sender, EventArgs e)
         {
-            //VERIFICAR SE O PROFESSOR A CRIAR JÁ EXISTE (NIF)
-
             if (txt_TeacherAddress.Text != "" && txt_TeacherContact.Text != "" && txt_TeacherName.Text != "" && txt_TeacherNIF.Text != "" && Teacher_Chosen_Subjects())
             {
-
-
-
-                Teachers teacher = new Teachers()
+                if (!Generic._listOf_Teachers.Exists(m => m.Get_NIF == txt_TeacherNIF.Text))
                 {
-                    Set_Name = txt_TeacherName.Text,
-                    Set_Address = txt_TeacherAddress.Text,
-                    Set_NIF = txt_TeacherNIF.Text,
-                    Set_Contact = txt_TeacherContact.Text,
-                    Set_TeacherID = txt_TeacherNumber.Text,
-                    Set_Password = txt_TeacherPassword.Text,
-                };
 
-                foreach (TreeNode g in tvw_TeacherYearsAndSubjects.Nodes)
-                {
-                    string Year = g.Text.Split('º')[0];
 
-                    foreach (TreeNode u in g.Nodes)
+                    Teachers teacher = new Teachers()
                     {
-                        string Class = u.Text;
+                        Set_Name = txt_TeacherName.Text,
+                        Set_Address = txt_TeacherAddress.Text,
+                        Set_NIF = txt_TeacherNIF.Text,
+                        Set_Contact = txt_TeacherContact.Text,
+                        Set_TeacherID = txt_TeacherNumber.Text,
+                        Set_Password = txt_TeacherPassword.Text,
+                    };
 
-                        foreach (TreeNode i in u.Nodes)
+                    foreach (TreeNode g in tvw_TeacherYearsAndSubjects.Nodes)
+                    {
+                        string Year = g.Text.Split('º')[0];
+
+                        foreach (TreeNode u in g.Nodes)
                         {
-                            School_Year school_Year = new School_Year();
-                            Subject subject = new Subject();
-                            Class turma = new Class();
+                            string Class = u.Text;
 
-                            school_Year = Generic._list_Of_School_Years.Where(m => m.Get_Year == Convert.ToInt32(Year)).FirstOrDefault();
-                            turma = school_Year.Get_List_Of_Classes.Where(m => m.Get_class_name == Class).FirstOrDefault();
-                            subject = turma.Get_List_Of_Subject.Where(m => m.Get_name == i.Text).FirstOrDefault();
-                            subject.Set_Teacherid = teacher.Get_TeacherID;
-
-
-                            if (i.Checked == true)
+                            foreach (TreeNode i in u.Nodes)
                             {
-                                teacher.Get_List_Of_Subjects_Teaching.Add(subject);
-                            }
+                                School_Year school_Year = new School_Year();
+                                Subject subject = new Subject();
+                                Class turma = new Class();
 
+                                school_Year = Generic._list_Of_School_Years.Where(m => m.Get_Year == Convert.ToInt32(Year)).FirstOrDefault();
+                                turma = school_Year.Get_List_Of_Classes.Where(m => m.Get_class_name == Class).FirstOrDefault();
+                                subject = turma.Get_List_Of_Subject.Where(m => m.Get_name == i.Text).FirstOrDefault();
+
+
+
+                                if (i.Checked == true)
+                                {
+                                    teacher.Get_List_Of_Subjects_Teaching.Add(subject);
+                                    subject.Set_Teacherid = teacher.Get_TeacherID;
+                                }
+
+                            }
                         }
                     }
+
+                    Generic.TeacherID++;
+
+                    Generic._listOf_Teachers.Add(teacher);
+
+                    clearTeahcerControls();
+                    refresh();
+
+                    /* Mostrar que o Professor foi criado
+                    MessageBox.Show("Nome: " + teacher.Get_Name + "\nId: " + teacher.Get_TeacherID + "\nPassword: " + teacher.Get_password, 
+                                    "Professor criado com sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information); */
                 }
-
-                Generic.TeacherID++;
-
-                Generic._listOf_Teachers.Add(teacher);
-
-                clearTeahcerControls();
-
-                /* Mostrar que o Professor foi criado
-                MessageBox.Show("Nome: " + teacher.Get_Name + "\nId: " + teacher.Get_TeacherID + "\nPassword: " + teacher.Get_password, 
-                                "Professor criado com sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information); */
+                else
+                {
+                    lbl_TeacherNIFError.Text = "Um professor com este NIF já existe!";
+                }
             }
             else
             {
@@ -164,43 +168,48 @@ namespace Escola_Virtual
 
         private void btn_StudentConfirm_Click(object sender, EventArgs e)
         {
-            //VERIFICAR SE O PROFESSOR A CRIAR JÁ EXISTE (NIF)
-
             if (txt_StudentAddress.Text != "" && txt_StudentContact.Text != "" && txt_StudentName.Text != "" && txt_StudentNIF.Text != "" && tvw_Year_Class_Student.SelectedNode != null)
             {
-                Student student = new Student()
+                if (!Generic._list_Of_School_Years.Any(m => m.Get_List_Of_Classes.Any(c => c.Get_List_Of_Student.Exists(s => s.Get_NIF == txt_StudentNIF.Text))))
                 {
-                    Set_Name = txt_StudentName.Text,
-                    Set_Address = txt_StudentAddress.Text,
-                    Set_Contact = txt_StudentContact.Text,
-                    Set_NIF = txt_StudentNIF.Text,
-                    Set_Password = txt_StudentPassword.Text,
-                    Set_StudentID = txt_StudentNumber.Text,
-                    Set_ClassName = tvw_Year_Class_Student.SelectedNode.Text,
-                };
-
-
-
-                foreach (var year in Generic._list_Of_School_Years)
-                {
-                    if (year.Get_Year == Convert.ToInt32(tvw_Year_Class_Student.SelectedNode.Parent.Text.Split('º')[0]))
+                    Student student = new Student()
                     {
-                        year.Get_List_Of_Classes.Where(m => m.Get_class_name == tvw_Year_Class_Student.SelectedNode.Text).ToList().FirstOrDefault().Get_List_Of_Student.Add(student);
-                        break;
+                        Set_Name = txt_StudentName.Text,
+                        Set_Address = txt_StudentAddress.Text,
+                        Set_Contact = txt_StudentContact.Text,
+                        Set_NIF = txt_StudentNIF.Text,
+                        Set_Password = txt_StudentPassword.Text,
+                        Set_StudentID = txt_StudentNumber.Text,
+                        Set_ClassName = tvw_Year_Class_Student.SelectedNode.Text,
+                    };
+
+
+
+                    foreach (var year in Generic._list_Of_School_Years)
+                    {
+                        if (year.Get_Year == Convert.ToInt32(tvw_Year_Class_Student.SelectedNode.Parent.Text.Split('º')[0]))
+                        {
+                            year.Get_List_Of_Classes.Where(m => m.Get_class_name == tvw_Year_Class_Student.SelectedNode.Text).ToList().FirstOrDefault().Get_List_Of_Student.Add(student);
+                            break;
+                        }
                     }
+
+
+
+
+
+                    Generic.StudentID++;
+
+                    clearStudentControls();
+
+                    /* Mostrar que o Aluno foi criado
+                    MessageBox.Show("Nome: " + student.Get_Name + "\nId: " + student.Get_TeacherID + "\nPassword: " + student.Get_password, 
+                                   "Aluno criado com sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information); */
                 }
-
-
-
-
-
-                Generic.StudentID++;
-
-                clearStudentControls();
-
-                /* Mostrar que o Aluno foi criado
-                MessageBox.Show("Nome: " + student.Get_Name + "\nId: " + student.Get_TeacherID + "\nPassword: " + student.Get_password, 
-                               "Aluno criado com sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information); */
+                else
+                {
+                    lbl_StudentNIFError.Text = "Um aluno com este NIF já existe!";
+                }
             }
             else
             {
@@ -320,6 +329,9 @@ namespace Escola_Virtual
         private void refresh()
         {
 
+            
+
+
 
             lb_ChangesRequests.Items.Clear(); // Apaga todos os items dentro da listbox para evitar a repitição de items.
 
@@ -342,6 +354,7 @@ namespace Escola_Virtual
             tvw_Year_Class_Student.Nodes.Clear();
             tvw_AdminCreateClass.Nodes.Clear();
             cbb_ChooseSchoolYear.Items.Clear();
+            tvw_ShowEverything.Nodes.Clear();
 
 
             /*
@@ -390,6 +403,61 @@ namespace Escola_Virtual
             }
 
             /*
+ * Foreach encarregue de adicionar a treeview tvw_ShowEverything todos os anos, turmas, disciplinas, alunos e professores
+ */
+
+            foreach (var i in Generic._list_Of_School_Years)
+            {
+                TreeNode Ano = new TreeNode();
+                Ano.Text = i.Get_Year.ToString() + "º ano";
+                tvw_ShowEverything.Nodes.Add(Ano);
+
+
+
+                foreach (var it in i.Get_List_Of_Classes)
+                {
+                    TreeNode Class = new TreeNode();
+                    Class.Text = it.Get_class_name;
+                    Ano.Nodes.Add(Class);
+
+                    TreeNode Discp = new TreeNode();
+                    TreeNode Std = new TreeNode();
+                    Discp.Text = "Disciplinas";
+                    Std.Text = "Alunos";
+                    Class.Nodes.Add(Discp);
+                    Class.Nodes.Add(Std);
+
+                    foreach (var ite in it.Get_List_Of_Subject)
+                    {
+                        TreeNode Subject = new TreeNode();
+                        Subject.Text = ite.Get_name;
+                        Discp.Nodes.Add(Subject);
+
+                        TreeNode Teacher = new TreeNode();
+                        Teachers tch = new Teachers();
+                        tch = Generic._listOf_Teachers.Where(t => t.Get_TeacherID == ite.Get_Teacherid).FirstOrDefault();
+                        if (tch == null) { }
+                        else
+                        {
+
+                            Teacher.Text = tch.Get_Name + "-" + tch.Get_TeacherID;
+                            Subject.Nodes.Add(Teacher);
+                        }
+                    }
+
+                    foreach (var item in it.Get_List_Of_Student)
+                    {
+                        TreeNode Student = new TreeNode();
+                        Student.Text = item.Get_Name + "-" + item.Get_studentID;
+                        Std.Nodes.Add(Student);
+                    }
+
+                }
+
+
+            }
+
+            /*
              * Foreach encarregue de adicionar os anos e turmas a treeview tvw_CreateSubject utilizada no painel de criar uma nova Disciplina
              */
 
@@ -429,9 +497,12 @@ namespace Escola_Virtual
 
                     foreach (var ite in it.Get_List_Of_Subject)
                     {
-                        TreeNode Subject = new TreeNode();
-                        Subject.Text = ite.Get_name;
-                        Class.Nodes.Add(Subject);
+                        if (ite.Get_Teacherid == null)
+                        {
+                            TreeNode Subject = new TreeNode();
+                            Subject.Text = ite.Get_name;
+                            Class.Nodes.Add(Subject);
+                        }
                     }
 
 
@@ -964,6 +1035,18 @@ namespace Escola_Virtual
             refreshSubjectLabelErrors();
         }
         #endregion
+
+        private void txt_StudentNIF_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
     }
 
 

@@ -21,6 +21,19 @@ namespace Escola_Virtual
 
         private void Teacher_Panel_Load(object sender, EventArgs e)
         {
+            int Num_New_Msg = 0;
+            foreach (var chat in Generic._List_Of_Chats)
+            {
+                if (chat.Get_destinatary == Generic.CurrentTeacher.Get_TeacherID && chat.Get_isRead == false)
+                {
+                    Num_New_Msg++;
+                }
+            }
+            if (Num_New_Msg > 0)
+            {
+                MessageBox.Show("Tem " + Num_New_Msg + " mensagens por ler!", "Escola Virtual", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
             cbb_SelectUserChat.Items.Clear();
 
             foreach (var item in Generic._listOf_Teachers)
@@ -222,6 +235,8 @@ namespace Escola_Virtual
                 nota.Set_subject = _class.Get_List_Of_Subject.Where(s => s.Get_name == tvw_GradeLaunch.SelectedNode.Parent.Text).FirstOrDefault();
 
                 _class.Get_List_Of_Student.Where(st => st.Get_studentID == tvw_GradeLaunch.SelectedNode.Text.Split('-')[1]).FirstOrDefault().Get_List_Of_Grades.Add(nota);
+                txt_GradeValue.Clear();
+                txt_GradeValue.Focus();
             }
         }
 
@@ -240,6 +255,8 @@ namespace Escola_Virtual
             Generic._List_Of_Chats.Add(NewChatMsg);
 
             refreshChat();
+            txt_MsgContent.Clear();
+            txt_MsgContent.Focus();
         }
 
         private void cbb_SelectUserChat_SelectedIndexChanged(object sender, EventArgs e)
@@ -260,6 +277,7 @@ namespace Escola_Virtual
                 if (item.Get_destinatary == Generic.CurrentTeacher.Get_TeacherID && item.Get_origin == cbb_SelectUserChat.SelectedItem.ToString().Trim().Split('-')[1])
                 {
                     lb_Chat.Items.Add(cbb_SelectUserChat.SelectedItem.ToString().Trim().Split('-')[0] + ": " + item.Get_Message);
+                    item.Set_isRead = true;
                 }
 
 

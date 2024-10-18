@@ -20,6 +20,8 @@ namespace Escola_Virtual
         private string _class_acronym;
         private int _classID;
         private int _school_year;
+        private int _AmountOfStudents;
+
 
         #region Propriedades de Get
         public List<Student> Get_List_Of_Student
@@ -67,6 +69,14 @@ namespace Escola_Virtual
             get
             {
                 return _school_year;
+            }
+        }
+
+        public int Get_AmountOfStudents
+        {
+            get
+            {
+                return _AmountOfStudents;
             }
         }
 
@@ -120,6 +130,14 @@ namespace Escola_Virtual
             set
             {
                  _school_year=value;
+            }
+        }
+
+        public int Set_AmountOfStudents
+        {
+            set
+            {
+                _AmountOfStudents = value;
             }
         }
 

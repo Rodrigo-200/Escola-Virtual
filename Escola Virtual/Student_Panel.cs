@@ -20,6 +20,20 @@ namespace Escola_Virtual
 
         private void Student_Panel_Load(object sender, EventArgs e)
         {
+            int Num_New_Msg=0;
+            foreach(var chat in Generic._List_Of_Chats)
+            {
+                if(chat.Get_destinatary==Generic.CurrentStudent.Get_studentID&&chat.Get_isRead==false)
+                {
+                    Num_New_Msg++;
+                }
+            }
+            if (Num_New_Msg > 0)
+            {
+                MessageBox.Show("Tem " + Num_New_Msg + " mensagens por ler!", "Escola Virtual", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            lbl_ShowBalance.Text = "Saldo: " + Generic.CurrentStudent.Get_saldo.ToString();
             cbb_SelectUserChat.Items.Clear();
 
             foreach (var item in Generic._listOf_Teachers)
@@ -175,14 +189,18 @@ namespace Escola_Virtual
 
         private void btn_Deposit_Click(object sender, EventArgs e)
         {
-            //ADICIONAR REALMENTE O SALDO AO USER
             if (txt_QuantityDeposit.Text != "")
             {
+                int saldo = Generic.CurrentStudent.Get_saldo;
                 lbl_QuantityDepositError.Text = "";
 
                 string aux = "Deposito no valor de " + txt_QuantityDeposit.Text + "€";
 
                 Generic.CurrentStudent.Get_History.Add(aux);
+
+                saldo += Convert.ToInt32(txt_QuantityDeposit.Text);
+                Generic.CurrentStudent.Set_saldo = saldo;
+                lbl_ShowBalance.Text = "Saldo: " + Generic.CurrentStudent.Get_saldo.ToString();
 
                 lb_History.Items.Clear();
                 lb_History.Items.AddRange(Generic.CurrentStudent.Get_History.ToArray());
@@ -209,11 +227,13 @@ namespace Escola_Virtual
                 Set_destinatary = cbb_SelectUserChat.SelectedItem.ToString().Trim().Split('-')[1],
                 Set_origin = Generic.CurrentStudent.Get_studentID,
                 Set_Message = mensagem,
-            };
+        };
 
             Generic._List_Of_Chats.Add(NewChatMsg);
 
             refreshChat();
+            txt_MsgContent.Clear();
+            txt_MsgContent.Focus();
         }
 
         private void refreshChat()
@@ -228,6 +248,7 @@ namespace Escola_Virtual
                 if (item.Get_destinatary == Generic.CurrentStudent.Get_studentID && item.Get_origin == cbb_SelectUserChat.SelectedItem.ToString().Trim().Split('-')[1])
                 {
                     lb_Chat.Items.Add(cbb_SelectUserChat.SelectedItem.ToString().Trim().Split('-')[0] + ": " + item.Get_Message);
+                    item.Set_isRead = true;
                 }
             }
         }
