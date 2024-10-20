@@ -25,6 +25,7 @@ namespace Escola_Virtual
 
         private void btn_TeacherConfirm_Click(object sender, EventArgs e)
         {
+            //Cria um Professor com as suas devidas informações e atribui a disciplina que irá lecionar o seu id
             if (txt_TeacherAddress.Text != "" && txt_TeacherContact.Text != "" && txt_TeacherName.Text != "" && txt_TeacherNIF.Text != "" && Teacher_Chosen_Subjects())
             {
                 if (!Generic._listOf_Teachers.Exists(m => m.Get_NIF == txt_TeacherNIF.Text))
@@ -95,6 +96,7 @@ namespace Escola_Virtual
 
         private void btn_StudentConfirm_Click(object sender, EventArgs e)
         {
+            //Cria um aluno com as suas devidas informações
             if (txt_StudentAddress.Text != "" && txt_StudentContact.Text != "" && txt_StudentName.Text != "" && txt_StudentPassword.Text != "" && txt_StudentNIF.Text != "" && tvw_Year_Class_Student.SelectedNode != null)
             {
                 School_Year getYear = new School_Year();
@@ -462,6 +464,9 @@ namespace Escola_Virtual
 
         private void btn_Aprove_Click(object sender, EventArgs e)
         {
+            /*
+             * Ao aprovar um pedido de alteração, realiza a alteração ao devido aluno/professor
+             */
             btn_Aprove.Enabled = false;
             btn_Deny.Enabled = false;
 
@@ -521,7 +526,7 @@ namespace Escola_Virtual
                 }
             }
 
-
+            //remove o pedido da lista de pedidos e da listbox
             Generic._list_Of_Changes.Remove(User_change);
             lb_ChangesRequests.Items.Remove(lb_ChangesRequests.SelectedItem.ToString());
 
@@ -530,6 +535,7 @@ namespace Escola_Virtual
 
         private void lb_ChangesRequests_SelectedValueChanged(object sender, EventArgs e)
         {
+            //Verifica se algum item está selecionado para ativar os botões
             if (lb_ChangesRequests.SelectedItem != null)
             {
 
@@ -545,6 +551,7 @@ namespace Escola_Virtual
 
         private void btn_Deny_Click(object sender, EventArgs e)
         {
+            //Ao reprovar um pedido não altera a informação no aluno/professor e retira da listbox e lista de pedidos
             Change_Request User_change = new Change_Request();
             User_change = Generic._list_Of_Changes.Where(c => c.Get_Message == lb_ChangesRequests.SelectedItem.ToString()).FirstOrDefault();
 
@@ -555,6 +562,8 @@ namespace Escola_Virtual
         #region "Outros"
         private void btn_CreateSchoolYear_Click(object sender, EventArgs e)
         {
+            //Cria um ano escolar com as suas devidas informações
+
             if (txt_CreateSchoolYear.Text != "")
             {
                 if (!Generic._list_Of_School_Years.Exists(m => m.Get_Year.ToString() == txt_CreateSchoolYear.Text.Split('º')[0])) //Verifica se o ano a criar já existe ou não
@@ -583,6 +592,7 @@ namespace Escola_Virtual
 
         private void btn_CreateClass_Click(object sender, EventArgs e)
         {
+            //Cria uma Turma com as suas devidas informações
             if (txt_ClassName.Text != "" && txt_ClassAcronym.Text != "" && cbb_ChooseSchoolYear.SelectedItem != null)
             {
                 School_Year year = new School_Year();
@@ -622,7 +632,7 @@ namespace Escola_Virtual
 
         private void btn_CreateSubject_Click(object sender, EventArgs e)
         {
-
+            //Cria uma disciplina com as suas devidas informações
             if (txt_SubjectName.Text != "" && txt_SubjectAcronym.Text != "" && txt_SubjectAmmountOfClasses.Text != "" && tvw_CreateSubject.SelectedNode != null)
             {
                 School_Year school_Year = new School_Year();
@@ -652,7 +662,6 @@ namespace Escola_Virtual
                     }
 
                     refreshSubjectLabelErrors();
-                    //Uma vez que a Disciplina foi criada com sucesso as textboxes são limpas para que se possa criar outra
                     clearNewSubjectInputs();
 
                     refresh();

@@ -18,8 +18,6 @@ namespace Escola_Virtual
         private string _studentID;
         private int _saldo;
         private string _className;
-        
-        //lista de chat (classe - chat (ainda necessario criar esta classe) ) - Para guardar mensagens
 
         #region Propriedades de Set
         public List<Grade> Get_List_Of_Grades

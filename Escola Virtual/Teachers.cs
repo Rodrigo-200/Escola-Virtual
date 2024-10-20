@@ -15,8 +15,6 @@ namespace Escola_Virtual
         private string _NIF;
         private string _password;
         private string _teacherID;
-        
-        //chat igual ao aluno
 
 
 

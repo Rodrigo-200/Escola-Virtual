@@ -8,7 +8,7 @@ namespace Escola_Virtual
 {
     public class Grade
     {
-        private Subject _subject = new Subject(); // tem de dar link a classe subject
+        private Subject _subject = new Subject();
         private int _grade;
 
         #region Propriedades de Get

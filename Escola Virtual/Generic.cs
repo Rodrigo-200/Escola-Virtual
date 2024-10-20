@@ -20,8 +20,6 @@ namespace Escola_Virtual
 
         public static List<Chat> _List_Of_Chats = new List<Chat>();
 
-        //public static List<Int64> _list_Of_Ids = new List<Int64>();
-
         public static Student CurrentStudent = new Student();
         public static Teachers CurrentTeacher = new Teachers();
 

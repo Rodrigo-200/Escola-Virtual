@@ -21,10 +21,14 @@ namespace Escola_Virtual
 
         private void Teacher_Panel_Load(object sender, EventArgs e)
         {
+            //Verifica se a textbox txt_MsgContent nao contem texto If(true) modifica a propriedade "Visible" a true e mostra o PlaceHolder
             if (txt_MsgContent.Text == "")
             {
+                lbl_PlaceHolder.Text = "Mensagem para " + cbb_SelectUserChat.Text.Split('-')[0];
                 lbl_PlaceHolder.Visible = true;
             }
+
+            //Verifica se o utilizador tem mensagens por ler e conta quantas são
             int Num_New_Msg = 0;
             foreach (var chat in Generic._List_Of_Chats)
             {
@@ -35,11 +39,16 @@ namespace Escola_Virtual
             }
             if (Num_New_Msg > 0)
             {
+                //Apresenta a message box com a quantidade de mensagens por ler do utilizador
                 MessageBox.Show("Tem " + Num_New_Msg + " mensagens por ler!", "Escola Virtual", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
+            //Limpa os items da ComboBox "cbb_SelectUserChat" para evitar repetição de items
             cbb_SelectUserChat.Items.Clear();
 
+            /*
+             * Serie de foreach encarregues por adicionar à ComboBox "cbb_SelectUserChat" todos os Utilizadores (Alunos e Professores)
+             */
             foreach (var item in Generic._listOf_Teachers)
             {
                 cbb_SelectUserChat.Items.Add(item.Get_Name + "-" + item.Get_TeacherID);
@@ -56,6 +65,7 @@ namespace Escola_Virtual
                 }
             }
 
+            //Ao carregar a página Atualiza no painel "Perfil" os dados do utilizador
             txt_TeacherAddress.Text = Generic.CurrentTeacher.Get_Address;
             txt_TeacherName.Text = Generic.CurrentTeacher.Get_Name;
             txt_TeacherContact.Text = Generic.CurrentTeacher.Get_Contact;
@@ -63,6 +73,9 @@ namespace Escola_Virtual
             txt_TeacherNumber.Text = Generic.CurrentTeacher.Get_TeacherID;
             txt_TeacherPassword.Text = Generic.CurrentTeacher.Get_password;
 
+            /*
+             * Atualiza a TreeView "tvw_GradeLaunch" com todos os alunos das suas disciplinas para lançar as notas
+             */
             List<School_Year> Year = new List<School_Year>();
             Year = Generic._list_Of_School_Years.Where(y => y.Get_List_Of_Classes.Any(c => c.Get_List_Of_Subject.Any(s => s.Get_Teacherid == Generic.CurrentTeacher.Get_TeacherID))).ToList();
             
@@ -131,6 +144,9 @@ namespace Escola_Virtual
             txt_Teacher_Readonly();
         }
 
+        /// <summary>
+        /// Metodo encarregue de mudar todas as TextBoxes entre não se poder escrever e poder (Verifica o estado do botão btn_Submit para mudar entre os 2 estados)
+        /// </summary>
         private void txt_Teacher_Readonly()
         {
             if (btn_TeacherSubmit.Enabled == false)
@@ -158,7 +174,9 @@ namespace Escola_Virtual
 
         private void btn_TeacherSubmit_Click(object sender, EventArgs e)
         {
-
+            /*
+             * Serie de ifs que verificam quais os campos que o utilizador pretende modificar e adiciona essa mudança a Lista de mudanças Generic._list_Of_Changes
+             */
             if (txt_TeacherAddress.Text != Generic.CurrentTeacher.Get_Address)
             {
                 Change_Request Alteration = new Change_Request();
@@ -216,6 +234,7 @@ namespace Escola_Virtual
 
         private void btn_GradeLaunch_Click(object sender, EventArgs e)
         {
+            //Verifica se a nota que o professor é válida 
             if (Convert.ToInt32(txt_GradeValue.Text) > 20 || Convert.ToInt32(txt_GradeValue.Text) < 0)
             {
                 MessageBox.Show("Valor de nota inválido!", "Escola Virtual", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -253,25 +272,33 @@ namespace Escola_Virtual
 
         private void btn_SendMsg_Click(object sender, EventArgs e)
         {
+            /*
+             * Adiciona a mensagem a lista de "chats" contendo a origem, destinatario, a mensagem e define a mensagem como não vista (isRead = false)
+             * Atualiza a ListBox lb_Chat
+             */
 
             string mensagem = txt_MsgContent.Text;
 
-            Chat NewChatMsg = new Chat()
+            if (mensagem != "")
             {
-                Set_isRead = false,
-                Set_destinatary = cbb_SelectUserChat.SelectedItem.ToString().Trim().Split('-')[1],
-                Set_origin = Generic.CurrentTeacher.Get_TeacherID,
-                Set_Message = mensagem,
-            };
+                Chat NewChatMsg = new Chat()
+                {
+                    Set_isRead = false,
+                    Set_destinatary = cbb_SelectUserChat.SelectedItem.ToString().Trim().Split('-')[1],
+                    Set_origin = Generic.CurrentTeacher.Get_TeacherID,
+                    Set_Message = mensagem,
+                };
 
-            Generic._List_Of_Chats.Add(NewChatMsg);
+                Generic._List_Of_Chats.Add(NewChatMsg);
 
-            refreshChat();
-            txt_MsgContent.Clear();
+                refreshChat();
+                txt_MsgContent.Clear();
 
-            if (txt_MsgContent.Text == "")
-            {
-                lbl_PlaceHolder.Visible = true;
+                if (txt_MsgContent.Text == "")
+                {
+                    lbl_PlaceHolder.Text = "Mensagem para " + cbb_SelectUserChat.Text.Split('-')[0];
+                    lbl_PlaceHolder.Visible = true;
+                }
             }
         }
 
@@ -280,9 +307,14 @@ namespace Escola_Virtual
             refreshChat();
             if (txt_MsgContent.Text == "")
             {
+                lbl_PlaceHolder.Text = "Mensagem para " + cbb_SelectUserChat.Text.Split('-')[0];
                 lbl_PlaceHolder.Visible = true;
             }
         }
+
+        /// <summary>
+        /// Atualiza a ListBox lb_Chat com as mensagens do utilizador como "Eu" e do destinatario como "Nome do destinatario" e atualiza a variavel isRead
+        /// </summary>
         private void refreshChat()
         {
             lb_Chat.Items.Clear();
@@ -304,15 +336,27 @@ namespace Escola_Virtual
             }
         }
 
-        private void txt_MsgContent_Click(object sender, EventArgs e)
+        private void lbl_PlaceHolder_Click(object sender, EventArgs e)
         {
+            //Atualiza a lbl_PLaceHolder para nao visivel uma vez que o utilizado quer escrever a mensagem e dá focus à textBox para o utilizador escrever a sua mensagem
+            lbl_PlaceHolder.Visible = false;
+            txt_MsgContent.Focus();
+        }
+
+        private void txt_MsgContent_Enter(object sender, EventArgs e)
+        {
+            //Atualiza a lbl_PLaceHolder para nao visivel uma vez que o utilizado quer escrever a mensagem
             lbl_PlaceHolder.Visible = false;
         }
 
-        private void lbl_PlaceHolder_Click(object sender, EventArgs e)
+        private void txt_MsgContent_Leave(object sender, EventArgs e)
         {
-            lbl_PlaceHolder.Visible = false;
-            txt_MsgContent.Focus();
+            //Atualiza a lbl_PLaceHolder para visivel uma vez que o utilizado já nao esta na TextBox txt_MsgContent
+            if (txt_MsgContent.Text == "")
+            {
+                lbl_PlaceHolder.Text = "Mensagem para " + cbb_SelectUserChat.Text.Split('-')[0];
+                lbl_PlaceHolder.Visible = true;
+            }
         }
     }
 

@@ -20,22 +20,38 @@ namespace Escola_Virtual
 
         private void Student_Panel_Load(object sender, EventArgs e)
         {
+
+            //Verifica se a textbox txt_MsgContent nao contem texto If(true) modifica a propriedade "Visible" a true e mostra o PlaceHolder
+            if (txt_MsgContent.Text == "")
+            {
+                lbl_PlaceHolder.Text = "Mensagem para " + cbb_SelectUserChat.Text.Split('-')[0];
+                lbl_PlaceHolder.Visible = true;
+            }
+
+            //Verifica se o utilizador tem mensagens por ler e conta quantas são
             int Num_New_Msg=0;
             foreach(var chat in Generic._List_Of_Chats)
             {
                 if(chat.Get_destinatary==Generic.CurrentStudent.Get_studentID&&chat.Get_isRead==false)
                 {
-                    Num_New_Msg++;
+                    Num_New_Msg++; 
                 }
             }
             if (Num_New_Msg > 0)
             {
+                //Apresenta a message box com a quantidade de mensagens por ler do utilizador
                 MessageBox.Show("Tem " + Num_New_Msg + " mensagens por ler!", "Escola Virtual", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
+            //Mostra o saldo atual do utilizador ao carregar o form "Student"
             lbl_ShowBalance.Text = "Saldo: " + Generic.CurrentStudent.Get_saldo.ToString();
+
+            //Limpa os items da ComboBox "cbb_SelectUserChat" para evitar repetição de items
             cbb_SelectUserChat.Items.Clear();
 
+            /*
+             * Serie de foreach encarregues por adicionar à ComboBox "cbb_SelectUserChat" todos os Utilizadores (Alunos e Professores)
+             */
             foreach (var item in Generic._listOf_Teachers)
             {
                 cbb_SelectUserChat.Items.Add(item.Get_Name + "-" + item.Get_TeacherID);
@@ -53,9 +69,13 @@ namespace Escola_Virtual
             }
 
 
+            //Limpa os items da LisBox "lb_History"  para evitar repetições de items
             lb_History.Items.Clear();
+
+            //Adiciona o Historico do cartão do aluno a ListBox "lb_History"
             lb_History.Items.AddRange(Generic.CurrentStudent.Get_History.ToArray());
 
+            //Ao carregar a página Atualiza no painel "Perfil" os dados do utilizador
             txt_StudentAddress.Text = Generic.CurrentStudent.Get_Address;
             txt_StudentName.Text = Generic.CurrentStudent.Get_Name;
             txt_StudentContact.Text = Generic.CurrentStudent.Get_Contact;
@@ -63,13 +83,13 @@ namespace Escola_Virtual
             txt_StudentNumber.Text = Generic.CurrentStudent.Get_studentID;
             txt_StudentPassword.Text = Generic.CurrentStudent.Get_password;
 
+            /*
+             * Atualiza a TreeView "tvw_Grades" com todas as notas do Aluno organizadas pela disciplina correspondente
+             */
 
             School_Year year = new School_Year();
             Class _class = new Class();
             year = Generic._list_Of_School_Years.FirstOrDefault(y => y.Get_List_Of_Classes.Any(c => c.Get_List_Of_Student.Any(s => s.Get_studentID == Generic.CurrentStudent.Get_studentID)));
-
-
-
             _class = year.Get_List_Of_Classes.Where(c => c.Get_class_name.ToString() == Generic.CurrentStudent.Get_ClassName).FirstOrDefault();
 
             foreach (var s in _class.Get_List_Of_Subject)
@@ -90,16 +110,14 @@ namespace Escola_Virtual
 
         }
 
-        private void tvw_Grades_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-
-        }
-
         private void btn_edit_Click(object sender, EventArgs e)
         {
             txt_Student_Readonly();
         }
 
+        /// <summary>
+        /// Metodo encarregue de mudar todas as TextBoxes entre não se poder escrever e poder (Verifica o estado do botão btn_Submit para mudar entre os 2 estados)
+        /// </summary>
         private void txt_Student_Readonly()
         {
             if (btn_Submit.Enabled == false)
@@ -128,9 +146,10 @@ namespace Escola_Virtual
 
         private void btn_Submit_Click(object sender, EventArgs e)
         {
-
-            
-            if(txt_StudentAddress.Text != Generic.CurrentStudent.Get_Address)
+            /*
+             * Serie de ifs que verificam quais os campos que o utilizador pretende modificar e adiciona essa mudança a Lista de mudanças Generic._list_Of_Changes
+             */
+            if (txt_StudentAddress.Text != Generic.CurrentStudent.Get_Address)
             {
                 Change_Request Alteration = new Change_Request();
                 Alteration.Set_UserID = Generic.CurrentStudent.Get_studentID;
@@ -140,6 +159,7 @@ namespace Escola_Virtual
                 txt_StudentAddress.Text = Generic.CurrentStudent.Get_Address;
                 Generic._list_Of_Changes.Add(Alteration);
             }
+
             if(txt_StudentName.Text != Generic.CurrentStudent.Get_Name)
             {
                 Change_Request Alteration = new Change_Request();
@@ -150,6 +170,7 @@ namespace Escola_Virtual
                 txt_StudentName.Text = Generic.CurrentStudent.Get_Name;
                 Generic._list_Of_Changes.Add(Alteration);
             }
+
             if(txt_StudentContact.Text != Generic.CurrentStudent.Get_Contact)
             {
                 Change_Request Alteration = new Change_Request();
@@ -160,6 +181,7 @@ namespace Escola_Virtual
                 txt_StudentContact.Text = Generic.CurrentStudent.Get_Contact;
                 Generic._list_Of_Changes.Add(Alteration);
             }
+
             if(txt_StudentNIF.Text != Generic.CurrentStudent.Get_NIF)
             {
                 Change_Request Alteration = new Change_Request();
@@ -170,6 +192,7 @@ namespace Escola_Virtual
                 txt_StudentNIF.Text = Generic.CurrentStudent.Get_NIF;
                 Generic._list_Of_Changes.Add(Alteration);
             }
+
             if(txt_StudentPassword.Text != Generic.CurrentStudent.Get_password)
             {
                 Change_Request Alteration = new Change_Request();
@@ -182,13 +205,14 @@ namespace Escola_Virtual
             }
 
             txt_Student_Readonly();
-
-
-
         }
 
         private void btn_Deposit_Click(object sender, EventArgs e)
         {
+            /*
+             * Adiciona o saldo que o utilizador pretende adicionar ao hitorico do aluno e adicinar ao saldo
+             */
+
             if (txt_QuantityDeposit.Text != "")
             {
                 int saldo = Generic.CurrentStudent.Get_saldo;
@@ -208,34 +232,56 @@ namespace Escola_Virtual
             }
             else
             {
-                lbl_QuantityDepositError.Text = "Campo obrigatório";
+                lbl_QuantityDepositError.Text = "Campo obrigatório"; //Caso o utilizador não preencha o campo do saldo Avisa com uma label de erro
             }
         }
 
         private void cbb_SelectUserChat_SelectedIndexChanged(object sender, EventArgs e)
         {
             refreshChat();
+            if (txt_MsgContent.Text == "")
+            {
+                lbl_PlaceHolder.Text = "Mensagem para " + cbb_SelectUserChat.Text.Split('-')[0];
+                lbl_PlaceHolder.Visible = true;
+            }
         }
 
         private void btn_SendMsg_Click(object sender, EventArgs e)
         {
+            /*
+             * Adiciona a mensagem a lista de "chats" contendo a origem, destinatario, a mensagem e define a mensagem como não vista (isRead = false)
+             * Atualiza a ListBox lb_Chat
+             */
+
             string mensagem = txt_MsgContent.Text;
 
-            Chat NewChatMsg = new Chat()
+            if (mensagem != "")
             {
-                Set_isRead = false,
-                Set_destinatary = cbb_SelectUserChat.SelectedItem.ToString().Trim().Split('-')[1],
-                Set_origin = Generic.CurrentStudent.Get_studentID,
-                Set_Message = mensagem,
-        };
 
-            Generic._List_Of_Chats.Add(NewChatMsg);
+                Chat NewChatMsg = new Chat()
+                {
+                    Set_isRead = false,
+                    Set_destinatary = cbb_SelectUserChat.SelectedItem.ToString().Trim().Split('-')[1],
+                    Set_origin = Generic.CurrentStudent.Get_studentID,
+                    Set_Message = mensagem,
+                };
 
-            refreshChat();
-            txt_MsgContent.Clear();
-            txt_MsgContent.Focus();
+                Generic._List_Of_Chats.Add(NewChatMsg);
+
+                refreshChat();
+                txt_MsgContent.Clear();
+
+                if (txt_MsgContent.Text == "")
+                {
+                    lbl_PlaceHolder.Text = "Mensagem para " + cbb_SelectUserChat.Text.Split('-')[0];
+                    lbl_PlaceHolder.Visible = true;
+                }
+            }
         }
 
+        /// <summary>
+        /// Atualiza a ListBox lb_Chat com as mensagens do utilizador como "Eu" e do destinatario como "Nome do destinatario" e atualiza a variavel isRead
+        /// </summary>
         private void refreshChat()
         {
             lb_Chat.Items.Clear();
@@ -251,6 +297,30 @@ namespace Escola_Virtual
                     item.Set_isRead = true;
                 }
             }
+        }
+
+        private void lbl_PlaceHolder_Click(object sender, EventArgs e)
+        {
+            //Atualiza a lbl_PLaceHolder para nao visivel uma vez que o utilizado quer escrever a mensagem e dá focus à textBox para o utilizador escrever a sua mensagem
+            lbl_PlaceHolder.Visible = false;
+            txt_MsgContent.Focus();
+        }
+
+        private void txt_MsgContent_Leave(object sender, EventArgs e)
+        {
+            //Atualiza a lbl_PLaceHolder para visivel uma vez que o utilizado já nao esta na TextBox txt_MsgContent
+
+            if (txt_MsgContent.Text == "")
+            {
+                lbl_PlaceHolder.Text = "Mensagem para " + cbb_SelectUserChat.Text.Split('-')[0];
+                lbl_PlaceHolder.Visible = true;
+            }
+        }
+
+        private void txt_MsgContent_Enter(object sender, EventArgs e)
+        {
+            //Atualiza a lbl_PLaceHolder para nao visivel uma vez que o utilizado quer escrever a mensagem
+                lbl_PlaceHolder.Visible = false;
         }
     }
 }
